@@ -32,6 +32,7 @@ import {
   Send,
   Menu,
   X,
+  RefreshCw,
 } from "lucide-react";
 import { useLeadForm } from "@/hooks/useLeadForm";
 import { countryCodes } from "@/lib/countryCodes";
@@ -745,34 +746,85 @@ function ScheduleSection() {
    ────────────────────────────────────────────── */
 function AttendanceSection() {
   return (
-    <section id="attendance" className="bg-[#F8FAFC] py-16 px-5 lg:py-20 lg:px-[120px]">
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-20 max-w-[1200px] mx-auto lg:items-center">
-        {/* Left */}
-        <div className="flex flex-col gap-3 lg:w-[400px] lg:shrink-0">
-          <TriangleAlert className="w-6 h-6 text-[#E85D26]" />
-          <h2 className="text-2xl font-bold text-[#1E293B] lg:text-[28px]">Attendance Policy</h2>
-          <p className="text-sm text-[#64748B] leading-[1.5] lg:max-w-[360px]">
-            We understand life is unpredictable — our policy is designed to support you.
-          </p>
-        </div>
-
-        {/* Right */}
-        <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex-1 overflow-hidden">
-          {[
-            { icon: CalendarCheck, iconColor: "text-[#1B8A7E]", iconBg: "bg-[#ECFDF5]", title: "Up to 3 absences", sub: "No penalty, no questions asked" },
-            { icon: BookOpenCheck, iconColor: "text-[#E85D26]", iconBg: "bg-[#FFF7ED]", title: "Extra absences covered", sub: "Complete assigned homework to stay on track" },
-            { icon: MessageCircle, iconColor: "text-[#3B82F6]", iconBg: "bg-[#EFF6FF]", title: "Just let us know", sub: "Notify your teacher via WhatsApp with a reason" },
-          ].map((item) => (
-            <div key={item.title} className="flex items-center gap-3.5 px-5 py-4 lg:px-6 lg:py-[18px]">
-              <div className={`w-9 h-9 rounded-lg ${item.iconBg} flex items-center justify-center shrink-0`}>
-                <item.icon className={`w-[18px] h-[18px] ${item.iconColor}`} />
+    <section id="attendance" className="bg-[#F8FAFC]">
+      {/* ── Desktop ── */}
+      <div className="hidden lg:block py-20 px-[120px]">
+        <div className="flex flex-row gap-20 max-w-[1200px] mx-auto items-center">
+          <div className="flex flex-col gap-3 w-[400px] shrink-0">
+            <TriangleAlert className="w-6 h-6 text-[#E85D26]" />
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Attendance Policy</h2>
+            <p className="text-sm text-[#64748B] leading-[1.5] max-w-[360px]">
+              We understand life is unpredictable — our policy is designed to support you.
+            </p>
+          </div>
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl flex-1 overflow-hidden">
+            {[
+              { icon: CalendarCheck, iconColor: "text-[#1B8A7E]", iconBg: "bg-[#ECFDF5]", title: "Up to 3 absences", sub: "No penalty, no questions asked" },
+              { icon: BookOpenCheck, iconColor: "text-[#E85D26]", iconBg: "bg-[#FFF7ED]", title: "Extra absences covered", sub: "Complete assigned homework to stay on track" },
+              { icon: MessageCircle, iconColor: "text-[#3B82F6]", iconBg: "bg-[#EFF6FF]", title: "Just let us know", sub: "Notify your teacher via WhatsApp with a reason" },
+            ].map((item) => (
+              <div key={item.title} className="flex items-center gap-3.5 px-6 py-[18px]">
+                <div className={`w-9 h-9 rounded-lg ${item.iconBg} flex items-center justify-center shrink-0`}>
+                  <item.icon className={`w-[18px] h-[18px] ${item.iconColor}`} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[#1E293B]">{item.title}</p>
+                  <p className="text-[13px] text-[#64748B]">{item.sub}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-[#1E293B]">{item.title}</p>
-                <p className="text-[13px] text-[#64748B]">{item.sub}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Mobile ── */}
+      <div className="lg:hidden py-8 px-5">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
+            <TriangleAlert className="w-6 h-6 text-[#E85D26]" />
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Attendance Policy</h2>
+            <p className="text-sm text-[#64748B] leading-[1.5]">
+              We understand life is unpredictable — our policy is designed to support you.
+            </p>
+          </div>
+          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl overflow-hidden">
+            <div className="flex items-center gap-3.5 px-6 py-[18px]">
+              <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
+                <CalendarCheck className="w-[18px] h-[18px] text-[#1B8A7E]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#1E293B]">Up to 3 absences</p>
+                <p className="text-[13px] text-[#64748B]">No penalty, no questions asked</p>
               </div>
             </div>
-          ))}
+            <div className="flex items-center gap-3.5 px-6 py-[18px]">
+              <div className="w-9 h-9 rounded-lg bg-[#FFF7ED] flex items-center justify-center shrink-0">
+                <BookOpenCheck className="w-[18px] h-[18px] text-[#E85D26]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#1E293B]">Extra absences covered</p>
+                <p className="text-[13px] text-[#64748B]">Complete assigned homework to stay on track</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3.5 px-6 py-[18px]">
+              <div className="w-9 h-9 rounded-lg bg-[#EFF6FF] flex items-center justify-center shrink-0">
+                <MessageCircle className="w-[18px] h-[18px] text-[#3B82F6]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#1E293B]">Just let us know</p>
+                <p className="text-[13px] text-[#64748B]">Notify your teacher via WhatsApp with a reason</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3.5 px-6 py-[18px]">
+              <div className="w-9 h-9 rounded-lg bg-[#F0FDF4] flex items-center justify-center shrink-0">
+                <RefreshCw className="w-[18px] h-[18px] text-[#16A34A]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#1E293B]">Make-up sessions available</p>
+                <p className="text-[13px] text-[#64748B]">Request a catch-up class anytime</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
