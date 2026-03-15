@@ -85,7 +85,7 @@ function NavBar() {
           <div className="flex items-center gap-2 lg:gap-3">
             <div className="hidden lg:block w-px h-5 bg-[#E2E8F0]" />
             <button className="rounded-full border border-[#E2E8F0] px-2.5 py-1 text-xs text-[#4A5568] lg:px-3 lg:text-[13px]">RU</button>
-            <a href="#enrol" className="rounded-lg bg-[#E85D26] px-3.5 py-2 text-[13px] font-bold text-white lg:px-6 lg:py-2.5 lg:text-sm">
+            <a href="#enrol" className="btn-pulse rounded-lg bg-[#E85D26] px-3.5 py-2 text-[13px] font-bold text-white lg:px-6 lg:py-2.5 lg:text-sm">
               <span className="lg:hidden">Enroll Now</span>
               <span className="hidden lg:inline">Enroll Now →</span>
             </a>
@@ -221,7 +221,7 @@ function HeroSection() {
               {/* Divider */}
               <div className="h-px bg-[#E2E8F0]" />
               {/* CTA */}
-              <a href="#enrol" className="flex items-center justify-center h-[52px] bg-[#E85D26] rounded-lg text-[15px] font-bold text-white">Enrol Now</a>
+              <a href="#enrol" className="btn-pulse flex items-center justify-center h-[52px] bg-[#E85D26] rounded-lg text-[15px] font-bold text-white">Enrol Now</a>
               {/* Trust */}
               <div className="flex items-center justify-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#1B8A7E]" />
@@ -339,7 +339,7 @@ function MobilePriceCard() {
       {/* Divider */}
       <div className="h-px bg-[#E2E8F0]" />
       {/* CTA */}
-      <a href="#enrol" className="flex items-center justify-center h-14 bg-[#E85D26] rounded-[10px] text-base font-extrabold text-white">Enrol Now</a>
+      <a href="#enrol" className="btn-pulse flex items-center justify-center h-14 bg-[#E85D26] rounded-[10px] text-base font-extrabold text-white">Enrol Now</a>
       {/* Trust */}
       <div className="flex flex-col items-center gap-1 pt-2">
         <div className="flex items-center justify-center gap-1.5">
@@ -1012,7 +1012,7 @@ function CTASection() {
             <Mail className="w-4 h-4 text-[#94A3B8]" />
             <input type="email" placeholder="Email address" value={form.email} onChange={(e) => form.setEmail(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1" />
           </div>
-          <button type="submit" disabled={form.status === "loading"} className="flex items-center justify-center h-14 lg:h-14 bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
+          <button type="submit" disabled={form.status === "loading"} className="btn-pulse flex items-center justify-center h-14 lg:h-14 bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
             {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enrol Now"}
           </button>
           {form.status === "error" && (

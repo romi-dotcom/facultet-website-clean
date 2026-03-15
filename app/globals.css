@@ -13,3 +13,16 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes pulse-orange {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(232, 93, 38, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(232, 93, 38, 0);
+  }
+}
+
+.btn-pulse {
+  animation: pulse-orange 2s ease-in-out infinite;
+}

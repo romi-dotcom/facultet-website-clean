@@ -177,7 +177,7 @@ export default function Testimonials() {
           </div>
           <a
             href="#enrol"
-            className="flex items-center gap-2 rounded-full bg-[#E85D26] px-8 py-4 text-base font-bold text-white hover:bg-[#D4521E] transition-colors"
+            className="btn-pulse flex items-center gap-2 rounded-full bg-[#E85D26] px-8 py-4 text-base font-bold text-white hover:bg-[#D4521E] transition-colors"
           >
             Enrol Now
             <ArrowRight className="w-[18px] h-[18px]" />
@@ -240,7 +240,7 @@ export default function Testimonials() {
           </span>
           <a
             href="#enrol"
-            className="flex items-center justify-center gap-2 rounded-full bg-[#E85D26] px-8 py-3.5 text-[15px] font-bold text-white"
+            className="btn-pulse flex items-center justify-center gap-2 rounded-full bg-[#E85D26] px-8 py-3.5 text-[15px] font-bold text-white"
           >
             Enrol Now
             <ArrowRight className="w-4 h-4" />

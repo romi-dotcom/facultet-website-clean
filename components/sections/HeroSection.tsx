@@ -77,7 +77,7 @@ export default function HeroSection() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="#enrol"
-              className="inline-flex items-center justify-center h-[52px] px-8 bg-accent rounded-lg text-base font-bold text-white lg:hover:opacity-90 transition-opacity"
+              className="btn-pulse inline-flex items-center justify-center h-[52px] px-8 bg-accent rounded-lg text-base font-bold text-white lg:hover:opacity-90 transition-opacity"
             >
               Enroll Now →
             </a>
@@ -168,7 +168,7 @@ export default function HeroSection() {
         <div className="flex flex-col gap-2.5 w-full lg:hidden">
           <a
             href="#enrol"
-            className="flex items-center justify-center h-[52px] bg-accent rounded-lg text-base font-bold text-white"
+            className="btn-pulse flex items-center justify-center h-[52px] bg-accent rounded-lg text-base font-bold text-white"
           >
             Enroll Now →
           </a>

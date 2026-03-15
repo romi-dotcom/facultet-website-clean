@@ -127,7 +127,7 @@ export default function FinalCTA() {
             <button
               type="submit"
               disabled={form.status === "loading"}
-              className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
+              className="btn-pulse flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
             >
               {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
             </button>
@@ -227,7 +227,7 @@ export default function FinalCTA() {
           <button
             type="submit"
             disabled={form.status === "loading"}
-            className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
+            className="btn-pulse flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
           >
             {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
           </button>

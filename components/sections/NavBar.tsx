@@ -80,7 +80,7 @@ export default function NavBar() {
             {/* Enroll CTA */}
             <a
               href="#enrol"
-              className="rounded-lg bg-accent px-3.5 py-2 text-[13px] font-bold text-white
+              className="btn-pulse rounded-lg bg-accent px-3.5 py-2 text-[13px] font-bold text-white
                          lg:px-6 lg:py-2.5 lg:text-sm"
             >
               <span className="lg:hidden">Enroll Now</span>
