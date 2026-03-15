@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export function useLeadForm(course: string) {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -22,9 +24,7 @@ export function useLeadForm(course: string) {
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
-      setName("");
-      setPhone("");
-      setEmail("");
+      router.push("/thank-you");
     } catch {
       setStatus("error");
     }
