@@ -1047,10 +1047,10 @@ function InstructorSection() {
             Native Portuguese speaker with 10+ years of teaching experience. Specialized in teaching Portuguese to foreign students — from A0 absolute beginners to C1 advanced. Known for her patient, structured approach and deep understanding of what international residents in Portugal actually need.
           </p>
           {/* Badges */}
-          <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="border border-[#BBF7D0] text-[#16A34A] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><Star className="w-3.5 h-3.5" />4.9 rating</span>
-            <span className="border border-[#BFDBFE] text-[#3B82F6] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><Users className="w-3.5 h-3.5" />500+ students</span>
-            <span className="border border-[#FED7AA] text-[#E85D26] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" />DGERT certified</span>
+          <div className="flex items-center gap-1.5">
+            <span className="border border-[#BBF7D0] text-[#16A34A] text-[11px] font-semibold rounded-full px-2 py-1 flex items-center gap-1"><Star className="w-3 h-3" />4.9 rating</span>
+            <span className="border border-[#BFDBFE] text-[#3B82F6] text-[11px] font-semibold rounded-full px-2 py-1 flex items-center gap-1"><Users className="w-3 h-3" />500+ students</span>
+            <span className="border border-[#FED7AA] text-[#E85D26] text-[11px] font-semibold rounded-full px-2 py-1 flex items-center gap-1"><ShieldCheck className="w-3 h-3" />DGERT certified</span>
           </div>
           {/* Quote */}
           <div className="bg-[#F0FDF4] rounded-[12px] px-5 py-4 flex flex-col gap-2.5">
