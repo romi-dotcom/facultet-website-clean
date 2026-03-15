@@ -252,7 +252,7 @@ function HeroSection() {
         <div className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl p-4 flex flex-col gap-3">
           <div className="flex items-center gap-1.5 pb-1">
             <span className="text-sm text-[#16A34A]">🏆</span>
-            <span className="text-xs font-bold text-[#16A34A]">What you&apos;ll achieve in 11 weeks</span>
+            <span className="text-xs font-bold text-[#16A34A]">What you&apos;ll achieve in 2–4 months</span>
           </div>
           <p className="text-[13px] text-[#1E293B] leading-[1.5]">
             Hold real conversations in Portuguese. Pass the A2 exam. Get your official certificate — recognised by Portuguese authorities.
@@ -329,7 +329,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <BookOpen className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Duration:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">11 weeks · 150 hours</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">2–4 months · 150 hours</span>
         </div>
         <div className="flex items-center gap-2.5">
           <MapPin className="w-[15px] h-[15px] text-[#94A3B8]" />
