@@ -116,6 +116,33 @@ function NavBar() {
 /* ──────────────────────────────────────────────
    Hero Section
    ────────────────────────────────────────────── */
+function StatsFlip() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.5 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const stats = [
+    { icon: Timer, label: "75h" },
+    { icon: Calendar, label: "2 months" },
+    { icon: Users, label: "Max 20" },
+  ];
+  return (
+    <div ref={ref} className="flex gap-2">
+      {stats.map((s, i) => (
+        <div key={s.label} className={`flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2 ${visible ? "calendar-flip" : "opacity-0"}`} style={{ "--flip-delay": `${i * 0.25}s` } as React.CSSProperties}>
+          <s.icon className="w-4 h-4 text-[#1B8A7E]" />
+          <span className="text-[13px] font-bold text-[#1E293B]">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function HeroSection() {
   return (
     <section className="bg-white">
@@ -596,18 +623,7 @@ function ProgrammeSection() {
           </p>
         </div>
         {/* Stats — horizontal row */}
-        <div className="flex gap-2">
-          {[
-            { icon: Timer, label: "75h" },
-            { icon: Calendar, label: "2 months" },
-            { icon: Users, label: "Max 20" },
-          ].map((s, i) => (
-            <div key={s.label} className="calendar-flip flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2" style={{ "--flip-delay": `${i * 0.25}s` } as React.CSSProperties}>
-              <s.icon className="w-4 h-4 text-[#1B8A7E]" />
-              <span className="text-[13px] font-bold text-[#1E293B]">{s.label}</span>
-            </div>
-          ))}
-        </div>
+        <StatsFlip />
         {/* Module list */}
         <div className="flex flex-col gap-2">
           {mobileModules.map((m) => (
