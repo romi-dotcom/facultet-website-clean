@@ -836,40 +836,76 @@ function AttendanceSection() {
    ────────────────────────────────────────────── */
 function CertificationSection() {
   return (
-    <section id="certificate" className="bg-white py-16 px-5 lg:py-20 lg:px-[120px]">
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-20 max-w-[1200px] mx-auto lg:items-center">
-        {/* Left */}
-        <div className="flex flex-col gap-3 lg:w-[400px] lg:shrink-0">
-          <Award className="w-6 h-6 text-[#E85D26]" />
-          <h2 className="text-2xl font-bold text-[#1E293B] lg:text-[28px]">Certification</h2>
-          <p className="text-sm text-[#64748B] leading-[1.5] lg:max-w-[360px]">
-            Your proof of progress — recognised where it matters most.
-          </p>
+    <section id="certificate" className="bg-white">
+      {/* ── Desktop ── */}
+      <div className="hidden lg:block py-20 px-[120px]">
+        <div className="flex flex-row gap-20 max-w-[1200px] mx-auto items-center">
+          <div className="flex flex-col gap-3 w-[400px] shrink-0">
+            <Award className="w-6 h-6 text-[#E85D26]" />
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Certification</h2>
+            <p className="text-sm text-[#64748B] leading-[1.5] max-w-[360px]">
+              Your proof of progress — recognised where it matters most.
+            </p>
+          </div>
+          <div className="bg-[#F0FDFA] border-[1.5px] border-[#99F6E4] rounded-xl flex-1 overflow-hidden">
+            <div className="flex items-center gap-3.5 px-6 py-5">
+              <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
+                <Award className="w-5 h-5 text-[#0F766E]" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#0F766E]">PLA certificate</p>
+                <p className="text-[13px] text-[#475569]">Issued in partnership with Centro Qualifica within 2 weeks</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3.5 px-6 py-5">
+              <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
+                <Landmark className="w-5 h-5 text-[#0F766E]" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[#0F766E]">Accepted for citizenship & residency</p>
+                <p className="text-[13px] text-[#475569]">Valid for applying for Portuguese citizenship and permanent residence</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2.5 bg-[#CCFBF1] px-6 py-4 rounded-b-xl">
+              <Users className="w-4 h-4 text-[#0F766E]" />
+              <span className="text-[13px] font-medium text-[#0F766E]">473 students have already received their certificate</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        {/* Right */}
-        <div className="bg-[#F0FDFA] border-[1.5px] border-[#99F6E4] rounded-xl flex-1 overflow-hidden">
-          <div className="flex items-center gap-3.5 px-5 py-5 lg:px-6">
-            <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
-              <Award className="w-5 h-5 text-[#0F766E]" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#0F766E]">PLA certificate</p>
-              <p className="text-[13px] text-[#475569]">Issued in partnership with Centro Qualifica within 2 weeks</p>
-            </div>
+      {/* ── Mobile ── */}
+      <div className="lg:hidden py-8 px-5">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Certification</h2>
+            <p className="text-sm text-[#64748B] leading-[1.5]">
+              Your proof of progress — recognised where it matters most.
+            </p>
           </div>
-          <div className="flex items-center gap-3.5 px-5 py-5 lg:px-6">
-            <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
-              <Landmark className="w-5 h-5 text-[#0F766E]" />
+          <div className="bg-[#F0FDFA] border-[1.5px] border-[#99F6E4] rounded-xl overflow-hidden">
+            <div className="flex items-center gap-3.5 px-6 py-5">
+              <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
+                <Award className="w-5 h-5 text-[#0F766E]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#0F766E]">PLA certificate</p>
+                <p className="text-[13px] text-[#475569]">Issued in partnership with Centro Qualifica within 2 weeks</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-semibold text-[#0F766E]">Accepted for citizenship & residency</p>
-              <p className="text-[13px] text-[#475569]">Valid for applying for Portuguese citizenship and permanent residence</p>
+            <div className="flex items-center gap-3.5 px-6 py-5">
+              <div className="w-10 h-10 rounded-[10px] bg-[#CCFBF1] flex items-center justify-center shrink-0">
+                <Landmark className="w-5 h-5 text-[#0F766E]" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-[#0F766E]">Accepted for citizenship & residency</p>
+                <p className="text-[13px] text-[#475569]">Valid for applying for Portuguese citizenship and permanent residence</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2.5 bg-[#CCFBF1] px-5 py-4 lg:px-6 rounded-b-xl">
-            <Users className="w-4 h-4 text-[#0F766E]" />
-            <span className="text-[13px] font-medium text-[#0F766E]">473 students have already received their certificate</span>
+            <div className="flex items-center gap-2.5 bg-[#CCFBF1] px-6 py-4 rounded-b-xl">
+              <Users className="w-4 h-4 text-[#0F766E]" />
+              <span className="text-[13px] font-medium text-[#0F766E]">473 students have already received their certificate</span>
+            </div>
           </div>
         </div>
       </div>
@@ -890,33 +926,62 @@ const requiredDocs = [
 
 function RequiredDocsSection() {
   return (
-    <section id="documents" className="bg-[#F8FAFC] py-16 px-5 lg:py-20 lg:px-[120px]">
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-20 max-w-[1200px] mx-auto lg:items-start">
-        {/* Left */}
-        <div className="flex flex-col gap-3 lg:w-[400px] lg:shrink-0">
-          <FileText className="w-6 h-6 text-[#E85D26]" />
-          <h2 className="text-2xl font-bold text-[#1E293B] lg:text-[28px]">Required Documents</h2>
-          <p className="text-[15px] text-[#64748B]">Prepare these before enrolling</p>
-          <div className="flex items-center gap-2 bg-[#F0FDF4] rounded-lg px-3 py-2">
-            <Clock3 className="w-3.5 h-3.5 text-[#16A34A]" />
-            <span className="text-xs font-semibold text-[#16A34A]">Takes 5 minutes to prepare</span>
+    <section id="documents" className="bg-[#F8FAFC]">
+      {/* ── Desktop ── */}
+      <div className="hidden lg:block py-20 px-[120px]">
+        <div className="flex flex-row gap-20 max-w-[1200px] mx-auto items-start">
+          <div className="flex flex-col gap-3 w-[400px] shrink-0">
+            <FileText className="w-6 h-6 text-[#E85D26]" />
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Required Documents</h2>
+            <p className="text-[15px] text-[#64748B]">Prepare these before enrolling</p>
+            <div className="flex items-center gap-2 bg-[#F0FDF4] rounded-lg px-3 py-2">
+              <Clock3 className="w-3.5 h-3.5 text-[#16A34A]" />
+              <span className="text-xs font-semibold text-[#16A34A]">Takes 5 minutes to prepare</span>
+            </div>
+          </div>
+          <div className="bg-white border border-[#E2E8F0] rounded-xl flex-1 overflow-hidden">
+            {requiredDocs.map((doc) => (
+              <div key={doc.title} className={`flex items-center gap-3 px-5 py-3.5 ${doc.optional ? "bg-[#FAFAFA]" : ""}`}>
+                <doc.icon className={`w-4 h-4 shrink-0 ${doc.optional ? "text-[#94A3B8]" : "text-[#1B8A7E]"}`} />
+                <div>
+                  <p className={`text-sm font-medium ${doc.optional ? "text-[#64748B]" : "text-[#1E293B]"}`}>{doc.title}</p>
+                  <p className="text-xs text-[#94A3B8]">{doc.sub}</p>
+                </div>
+              </div>
+            ))}
+            <div className="flex items-center gap-2.5 bg-[#F8FAFC] px-5 py-3.5 rounded-b-xl">
+              <HandHelping className="w-[15px] h-[15px] text-[#1B8A7E]" />
+              <span className="text-[13px] font-medium text-[#1B8A7E]">We help you prepare everything at enrollment — no stress.</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Right */}
-        <div className="bg-white border border-[#E2E8F0] rounded-xl flex-1 overflow-hidden">
-          {requiredDocs.map((doc) => (
-            <div key={doc.title} className={`flex items-center gap-3 px-5 py-3.5 ${doc.optional ? "bg-[#FAFAFA]" : ""}`}>
-              <doc.icon className={`w-4 h-4 shrink-0 ${doc.optional ? "text-[#94A3B8]" : "text-[#1B8A7E]"}`} />
-              <div>
-                <p className={`text-sm font-medium ${doc.optional ? "text-[#64748B]" : "text-[#1E293B]"}`}>{doc.title}</p>
-                <p className="text-xs text-[#94A3B8]">{doc.sub}</p>
+      {/* ── Mobile ── */}
+      <div className="lg:hidden py-8 px-5">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
+            <h2 className="text-[28px] font-bold text-[#1E293B]">Required Documents</h2>
+            <p className="text-[15px] text-[#64748B]">Prepare these before enrolling</p>
+          </div>
+          <div className="flex items-center gap-2 bg-[#F0FDF4] rounded-lg px-3 py-2.5">
+            <Clock3 className="w-4 h-4 text-[#16A34A]" />
+            <span className="text-xs font-semibold text-[#16A34A]">Takes 5 minutes to prepare</span>
+          </div>
+          <div className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
+            {requiredDocs.map((doc) => (
+              <div key={doc.title} className={`flex items-center gap-3 px-5 py-3.5 ${doc.optional ? "bg-[#FAFAFA]" : ""}`}>
+                <doc.icon className={`w-4 h-4 shrink-0 ${doc.optional ? "text-[#94A3B8]" : "text-[#1B8A7E]"}`} />
+                <div className="flex flex-col gap-[1px]">
+                  <p className={`text-sm font-medium ${doc.optional ? "text-[#64748B]" : "text-[#1E293B]"}`}>{doc.title}</p>
+                  <p className="text-xs text-[#94A3B8]">{doc.sub}</p>
+                </div>
               </div>
+            ))}
+            <div className="flex items-center gap-2.5 bg-[#F8FAFC] px-5 py-3.5 rounded-b-xl">
+              <HandHelping className="w-[15px] h-[15px] text-[#1B8A7E]" />
+              <span className="text-[13px] font-medium text-[#1B8A7E]">We help you prepare everything at enrollment — no stress.</span>
             </div>
-          ))}
-          <div className="flex items-center gap-2.5 bg-[#F8FAFC] px-5 py-3.5 rounded-b-xl">
-            <HandHelping className="w-[15px] h-[15px] text-[#1B8A7E]" />
-            <span className="text-[13px] font-medium text-[#1B8A7E]">We help you prepare everything at enrollment — no stress.</span>
           </div>
         </div>
       </div>
@@ -929,41 +994,72 @@ function RequiredDocsSection() {
    ────────────────────────────────────────────── */
 function InstructorSection() {
   return (
-    <section id="instructor" className="bg-white py-16 px-5 lg:py-20 lg:px-[120px]">
+    <section id="instructor" className="bg-white py-6 px-5 lg:py-20 lg:px-[120px]">
       <div className="max-w-[1200px] mx-auto flex flex-col gap-8">
-        <h2 className="text-2xl font-bold text-[#1E293B] lg:text-[28px]">Instructor</h2>
-        <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 lg:p-9">
-          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
-            {/* Avatar */}
-            <div className="w-[88px] h-[88px] rounded-full bg-[#E2E8F0] shrink-0 overflow-hidden">
-              <img src="/images/instructor.png" alt="Instructor" className="w-full h-full object-cover" />
-            </div>
-            {/* Info */}
-            <div className="flex flex-col gap-2 flex-1 text-center lg:text-left">
-              <p className="text-[22px] font-bold text-[#1E293B]">Ana Silva</p>
-              <div className="flex items-center justify-center lg:justify-start gap-2.5 flex-wrap">
-                <span className="bg-[#F0FDF4] text-[#16A34A] text-xs font-semibold rounded-full px-2.5 py-1.5">4.9 rating</span>
-                <span className="bg-[#EFF6FF] text-[#3B82F6] text-xs font-semibold rounded-full px-2.5 py-1.5 flex items-center gap-1.5">
-                  <Users className="w-[13px] h-[13px]" />500+ students
-                </span>
-                <span className="bg-[#FFF7ED] text-[#E85D26] text-xs font-semibold rounded-full px-2.5 py-1.5 flex items-center gap-1.5">
-                  <ShieldCheck className="w-[13px] h-[13px]" />DGERT certified
-                </span>
+        {/* ── Desktop ── */}
+        <div className="hidden lg:flex flex-col gap-8">
+          <h2 className="text-[28px] font-bold text-[#1E293B]">Instructor</h2>
+          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-9">
+            <div className="flex items-center gap-8">
+              <div className="w-[88px] h-[88px] rounded-full bg-[#E2E8F0] shrink-0 overflow-hidden">
+                <img src="/images/instructor.png" alt="Instructor" className="w-full h-full object-cover" />
               </div>
-              <p className="text-sm text-[#64748B]">MA in Portuguese Language & Literature · DGERT-certified instructor</p>
-              <p className="text-sm text-[#475569] leading-[1.6]">
-                Native Portuguese speaker with 10+ years of teaching experience. Specialized in teaching Portuguese to foreign students — from A0 absolute beginners to C1 advanced. Known for her patient, structured approach and deep understanding of what international residents in Portugal actually need.
+              <div className="flex flex-col gap-2 flex-1">
+                <p className="text-[23px] font-bold text-[#1E293B]">Ana Silva</p>
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <span className="bg-[#F0FDF4] text-[#16A34A] text-xs font-semibold rounded-full px-2.5 py-1.5 flex items-center gap-1.5"><Star className="w-3 h-3" />4.9 rating</span>
+                  <span className="bg-[#EFF6FF] text-[#3B82F6] text-xs font-semibold rounded-full px-2.5 py-1.5 flex items-center gap-1.5"><Users className="w-3 h-3" />500+ students</span>
+                  <span className="bg-[#FFF7ED] text-[#E85D26] text-xs font-semibold rounded-full px-2.5 py-1.5 flex items-center gap-1.5"><ShieldCheck className="w-3 h-3" />DGERT certified</span>
+                </div>
+                <p className="text-sm text-[#64748B]">MA in Portuguese Language &amp; Literature · DGERT-certified instructor</p>
+                <p className="text-sm text-[#475569] leading-[1.6]">
+                  Native Portuguese speaker with 10+ years of teaching experience. Specialized in teaching Portuguese to foreign students — from A0 absolute beginners to C1 advanced. Known for her patient, structured approach and deep understanding of what international residents in Portugal actually need.
+                </p>
+              </div>
+            </div>
+            <div className="bg-[#F8FAFC] rounded-[10px] p-5 mt-8 flex flex-col gap-3">
+              <p className="text-sm text-[#475569] leading-[1.6] italic">
+                &ldquo;My goal is simple — to help you feel confident in Portuguese so you can build your life in Portugal with ease.&rdquo;
               </p>
+              <div className="flex items-center gap-2">
+                <Quote className="w-3.5 h-3.5 text-[#1B8A7E]" />
+                <span className="text-xs font-medium text-[#1B8A7E]">Ana Silva, Lead Instructor</span>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* ── Mobile ── */}
+        <div className="lg:hidden flex flex-col gap-4">
+          <h2 className="text-[23px] font-bold text-[#0F172A]">Instructor</h2>
+          {/* Profile row */}
+          <div className="flex items-center gap-3">
+            <div className="w-[72px] h-[72px] rounded-full shrink-0 overflow-hidden">
+              <img src="/images/instructor.png" alt="Instructor" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-[15px] font-bold text-[#0F172A]">Ana Silva</p>
+              <p className="text-[11px] text-[#64748B] leading-[1.4]">MA in Portuguese Language &amp; Literature · DGERT-certified instructor</p>
+            </div>
+          </div>
+          {/* Bio */}
+          <p className="text-[13px] text-[#475569] leading-[1.5]">
+            Native Portuguese speaker with 10+ years of teaching experience. Specialized in teaching Portuguese to foreign students — from A0 absolute beginners to C1 advanced. Known for her patient, structured approach and deep understanding of what international residents in Portugal actually need.
+          </p>
+          {/* Badges */}
+          <div className="flex items-center gap-2">
+            <span className="bg-[#F0FDF4] text-[#16A34A] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><Star className="w-3 h-3" />4.9 rating</span>
+            <span className="bg-[#EFF6FF] text-[#3B82F6] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><Users className="w-3 h-3" />500+ students</span>
+            <span className="bg-[#FFF7ED] text-[#E85D26] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><ShieldCheck className="w-3 h-3" />DGERT certified</span>
+          </div>
           {/* Quote */}
-          <div className="bg-[#F8FAFC] rounded-[10px] p-4 lg:p-5 mt-6 lg:mt-8 flex flex-col gap-3">
-            <p className="text-sm text-[#475569] leading-[1.6] italic">
+          <div className="bg-[#F0FDF4] rounded-[10px] px-4 py-3.5 flex flex-col gap-1.5">
+            <p className="text-xs text-[#1E3A2F] leading-[1.5]">
               &ldquo;My goal is simple — to help you feel confident in Portuguese so you can build your life in Portugal with ease.&rdquo;
             </p>
-            <div className="flex items-center gap-2">
-              <Quote className="w-3.5 h-3.5 text-[#1B8A7E]" />
-              <span className="text-xs font-medium text-[#1B8A7E]">Ana Silva, Lead Instructor</span>
+            <div className="flex items-center gap-1.5">
+              <Quote className="w-3 h-3 text-[#1B8A7E]" />
+              <span className="text-[11px] font-medium text-[#1B8A7E]">Ana Silva, Lead Instructor</span>
             </div>
           </div>
         </div>
