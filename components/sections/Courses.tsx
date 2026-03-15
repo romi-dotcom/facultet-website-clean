@@ -167,7 +167,7 @@ function CourseCard({ course }: { course: Course }) {
         {/* View Curriculum */}
         <a
           href={course.href}
-          className="flex items-center justify-center h-11 rounded-xl border border-[#1B8A7E] text-[13px] text-[#1B8A7E]"
+          className="flex items-center justify-center h-11 rounded-xl border border-[#1B8A7E] text-[13px] text-[#1B8A7E] cursor-pointer transition-all hover:bg-[#F0FAF9] hover:shadow-[0_2px_8px_rgba(27,138,126,0.1)]"
         >
           View Curriculum →
         </a>
