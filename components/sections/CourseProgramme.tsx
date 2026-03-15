@@ -95,7 +95,7 @@ export default function CourseProgramme() {
                 className={`flex flex-col gap-1.5 rounded-[10px] px-5 py-4 text-left transition-all cursor-pointer ${
                   i === active
                     ? "bg-[#1B8A7E] shadow-[0_4px_12px_rgba(27,138,126,0.3)]"
-                    : "bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#1B8A7E] hover:bg-[#F0FAF9] hover:shadow-[0_2px_8px_rgba(27,138,126,0.1)]"
+                    : "tab-hint bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#1B8A7E] hover:bg-[#F0FAF9] hover:shadow-[0_2px_8px_rgba(27,138,126,0.1)]"
                 }`}
               >
                 <span

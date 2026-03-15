@@ -60,3 +60,18 @@ html {
     transform: translateX(100%);
   }
 }
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: #E2E8F0;
+    box-shadow: none;
+  }
+  50% {
+    border-color: #1B8A7E;
+    box-shadow: 0 0 8px rgba(27, 138, 126, 0.2);
+  }
+}
+
+.tab-hint {
+  animation: border-glow 2.5s ease-in-out infinite;
+}
