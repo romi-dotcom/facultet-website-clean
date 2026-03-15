@@ -1096,69 +1096,149 @@ const testimonials = [
 ];
 
 function TestimonialsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / testimonials.length));
+      setActiveCard(Math.min(idx, testimonials.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section id="reviews" className="bg-[#F8FAFC] py-16 px-5 lg:py-20 lg:px-[120px]">
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-10 lg:gap-12">
-        {/* Header */}
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-bold tracking-[0.8px] text-[#1B8A7E]">STUDENT STORIES</span>
-          <h2 className="text-2xl font-bold text-[#1E293B] text-center lg:text-[36px]">Real results from real students</h2>
-          <p className="text-base text-[#64748B] text-center">473 graduates. Each one with a story worth sharing.</p>
+    <section id="reviews" className="bg-[#F8FAFC] py-8 lg:py-20 lg:px-[120px]">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-5 lg:gap-12">
+
+        {/* ── Mobile header ── */}
+        <div className="lg:hidden flex flex-col gap-1.5 px-5">
+          <span className="text-[11px] font-bold tracking-[2px] text-[#1B8A7E]">TESTIMONIALS</span>
+          <h2 className="text-[26px] font-extrabold leading-[1.2] text-[#1E293B]">What Our Students Say</h2>
+          {/* Google bar */}
+          <div className="flex items-center justify-center gap-3 border border-[#E2E8F0] bg-white rounded-full px-[18px] py-2.5 mt-2 self-start">
+            <span className="text-[15px] font-bold text-[#4285F4]">G</span>
+            <div className="flex items-center gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 text-[#F59E0B] fill-[#F59E0B]" />
+              ))}
+            </div>
+            <span className="text-xs font-semibold text-[#1E293B]">5.0 · 47 reviews</span>
+          </div>
         </div>
 
-        {/* Cards */}
-        <div className="flex flex-col gap-5 lg:flex-row lg:gap-6">
+        {/* ── Mobile carousel ── */}
+        <div
+          ref={scrollRef}
+          className="lg:hidden flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-5"
+          style={{ scrollPaddingLeft: "20px" }}
+        >
           {testimonials.map((t) => (
-            <div key={t.name} className="flex-1 bg-white border border-[#E2E8F0] rounded-2xl p-6 lg:p-7 flex flex-col gap-5">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-[#F59E0B] fill-[#F59E0B]" />
-                ))}
-              </div>
-              <p className="text-[15px] text-[#1E293B] leading-[1.6]">&ldquo;{t.quote}&rdquo;</p>
-              <div className="flex items-center gap-3 mt-auto">
-                {t.avatar ? (
-                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover shrink-0" />
-                ) : (
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#E85D26] to-[#1B8A7E] flex items-center justify-center text-sm font-bold text-white shrink-0">
-                    {t.name[0]}
+            <div key={t.name} className="w-[315px] min-w-[315px] h-[220px] snap-start shrink-0 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm flex overflow-hidden">
+              {/* Photo */}
+              {t.avatar && (
+                <div className="w-[90px] shrink-0 overflow-hidden rounded-l-2xl">
+                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                </div>
+              )}
+              {/* Body */}
+              <div className="flex-1 flex flex-col justify-between p-4 gap-2.5">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-[13px] h-[13px] text-[#F59E0B] fill-[#F59E0B]" />
+                    ))}
                   </div>
-                )}
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-[#1E293B]">{t.name}</span>
-                    <span className="bg-[#F0FDF4] text-[#16A34A] text-[11px] font-semibold rounded-full px-2 py-0.5">{t.badge}</span>
-                  </div>
-                  <span className="text-xs text-[#64748B]">{t.date}</span>
+                  <p className="text-[13px] font-medium text-[#1E293B] leading-[1.5] line-clamp-5">&ldquo;{t.quote}&rdquo;</p>
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[13px] font-bold text-[#1E293B]">{t.name}</span>
+                  <span className="text-[11px] text-[#64748B]">{t.date}</span>
                 </div>
               </div>
             </div>
           ))}
+          <div className="min-w-[20px] shrink-0" />
         </div>
 
-        {/* Stats bar */}
-        <div className="bg-white border border-[#E2E8F0] rounded-2xl flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10 p-6 lg:px-10 lg:py-6">
-          <div className="flex items-center gap-2.5">
-            <Star className="w-5 h-5 text-[#F59E0B]" />
-            <div>
-              <p className="text-base font-bold text-[#1E293B]">5.0</p>
-              <p className="text-xs text-[#64748B]">Average rating</p>
-            </div>
+        {/* ── Mobile dots ── */}
+        <div className="lg:hidden flex items-center justify-center gap-2">
+          {testimonials.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all ${
+                i === activeCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#D1D5DB]"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* ── Desktop ── */}
+        <div className="hidden lg:flex flex-col gap-12">
+          {/* Header */}
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs font-bold tracking-[0.8px] text-[#1B8A7E]">STUDENT STORIES</span>
+            <h2 className="text-[36px] font-bold text-[#1E293B] text-center">Real results from real students</h2>
+            <p className="text-base text-[#64748B] text-center">473 graduates. Each one with a story worth sharing.</p>
           </div>
-          <div className="hidden lg:block w-px h-10 bg-[#E2E8F0]" />
-          <div className="flex items-center gap-2.5">
-            <Users className="w-5 h-5 text-[#1B8A7E]" />
-            <div>
-              <p className="text-base font-bold text-[#1E293B]">473 graduates</p>
-              <p className="text-xs text-[#64748B]">Successfully certified</p>
-            </div>
+
+          {/* Cards */}
+          <div className="flex gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="flex-1 bg-white border border-[#E2E8F0] rounded-2xl p-7 flex flex-col gap-5">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-[#F59E0B] fill-[#F59E0B]" />
+                  ))}
+                </div>
+                <p className="text-[15px] text-[#1E293B] leading-[1.6]">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center gap-3 mt-auto">
+                  {t.avatar ? (
+                    <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover shrink-0" />
+                  ) : (
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#E85D26] to-[#1B8A7E] flex items-center justify-center text-sm font-bold text-white shrink-0">
+                      {t.name[0]}
+                    </div>
+                  )}
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-bold text-[#1E293B]">{t.name}</span>
+                      <span className="bg-[#F0FDF4] text-[#16A34A] text-[11px] font-semibold rounded-full px-2 py-0.5">{t.badge}</span>
+                    </div>
+                    <span className="text-xs text-[#64748B]">{t.date}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="hidden lg:block w-px h-10 bg-[#E2E8F0]" />
-          <div className="flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 text-[#E85D26]" />
-            <div>
-              <p className="text-base font-bold text-[#1E293B]">100% official</p>
-              <p className="text-xs text-[#64748B]">Documents accepted by authorities</p>
+
+          {/* Stats bar */}
+          <div className="bg-white border border-[#E2E8F0] rounded-2xl flex items-center justify-center gap-10 px-10 py-6">
+            <div className="flex items-center gap-2.5">
+              <Star className="w-5 h-5 text-[#F59E0B]" />
+              <div>
+                <p className="text-base font-bold text-[#1E293B]">5.0</p>
+                <p className="text-xs text-[#64748B]">Average rating</p>
+              </div>
+            </div>
+            <div className="w-px h-10 bg-[#E2E8F0]" />
+            <div className="flex items-center gap-2.5">
+              <Users className="w-5 h-5 text-[#1B8A7E]" />
+              <div>
+                <p className="text-base font-bold text-[#1E293B]">473 graduates</p>
+                <p className="text-xs text-[#64748B]">Successfully certified</p>
+              </div>
+            </div>
+            <div className="w-px h-10 bg-[#E2E8F0]" />
+            <div className="flex items-center gap-2.5">
+              <ShieldCheck className="w-5 h-5 text-[#E85D26]" />
+              <div>
+                <p className="text-base font-bold text-[#1E293B]">100% official</p>
+                <p className="text-xs text-[#64748B]">Documents accepted by authorities</p>
+              </div>
             </div>
           </div>
         </div>
