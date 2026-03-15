@@ -1030,36 +1030,36 @@ function InstructorSection() {
         </div>
 
         {/* ── Mobile ── */}
-        <div className="lg:hidden flex flex-col gap-4">
-          <h2 className="text-[23px] font-bold text-[#0F172A]">Instructor</h2>
+        <div className="lg:hidden flex flex-col gap-5">
+          <h2 className="text-[26px] font-bold text-[#0F172A]">Instructor</h2>
           {/* Profile row */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="w-[72px] h-[72px] rounded-full shrink-0 overflow-hidden">
               <img src="/images/instructor.png" alt="Instructor" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col gap-1">
-              <p className="text-[15px] font-bold text-[#0F172A]">Ana Silva</p>
-              <p className="text-[11px] text-[#64748B] leading-[1.4]">MA in Portuguese Language &amp; Literature · DGERT-certified instructor</p>
+              <p className="text-[19px] font-bold text-[#0F172A]">Ana Silva</p>
+              <p className="text-[13px] text-[#64748B] leading-[1.4]">MA in Portuguese Language &amp; Literature · DGERT-certified instructor</p>
             </div>
           </div>
           {/* Bio */}
-          <p className="text-[13px] text-[#475569] leading-[1.5]">
+          <p className="text-[15px] text-[#475569] leading-[1.6]">
             Native Portuguese speaker with 10+ years of teaching experience. Specialized in teaching Portuguese to foreign students — from A0 absolute beginners to C1 advanced. Known for her patient, structured approach and deep understanding of what international residents in Portugal actually need.
           </p>
           {/* Badges */}
-          <div className="flex items-center gap-2">
-            <span className="bg-[#F0FDF4] text-[#16A34A] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><Star className="w-3 h-3" />4.9 rating</span>
-            <span className="bg-[#EFF6FF] text-[#3B82F6] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><Users className="w-3 h-3" />500+ students</span>
-            <span className="bg-[#FFF7ED] text-[#E85D26] text-[11px] font-semibold rounded-full px-2.5 py-[5px] flex items-center gap-1"><ShieldCheck className="w-3 h-3" />DGERT certified</span>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span className="border border-[#BBF7D0] text-[#16A34A] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><Star className="w-3.5 h-3.5" />4.9 rating</span>
+            <span className="border border-[#BFDBFE] text-[#3B82F6] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><Users className="w-3.5 h-3.5" />500+ students</span>
+            <span className="border border-[#FED7AA] text-[#E85D26] text-[13px] font-semibold rounded-full px-3 py-1.5 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" />DGERT certified</span>
           </div>
           {/* Quote */}
-          <div className="bg-[#F0FDF4] rounded-[10px] px-4 py-3.5 flex flex-col gap-1.5">
-            <p className="text-xs text-[#1E3A2F] leading-[1.5]">
+          <div className="bg-[#F0FDF4] rounded-[12px] px-5 py-4 flex flex-col gap-2.5">
+            <p className="text-[15px] text-[#1E3A2F] leading-[1.5]">
               &ldquo;My goal is simple — to help you feel confident in Portuguese so you can build your life in Portugal with ease.&rdquo;
             </p>
-            <div className="flex items-center gap-1.5">
-              <Quote className="w-3 h-3 text-[#1B8A7E]" />
-              <span className="text-[11px] font-medium text-[#1B8A7E]">Ana Silva, Lead Instructor</span>
+            <div className="flex items-center gap-2">
+              <Quote className="w-3.5 h-3.5 text-[#1B8A7E]" />
+              <span className="text-[13px] font-medium text-[#1B8A7E]">Ana Silva, Lead Instructor</span>
             </div>
           </div>
         </div>
