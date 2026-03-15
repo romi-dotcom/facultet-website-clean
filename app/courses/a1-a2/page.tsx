@@ -1404,29 +1404,29 @@ function CTASection() {
           Next group starts May 2, 2026{"\n"}— 20 spots left
         </p>
         {/* Form card */}
-        <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-4 lg:gap-3">
+        <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">
           {/* Name & Phone — stacked on mobile, side by side on desktop */}
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-3">
-            <div className="flex items-center gap-2.5 h-[60px] lg:h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
+          <div className="flex flex-col lg:flex-row gap-3">
+            <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
               <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
-              <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-[15px] lg:text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+              <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
-            <div className="flex items-center gap-1.5 h-[60px] lg:h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-3 flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
               <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
-              <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-[15px] lg:text-sm text-[#1E293B] outline-none shrink-0 appearance-none pr-1 cursor-pointer">
+              <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-sm text-[#1E293B] outline-none shrink-0 appearance-none pr-1 cursor-pointer">
                 {countryCodes.map((c) => (
                   <option key={c.code} value={c.code}>{c.flag}{c.code}</option>
                 ))}
               </select>
               <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
-              <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-[15px] lg:text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+              <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
           </div>
-          <div className="flex items-center gap-2.5 h-[60px] lg:h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
+          <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Mail className="w-4 h-4 text-[#94A3B8]" />
-            <input type="email" placeholder="Email address" value={form.email} onChange={(e) => form.setEmail(e.target.value)} className="bg-transparent text-[15px] lg:text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1" />
+            <input type="email" placeholder="Email address" value={form.email} onChange={(e) => form.setEmail(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1" />
           </div>
-          <button type="submit" disabled={form.status === "loading"} className="btn-pulse flex items-center justify-center h-[52px] lg:h-14 bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
+          <button type="submit" disabled={form.status === "loading"} className="btn-pulse flex items-center justify-center h-[52px] bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
             {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enrol Now"}
           </button>
           {form.status === "error" && (
