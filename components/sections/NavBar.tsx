@@ -9,6 +9,15 @@ const navLinks = [
   { label: "Contacts", href: "#contacts" },
 ];
 
+function scrollToId(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -60,7 +69,8 @@ export default function NavBar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[15px] font-medium text-[#374151] lg:hover:text-[#1E293B] transition-colors"
+                onClick={(e) => scrollToId(e, link.href.slice(1))}
+                className="text-[15px] font-medium text-[#374151] lg:hover:text-[#1E293B] transition-colors cursor-pointer"
               >
                 {link.label}
               </a>
@@ -80,6 +90,7 @@ export default function NavBar() {
             {/* Enroll CTA */}
             <a
               href="#enrol"
+              onClick={(e) => scrollToId(e, "enrol")}
               className="btn-pulse rounded-lg bg-accent px-3.5 py-2 text-[13px] font-bold text-white
                          lg:px-6 lg:py-2.5 lg:text-sm"
             >
@@ -110,8 +121,8 @@ export default function NavBar() {
             <a
               key={link.href}
               href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center h-12 text-base font-medium text-[#1E293B] border-b border-[#F0F0F0]"
+              onClick={(e) => { setMenuOpen(false); scrollToId(e, link.href.slice(1)); }}
+              className="flex items-center h-12 text-base font-medium text-[#1E293B] border-b border-[#F0F0F0] cursor-pointer"
             >
               {link.label}
             </a>

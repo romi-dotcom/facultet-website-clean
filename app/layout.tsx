@@ -20,22 +20,6 @@ export default function RootLayout({
       </head>
       <body className="font-inter antialiased">
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              document.addEventListener('click', function(e) {
-                var link = e.target.closest('a[href^="#"]');
-                if (!link) return;
-                var id = link.getAttribute('href').slice(1);
-                var target = document.getElementById(id);
-                if (target) {
-                  e.preventDefault();
-                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              });
-            `,
-          }}
-        />
       </body>
     </html>
   );

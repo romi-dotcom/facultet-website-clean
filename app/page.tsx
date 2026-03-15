@@ -20,14 +20,24 @@ export default function Home() {
       <TrustBar />
       <DocumentsTimeline />
       <WhyOnline />
-      <CourseProgramme />
+      <div id="programme">
+        <CourseProgramme />
+      </div>
       <Certifications />
-      <HowItWorks />
-      <Testimonials />
-      <SocialProofGallery />
-      <Courses />
-      <FAQ />
-      <FinalCTA />
+      <div id="about">
+        <HowItWorks />
+        <Testimonials />
+        <SocialProofGallery />
+      </div>
+      <div id="courses">
+        <Courses />
+      </div>
+      <div id="faq">
+        <FAQ />
+      </div>
+      <div id="contacts">
+        <FinalCTA />
+      </div>
     </main>
   );
 }
