@@ -516,50 +516,101 @@ const modules = [
   { num: "5", title: "Module 5 — Exam Preparation & Certificate (A2)", meta: "3 lessons · 4.5 hours · Weeks 10", pills: [{ label: "Mock exam", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Final prep", color: "text-[#E85D26]", bg: "bg-[#FFF7ED]" }], accent: true },
 ];
 
+const mobileModules = [
+  { num: "1", title: "Absolute Beginners (A0)", meta: "4 lessons · Weeks 1–2", accent: false },
+  { num: "2", title: "Basic Communication (A1 Entry)", meta: "4 lessons · Weeks 3–4", accent: false },
+  { num: "3", title: "Everyday Portuguese (A1)", meta: "5 lessons · Weeks 5–7", accent: false },
+  { num: "4", title: "Social & Bureaucratic Contexts (A1+)", meta: "4 lessons · Weeks 8–9", accent: false },
+  { num: "5", title: "Exam Prep & Certificate (A2)", meta: "3 lessons · Week 10", accent: true },
+];
+
 function ProgrammeSection() {
   return (
-    <section id="programme" className="bg-white py-16 px-5 lg:py-20 lg:px-[120px]">
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-20 max-w-[1200px] mx-auto">
-        {/* Left sidebar */}
-        <div className="flex flex-col gap-6 lg:w-[360px] lg:shrink-0">
-          <div className="flex flex-col gap-3">
-            <span className="text-xs font-bold tracking-[0.8px] text-[#1B8A7E]">WHAT YOU&apos;LL LEARN</span>
-            <h2 className="text-2xl font-bold leading-[1.2] text-[#1E293B] lg:text-[36px]">Course Programme</h2>
-            <p className="text-[15px] text-[#64748B] leading-[1.6]">
-              20 lessons across 5 modules. Each lesson is 90 minutes — live, online, with homework and feedback.
-            </p>
+    <section id="programme" className="bg-white py-8 px-5 lg:py-20 lg:px-[120px]">
+      {/* ── Desktop ── */}
+      <div className="hidden lg:block">
+        <div className="flex flex-row gap-20 max-w-[1200px] mx-auto">
+          {/* Left sidebar */}
+          <div className="flex flex-col gap-6 w-[360px] shrink-0">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-bold tracking-[0.8px] text-[#1B8A7E]">WHAT YOU&apos;LL LEARN</span>
+              <h2 className="text-[36px] font-bold leading-[1.2] text-[#1E293B]">Course Programme</h2>
+              <p className="text-[15px] text-[#64748B] leading-[1.6]">
+                20 lessons across 5 modules. Each lesson is 90 minutes — live, online, with homework and feedback.
+              </p>
+            </div>
+            {/* Stats */}
+            <div className="flex flex-col gap-3">
+              {[
+                { icon: Timer, text: "150 academic hours total" },
+                { icon: Calendar, text: "2–4 months · Tue, Thu, Sat · 9–12" },
+                { icon: Users, text: "Max 20 students per group" },
+              ].map((s) => (
+                <div key={s.text} className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3.5">
+                  <s.icon className="w-[18px] h-[18px] text-[#1B8A7E]" />
+                  <span className="text-sm font-semibold text-[#1E293B]">{s.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          {/* Stats */}
-          <div className="flex flex-col gap-3">
-            {[
-              { icon: Timer, text: "150 academic hours total" },
-              { icon: Calendar, text: "4 months · Tue & Thu, 19:00–20:30" },
-              { icon: Users, text: "Max 20 students per group" },
-            ].map((s) => (
-              <div key={s.text} className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3.5">
-                <s.icon className="w-[18px] h-[18px] text-[#1B8A7E]" />
-                <span className="text-sm font-semibold text-[#1E293B]">{s.text}</span>
+
+          {/* Right — Modules */}
+          <div className="flex flex-col gap-3 flex-1">
+            {modules.map((m) => (
+              <div key={m.num} className="bg-white border border-[#E2E8F0] rounded-xl">
+                <div className="flex items-center gap-4 px-5 p-4">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-[13px] font-bold text-white ${m.accent ? "bg-[#E85D26]" : "bg-[#0F766E]"}`}>
+                    {m.num}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[15px] font-bold text-[#1E293B]">{m.title}</p>
+                    <p className="text-[13px] text-[#64748B]">{m.meta}</p>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    {m.pills.map((p) => (
+                      <span key={p.label} className={`${p.bg} ${p.color} text-[11px] font-semibold rounded-full px-2.5 py-1`}>{p.label}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Right — Modules */}
-        <div className="flex flex-col gap-3 flex-1">
-          {modules.map((m) => (
-            <div key={m.num} className="bg-white border border-[#E2E8F0] rounded-xl">
-              <div className="flex items-center gap-4 p-4 lg:px-5">
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-[13px] font-bold text-white ${m.accent ? "bg-[#E85D26]" : "bg-[#0F766E]"}`}>
+      {/* ── Mobile ── */}
+      <div className="lg:hidden flex flex-col gap-5 max-w-[1200px] mx-auto">
+        <div className="flex flex-col gap-1.5">
+          <span className="text-[11px] font-bold tracking-[0.8px] text-[#1B8A7E]">WHAT YOU&apos;LL LEARN</span>
+          <h2 className="text-[24px] font-bold leading-[1.2] text-[#1E293B]">Course Programme</h2>
+          <p className="text-[13px] text-[#64748B]">
+            5 modules · 150 hours · Live online classes
+          </p>
+        </div>
+        {/* Stats — horizontal row */}
+        <div className="flex gap-2">
+          {[
+            { icon: Timer, label: "150h" },
+            { icon: Calendar, label: "2–4 months" },
+            { icon: Users, label: "Max 20" },
+          ].map((s) => (
+            <div key={s.label} className="flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2">
+              <s.icon className="w-4 h-4 text-[#1B8A7E]" />
+              <span className="text-[13px] font-bold text-[#1E293B]">{s.label}</span>
+            </div>
+          ))}
+        </div>
+        {/* Module list */}
+        <div className="flex flex-col gap-2">
+          {mobileModules.map((m) => (
+            <div key={m.num} className={`rounded-[10px] border ${m.accent ? "bg-[#FFF7ED] border-[#FED7AA]" : "bg-white border-[#E2E8F0]"}`}>
+              <div className="flex items-center gap-3 px-4 py-3.5">
+                <div className={`w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold text-white ${m.accent ? "bg-[#E85D26]" : "bg-[#0F766E]"}`}>
                   {m.num}
                 </div>
-                <div className="flex-1">
-                  <p className="text-[15px] font-bold text-[#1E293B]">{m.title}</p>
-                  <p className="text-[13px] text-[#64748B]">{m.meta}</p>
-                </div>
-                <div className="hidden lg:flex items-center gap-1.5">
-                  {m.pills.map((p) => (
-                    <span key={p.label} className={`${p.bg} ${p.color} text-[11px] font-semibold rounded-full px-2.5 py-1`}>{p.label}</span>
-                  ))}
+                <div className="flex flex-col gap-0.5 flex-1">
+                  <p className="text-[13px] font-bold text-[#1E293B]">{m.title}</p>
+                  <p className="text-[11px] text-[#64748B]">{m.meta}</p>
                 </div>
               </div>
             </div>
