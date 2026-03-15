@@ -49,8 +49,8 @@ function HeroSection() {
             Got it — we&apos;ll be in touch within 1 day
           </h1>
           {/* Desktop heading */}
-          <h1 className="hidden lg:block text-[44px] font-extrabold text-[#1E293B] text-center leading-[1.15] tracking-[-0.5px] w-full">
-            Got it — we&apos;ll be{"\n"}in touch within 1 day
+          <h1 className="hidden lg:block text-[44px] font-extrabold text-[#1E293B] text-center leading-[1.15] tracking-[-0.5px] w-full whitespace-pre-line">
+            {"Got it — we'll be\nin touch within 1 day"}
           </h1>
           <p className="text-sm lg:text-base text-[#64748B] text-center leading-[1.6] w-full">
             We&apos;ve received your request and will contact you via WhatsApp
