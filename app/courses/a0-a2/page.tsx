@@ -318,7 +318,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <Calendar className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Start:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">March 10 · April 7 · May 5</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">April 7 · April 7 · May 5</span>
         </div>
         <div className="flex items-center gap-2.5 bg-[#FEF9C3] border border-[#FDE047] rounded-lg px-2.5 py-1.5">
           <Users className="w-[15px] h-[15px] text-[#CA8A04]" />
@@ -989,7 +989,7 @@ function CTASection() {
         </h2>
         {/* Desktop meta */}
         <p className="hidden lg:block text-base text-[#64748B] text-center">
-          Next group starts March 10 — 3 spots left out of 12
+          Next group starts April 7 — 3 spots left out of 12
         </p>
         {/* Mobile meta */}
         <p className="lg:hidden text-sm text-[#64748B] text-center leading-[1.4]">
@@ -1003,9 +1003,12 @@ function CTASection() {
               <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
               <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
-            <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
-              <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
-              <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            <div className="flex items-center gap-1.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
+              <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-xs font-bold text-[#4A5568] outline-none cursor-pointer appearance-none shrink-0">
+                <option value="+351">🇵🇹+351</option><option value="+55">🇧🇷+55</option><option value="+1">🇺🇸+1</option><option value="+44">🇬🇧+44</option><option value="+49">🇩🇪+49</option><option value="+33">🇫🇷+33</option><option value="+34">🇪🇸+34</option><option value="+380">🇺🇦+380</option><option value="+7">🇷🇺+7</option>
+              </select>
+              <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
+              <input type="tel" placeholder="Phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">

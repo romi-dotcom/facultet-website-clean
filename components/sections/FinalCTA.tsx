@@ -45,7 +45,7 @@ export default function FinalCTA() {
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
                 <span className="text-[13px] font-bold text-[#C2410C]">
-                  Next group: March 10 · Only 4 spots left
+                  Next group: April 7 · Only 4 spots left
                 </span>
               </div>
 
@@ -112,9 +112,21 @@ export default function FinalCTA() {
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
             />
             <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
-              <span className="text-[15px] font-bold text-[#4A5568]">
-                +351
-              </span>
+              <select
+                value={form.countryCode}
+                onChange={(e) => form.setCountryCode(e.target.value)}
+                className="bg-transparent text-[15px] font-bold text-[#4A5568] outline-none cursor-pointer appearance-none pr-1"
+              >
+                <option value="+351">🇵🇹 +351</option>
+                <option value="+55">🇧🇷 +55</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+380">🇺🇦 +380</option>
+                <option value="+7">🇷🇺 +7</option>
+              </select>
               <div className="w-px h-5 bg-[#E2E8F0]" />
               <input
                 type="tel"
@@ -169,7 +181,7 @@ export default function FinalCTA() {
         <div className="flex items-center justify-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
           <span className="text-[13px] font-bold text-[#C2410C]">
-            Next group: March 10 · Only 4 spots left
+            Next group: April 7 · Only 4 spots left
           </span>
         </div>
 
@@ -214,7 +226,21 @@ export default function FinalCTA() {
             className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
           />
           <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
-            <span className="text-[15px] font-bold text-[#4A5568]">+351</span>
+            <select
+              value={form.countryCode}
+              onChange={(e) => form.setCountryCode(e.target.value)}
+              className="bg-transparent text-[15px] font-bold text-[#4A5568] outline-none cursor-pointer appearance-none pr-1"
+            >
+              <option value="+351">🇵🇹 +351</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+380">🇺🇦 +380</option>
+              <option value="+7">🇷🇺 +7</option>
+            </select>
             <div className="w-px h-5 bg-[#E2E8F0]" />
             <input
               type="tel"

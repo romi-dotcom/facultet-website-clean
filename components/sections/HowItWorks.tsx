@@ -125,8 +125,8 @@ export default function HowItWorks() {
             <div key={step.num} className="contents">
               <div className="flex flex-col items-center gap-[10px] w-[215px]">
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-white text-[15px] font-bold"
-                  style={{ backgroundColor: step.color }}
+                  className="step-circle w-12 h-12 rounded-full flex items-center justify-center text-white text-[15px] font-bold"
+                  style={{ backgroundColor: step.color, "--step-color": `${step.color}40`, "--delay": `${i * 0.5}s` } as React.CSSProperties}
                 >
                   {step.num}
                 </div>
@@ -152,8 +152,8 @@ export default function HowItWorks() {
             <div key={step.num} className="contents">
               <div className="flex flex-col items-center gap-1.5">
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-bold"
-                  style={{ backgroundColor: step.color }}
+                  className="step-circle w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-bold"
+                  style={{ backgroundColor: step.color, "--step-color": `${step.color}40`, "--delay": `${i * 0.5}s` } as React.CSSProperties}
                 >
                   {step.num}
                 </div>
@@ -313,7 +313,8 @@ export default function HowItWorks() {
 
         {/* ── Inactive Steps — Mobile (horizontal scroll) ── */}
         <div className="lg:hidden mt-3">
-          <div className="flex gap-2.5 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1">
+          <div className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1">
+            <div className="min-w-[20px] shrink-0" />
             {inactiveCards.map((step) => (
               <div
                 key={step.title}
@@ -345,6 +346,7 @@ export default function HowItWorks() {
                 </p>
               </div>
             ))}
+            <div className="min-w-[20px] shrink-0" />
           </div>
 
           {/* Scroll dots */}

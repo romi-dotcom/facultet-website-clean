@@ -44,7 +44,7 @@ const courses: Course[] = [
     oldPrice: "€590",
     save: "Save €120",
     installment: "or 3×€157 with",
-    urgency: "4 spots left — group starts March 10",
+    urgency: "4 spots left — group starts April 7",
     ctaBg: "bg-accent",
     ctaLabel: "Enroll Now →",
     href: "/courses/a0-a2",
@@ -141,7 +141,7 @@ function CourseCard({ course }: { course: Course }) {
             <span className="text-xs text-[#6B7280]">
               {course.installment}
             </span>
-            <span className="text-xs font-bold text-[#FFB3C7]">Klarna</span>
+            <span className="text-xs font-bold text-[#FFB3C7] animate-pulse">Klarna</span>
           </div>
         </div>
 

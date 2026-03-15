@@ -62,32 +62,18 @@ export default function Certifications() {
             ))}
           </div>
 
-          {/* Mobile logos */}
-          <div className="lg:hidden rounded-xl border border-[#E2E8F0] bg-white px-5">
-            <div className="flex items-center py-4">
-              {logos.slice(0, 2).map((l, i) => (
-                <div key={l.name} className="contents">
-                  <div className="flex-1 flex flex-col items-center gap-0.5">
-                    <span className="text-sm font-extrabold tracking-[1px] text-[#1E293B]">
-                      {l.name}
+          {/* Mobile logos — marquee */}
+          <div className="lg:hidden rounded-xl border border-[#E2E8F0] bg-white py-4 overflow-hidden">
+            <div className="marquee-wrap">
+              <div className="marquee-inner">
+                {[0, 1, 2, 3].map((copy) =>
+                  logos.map((l, i) => (
+                    <span key={`${copy}-${i}`} className="marquee-item">
+                      <span className="text-sm font-extrabold tracking-[1px] text-[#1E293B]">{l.name}</span>
+                      <span className="text-[10px] text-[#94A3B8]">{l.mSub}</span>
                     </span>
-                    <span className="text-[10px] text-[#94A3B8]">
-                      {l.mSub}
-                    </span>
-                  </div>
-                  {i < 1 && <div className="w-px h-7 bg-[#E2E8F0]" />}
-                </div>
-              ))}
-            </div>
-            <div className="h-px bg-[#F1F5F9]" />
-            <div className="flex items-center justify-center py-4">
-              <div className="flex flex-col items-center gap-0.5">
-                <span className="text-sm font-extrabold tracking-[1px] text-[#1E293B]">
-                  Centro Qualifica
-                </span>
-                <span className="text-[10px] text-[#94A3B8]">
-                  Official Network
-                </span>
+                  ))
+                )}
               </div>
             </div>
           </div>

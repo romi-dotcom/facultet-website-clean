@@ -9,6 +9,7 @@ export function useLeadForm(course: string) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+351");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
@@ -20,7 +21,7 @@ export function useLeadForm(course: string) {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, email, course }),
+        body: JSON.stringify({ name, phone: `${countryCode}${phone}`, email, course }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
@@ -30,5 +31,5 @@ export function useLeadForm(course: string) {
     }
   }
 
-  return { name, setName, phone, setPhone, email, setEmail, status, handleSubmit };
+  return { name, setName, phone, setPhone, countryCode, setCountryCode, email, setEmail, status, handleSubmit };
 }

@@ -1410,9 +1410,23 @@ function CTASection() {
               <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
               <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
-            <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
-              <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
-              <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            <div className="flex items-center gap-1.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-3 flex-1 min-w-0">
+              <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-sm text-[#1E293B] outline-none shrink-0 appearance-none pr-1 cursor-pointer">
+                <option value="+351">🇵🇹+351</option>
+                <option value="+55">🇧🇷+55</option>
+                <option value="+1">🇺🇸+1</option>
+                <option value="+44">🇬🇧+44</option>
+                <option value="+49">🇩🇪+49</option>
+                <option value="+33">🇫🇷+33</option>
+                <option value="+34">🇪🇸+34</option>
+                <option value="+39">🇮🇹+39</option>
+                <option value="+380">🇺🇦+380</option>
+                <option value="+7">🇷🇺+7</option>
+                <option value="+91">🇮🇳+91</option>
+                <option value="+86">🇨🇳+86</option>
+              </select>
+              <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
+              <input type="tel" placeholder="Phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
