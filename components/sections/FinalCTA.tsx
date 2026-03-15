@@ -491,7 +491,6 @@ export default function FinalCTA() {
               {[
                 { icon: ShieldCheck, text: "DGERT" },
                 { icon: Award, text: "Centro Qualifica" },
-                { icon: CircleCheck, text: "AIMA" },
               ].map(({ icon: Icon, text }) => (
                 <div
                   key={text}
