@@ -43,7 +43,7 @@ export default function NavBar() {
                      lg:max-w-[1200px]"
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 lg:gap-2.5">
+          <a href="/" className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-7 h-7 rounded-[5px] bg-[#1B8A7E] flex items-center justify-center lg:w-8 lg:h-8 lg:rounded-[6px]">
               <span className="text-[9px] font-bold text-white lg:text-[10px]">
                 OLA

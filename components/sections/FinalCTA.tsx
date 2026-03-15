@@ -119,9 +119,9 @@ export default function FinalCTA() {
             <div className="flex items-center justify-center py-1">
               <span className="text-[13px] text-[#9CA3AF]">— or —</span>
             </div>
-            <button className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
+            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
               Message us on WhatsApp
-            </button>
+            </a>
             <p className="text-xs text-[#94A3B8] text-center">
               Free consultation · No obligation · We reply within 1 hour
             </p>
@@ -246,12 +246,15 @@ export default function FinalCTA() {
                   { icon: MessageCircle, color: "text-[#25D366]" },
                   { icon: Send, color: "text-white" },
                 ].map(({ icon: Icon, color }, i) => (
-                  <div
+                  <a
                     key={i}
+                    href={i === 1 ? "https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" : "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-9 h-9 rounded-lg bg-white/[0.07] border border-white/[0.08] flex items-center justify-center"
                   >
                     <Icon className={`w-4 h-4 ${color}`} />
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -273,12 +276,12 @@ export default function FinalCTA() {
                   ola@facultet.school
                 </span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                 <MessageCircle className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-sm text-[#25D366]">
                   WhatsApp: +351 923 296 007
                 </span>
-              </div>
+              </a>
               <div className="flex items-center gap-1.5">
                 <Timer className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-[13px] text-[#64748B]">
@@ -292,13 +295,13 @@ export default function FinalCTA() {
               <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">
                 QUICK LINKS
               </span>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#courses" className="text-sm text-[#E2E8F0]">
                 Courses & Pricing
               </a>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#programme" className="text-sm text-[#E2E8F0]">
                 Programme
               </a>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#faq" className="text-sm text-[#E2E8F0]">
                 FAQ
               </a>
               <a href="#" className="text-sm text-[#64748B]">
@@ -422,13 +425,13 @@ export default function FinalCTA() {
               <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">
                 QUICK LINKS
               </span>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#courses" className="text-sm text-[#E2E8F0]">
                 Courses & Pricing
               </a>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#programme" className="text-sm text-[#E2E8F0]">
                 Programme
               </a>
-              <a href="#" className="text-sm text-[#E2E8F0]">
+              <a href="#faq" className="text-sm text-[#E2E8F0]">
                 FAQ
               </a>
               <a href="#" className="text-sm text-[#64748B]">
