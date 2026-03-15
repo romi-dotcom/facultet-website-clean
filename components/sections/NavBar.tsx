@@ -1,0 +1,128 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { label: "Courses", href: "#courses" },
+  { label: "About", href: "#about" },
+  { label: "Contacts", href: "#contacts" },
+];
+
+export default function NavBar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close menu on scroll
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = () => setMenuOpen(false);
+    window.addEventListener("scroll", close, { passive: true });
+    return () => window.removeEventListener("scroll", close);
+  }, [menuOpen]);
+
+  return (
+    <nav
+      className={`sticky top-0 z-[100] bg-white transition-shadow ${
+        scrolled ? "shadow-[0_2px_12px_rgba(0,0,0,0.08)]" : ""
+      }`}
+    >
+      {/* ── Main bar ── */}
+      <div
+        className="flex items-center justify-between h-14 px-5 border-b border-[#E2E8F0]
+                   lg:h-16 lg:px-0 lg:border-0 lg:justify-center"
+      >
+        <div
+          className="flex items-center justify-between w-full
+                     lg:max-w-[1200px]"
+        >
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-2 lg:gap-2.5">
+            <div className="w-7 h-7 rounded-[5px] bg-[#1B8A7E] flex items-center justify-center lg:w-8 lg:h-8 lg:rounded-[6px]">
+              <span className="text-[9px] font-bold text-white lg:text-[10px]">
+                OLA
+              </span>
+            </div>
+            <span className="text-[15px] font-bold text-[#1E293B] lg:text-base">
+              Ola Facultet
+            </span>
+          </a>
+
+          {/* Desktop nav links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-[15px] font-medium text-[#374151] lg:hover:text-[#1E293B] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Right side */}
+          <div className="flex items-center gap-2 lg:gap-3">
+            {/* Divider — desktop only */}
+            <div className="hidden lg:block w-px h-5 bg-[#E2E8F0]" />
+
+            {/* Lang button */}
+            <button className="rounded-full border border-[#E2E8F0] px-2.5 py-1 text-xs text-[#4A5568] lg:px-3 lg:text-[13px]">
+              RU
+            </button>
+
+            {/* Enroll CTA */}
+            <a
+              href="#enrol"
+              className="rounded-lg bg-accent px-3.5 py-2 text-[13px] font-bold text-white
+                         lg:px-6 lg:py-2.5 lg:text-sm"
+            >
+              <span className="lg:hidden">Enroll Now</span>
+              <span className="hidden lg:inline">Enroll Now →</span>
+            </a>
+
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="lg:hidden flex items-center justify-center w-6 h-6"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? (
+                <X className="w-6 h-6 text-[#4A5568]" />
+              ) : (
+                <Menu className="w-6 h-6 text-[#4A5568]" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Mobile dropdown ── */}
+      {menuOpen && (
+        <div className="lg:hidden bg-white border-b border-[#E2E8F0] shadow-[0_4px_16px_rgba(0,0,0,0.1)] px-5 pb-4">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center h-12 text-base font-medium text-[#1E293B] border-b border-[#F0F0F0]"
+            >
+              {link.label}
+            </a>
+          ))}
+          <div className="h-px bg-[#F0F0F0] my-0" />
+          <div className="flex items-center gap-4 h-10 mt-2">
+            <span className="text-[13px] text-[#94A3B8]">🇷🇺 Русский</span>
+            <span className="text-[13px] text-[#94A3B8]">🇬🇧 English</span>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
