@@ -156,7 +156,7 @@ export default function HeroSection() {
               }`}
             >
               <card.icon className="w-4 h-4 text-[#1B8A7E]" />
-              <span className="text-xs font-bold text-[#1E293B]">
+              <span className="text-[11px] font-bold text-[#1E293B] whitespace-nowrap">
                 {card.label}
               </span>
               <span className="text-[10px] text-[#64748B]">{card.sub}</span>
