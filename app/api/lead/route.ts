@@ -107,6 +107,7 @@ async function createLead(
     body: JSON.stringify([
       {
         name: `${course || "Website"} — ${name || "Unknown"}`,
+        pipeline_id: 12976892,
         _embedded: {
           contacts: [{ id: contactId }],
         },
