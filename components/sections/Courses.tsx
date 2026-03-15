@@ -25,6 +25,7 @@ interface Course {
   urgency: string;
   ctaBg: string;
   ctaLabel: string;
+  href: string;
 }
 
 const courses: Course[] = [
@@ -46,6 +47,7 @@ const courses: Course[] = [
     urgency: "4 spots left — group starts March 10",
     ctaBg: "bg-accent",
     ctaLabel: "Enroll Now →",
+    href: "/courses/a0-a2",
   },
   {
     banner: { text: "BEST VALUE", bg: "bg-[#1B8A7E]" },
@@ -65,6 +67,7 @@ const courses: Course[] = [
     urgency: "17 spots left — group starts May 2",
     ctaBg: "bg-[#1B8A7E]",
     ctaLabel: "Enroll Now →",
+    href: "/courses/a1-a2",
   },
 ];
 
@@ -155,7 +158,7 @@ function CourseCard({ course }: { course: Course }) {
 
         {/* CTA Enroll */}
         <a
-          href="#enrol"
+          href={course.href}
           className={`flex items-center justify-center h-[52px] rounded-xl text-base font-bold text-white ${course.ctaBg}`}
         >
           {course.ctaLabel}
@@ -163,7 +166,7 @@ function CourseCard({ course }: { course: Course }) {
 
         {/* View Curriculum */}
         <a
-          href="#curriculum"
+          href={course.href}
           className="flex items-center justify-center h-11 rounded-xl border border-[#1B8A7E] text-[13px] text-[#1B8A7E]"
         >
           View Curriculum →
