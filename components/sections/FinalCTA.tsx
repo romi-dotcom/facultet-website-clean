@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Phone,
   Mail,
@@ -8,9 +10,12 @@ import {
   ShieldCheck,
   Award,
   CircleCheck,
+  User,
 } from "lucide-react";
+import { useLeadForm } from "@/hooks/useLeadForm";
 
 export default function FinalCTA() {
+  const form = useLeadForm("Homepage");
   return (
     <section id="enrol">
       {/* ── CTA Block — Desktop ── */}
@@ -91,15 +96,19 @@ export default function FinalCTA() {
           </div>
 
           {/* Form Card */}
-          <div className="flex flex-col gap-3 w-[460px] shrink-0 rounded-[20px] border-2 border-[#E85D26] bg-white p-8 shadow-[0_8px_32px_rgba(232,93,38,0.13)]">
+          <form onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-[460px] shrink-0 rounded-[20px] border-2 border-[#E85D26] bg-white p-8 shadow-[0_8px_32px_rgba(232,93,38,0.13)]">
             <input
               type="text"
               placeholder="Your name"
+              value={form.name}
+              onChange={(e) => form.setName(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
             />
             <input
               type="email"
               placeholder="Your email address"
+              value={form.email}
+              onChange={(e) => form.setEmail(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
             />
             <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
@@ -110,12 +119,21 @@ export default function FinalCTA() {
               <input
                 type="tel"
                 placeholder="WhatsApp / Phone"
+                value={form.phone}
+                onChange={(e) => form.setPhone(e.target.value)}
                 className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
               />
             </div>
-            <button className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors">
-              Enroll Now →
+            <button
+              type="submit"
+              disabled={form.status === "loading"}
+              className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
+            >
+              {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
             </button>
+            {form.status === "error" && (
+              <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
+            )}
             <div className="flex items-center justify-center py-1">
               <span className="text-[13px] text-[#9CA3AF]">— or —</span>
             </div>
@@ -125,7 +143,7 @@ export default function FinalCTA() {
             <p className="text-xs text-[#94A3B8] text-center">
               Free consultation · No obligation · We reply within 1 hour
             </p>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -180,15 +198,19 @@ export default function FinalCTA() {
         </div>
 
         {/* Form Card */}
-        <div className="flex flex-col gap-3 w-full rounded-[20px] border-2 border-[#E85D26] bg-white p-6 shadow-[0_4px_24px_rgba(15,23,42,0.05)]">
+        <form onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-full rounded-[20px] border-2 border-[#E85D26] bg-white p-6 shadow-[0_4px_24px_rgba(15,23,42,0.05)]">
           <input
             type="text"
             placeholder="Your name"
+            value={form.name}
+            onChange={(e) => form.setName(e.target.value)}
             className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
           />
           <input
             type="email"
             placeholder="Your email address"
+            value={form.email}
+            onChange={(e) => form.setEmail(e.target.value)}
             className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
           />
           <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
@@ -197,22 +219,31 @@ export default function FinalCTA() {
             <input
               type="tel"
               placeholder="WhatsApp / Phone"
+              value={form.phone}
+              onChange={(e) => form.setPhone(e.target.value)}
               className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
             />
           </div>
-          <button className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors">
-            Enroll Now →
+          <button
+            type="submit"
+            disabled={form.status === "loading"}
+            className="flex items-center justify-center h-[52px] rounded-full bg-[#E85D26] text-base font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] hover:bg-[#CC4D1E] transition-colors disabled:opacity-60"
+          >
+            {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
           </button>
+          {form.status === "error" && (
+            <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
+          )}
           <div className="flex items-center justify-center">
             <span className="text-[13px] text-[#9CA3AF]">— or —</span>
           </div>
-          <button className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
+          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
             Message us on WhatsApp
-          </button>
+          </a>
           <p className="text-xs text-[#94A3B8] text-center">
             Free consultation · No obligation · We reply within 1 hour
           </p>
-        </div>
+        </form>
       </div>
 
       {/* ── Footer ── */}
