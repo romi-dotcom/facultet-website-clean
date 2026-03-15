@@ -601,8 +601,8 @@ function ProgrammeSection() {
             { icon: Timer, label: "75h" },
             { icon: Calendar, label: "2 months" },
             { icon: Users, label: "Max 20" },
-          ].map((s) => (
-            <div key={s.label} className="flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2">
+          ].map((s, i) => (
+            <div key={s.label} className="calendar-flip flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2" style={{ "--flip-delay": `${i * 0.25}s` } as React.CSSProperties}>
               <s.icon className="w-4 h-4 text-[#1B8A7E]" />
               <span className="text-[13px] font-bold text-[#1E293B]">{s.label}</span>
             </div>

@@ -139,6 +139,33 @@ html {
   animation-delay: var(--delay);
 }
 
+/* Calendar flip animation */
+@keyframes calendar-flip {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(-90deg) translateY(-20px);
+    transform-origin: top center;
+  }
+  40% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(10deg) translateY(0);
+  }
+  60% {
+    transform: perspective(400px) rotateX(-5deg);
+  }
+  80% {
+    transform: perspective(400px) rotateX(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+}
+.calendar-flip {
+  animation: calendar-flip 0.8s ease-out both;
+  animation-delay: var(--flip-delay, 0s);
+}
+
 @keyframes marquee {
   from {
     transform: translate3d(0, 0, 0);
