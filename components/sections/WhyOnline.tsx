@@ -195,12 +195,13 @@ export default function WhyOnline() {
 
       {/* ── Mobile: horizontal scroll ── */}
       <div className="lg:hidden mt-6">
-        <div className="flex gap-3 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 -webkit-overflow-scrolling-touch">
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1" style={{ paddingLeft: 20, paddingRight: 20 }}>
           {cards.map((c) => (
-            <div key={c.title} className="snap-start">
+            <div key={c.title} className="snap-start shrink-0">
               <WhyCard card={c} />
             </div>
           ))}
+          <div className="min-w-[20px] shrink-0" />
         </div>
 
         {/* Dots */}
