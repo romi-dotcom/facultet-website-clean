@@ -13,6 +13,7 @@ import {
   User,
 } from "lucide-react";
 import { useLeadForm } from "@/hooks/useLeadForm";
+import { countryCodes } from "@/lib/countryCodes";
 
 export default function FinalCTA() {
   const form = useLeadForm("Homepage");
@@ -117,15 +118,9 @@ export default function FinalCTA() {
                 onChange={(e) => form.setCountryCode(e.target.value)}
                 className="bg-transparent text-[15px] font-bold text-[#4A5568] outline-none cursor-pointer appearance-none pr-1"
               >
-                <option value="+351">🇵🇹 +351</option>
-                <option value="+55">🇧🇷 +55</option>
-                <option value="+1">🇺🇸 +1</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+49">🇩🇪 +49</option>
-                <option value="+33">🇫🇷 +33</option>
-                <option value="+34">🇪🇸 +34</option>
-                <option value="+380">🇺🇦 +380</option>
-                <option value="+7">🇷🇺 +7</option>
+                {countryCodes.map((c) => (
+                  <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
+                ))}
               </select>
               <div className="w-px h-5 bg-[#E2E8F0]" />
               <input
@@ -231,15 +226,9 @@ export default function FinalCTA() {
               onChange={(e) => form.setCountryCode(e.target.value)}
               className="bg-transparent text-[15px] font-bold text-[#4A5568] outline-none cursor-pointer appearance-none pr-1"
             >
-              <option value="+351">🇵🇹 +351</option>
-              <option value="+55">🇧🇷 +55</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+49">🇩🇪 +49</option>
-              <option value="+33">🇫🇷 +33</option>
-              <option value="+34">🇪🇸 +34</option>
-              <option value="+380">🇺🇦 +380</option>
-              <option value="+7">🇷🇺 +7</option>
+              {countryCodes.map((c) => (
+                <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
+              ))}
             </select>
             <div className="w-px h-5 bg-[#E2E8F0]" />
             <input
