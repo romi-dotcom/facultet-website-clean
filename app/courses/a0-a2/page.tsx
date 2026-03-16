@@ -676,7 +676,7 @@ function ScheduleSection() {
               <Users className="w-4 h-4 text-[#1B8A7E]" />
               <span className="text-sm text-[#475569]">473 students completed this course</span>
             </div>
-            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-12 bg-[#E85D26] rounded-lg text-[15px] font-semibold text-white">
+            <a href="#enrol" className="btn-pulse flex items-center justify-center h-12 bg-[#E85D26] rounded-lg text-[15px] font-semibold text-white">
               Book a Free Consultation
             </a>
           </div>
