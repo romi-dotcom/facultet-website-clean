@@ -192,7 +192,7 @@ export default function Testimonials() {
       {/* ── Carousel — Mobile ── */}
       <div className="lg:hidden">
         {/* Cards — gap:12, padding:[0,20] */}
-        <div className="flex gap-3 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-5" style={{ scrollPaddingLeft: 20 }}>
           {testimonials.map((t) => (
             <div
               key={t.name}
