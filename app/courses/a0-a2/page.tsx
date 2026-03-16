@@ -361,11 +361,25 @@ function MobilePriceCard() {
    Official Documents Section
    ────────────────────────────────────────────── */
 function DocsSection() {
+  const docsScrollRef = useRef<HTMLDivElement>(null);
+  const [activeDocCard, setActiveDocCard] = useState(0);
+
+  useEffect(() => {
+    const el = docsScrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / 3));
+      setActiveDocCard(Math.min(idx, 2));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section className="bg-[#F8FAFC] py-16 px-5 lg:py-20 lg:px-[120px]">
+    <section className="bg-[#F8FAFC] py-16 lg:py-20 lg:px-[120px]">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="flex flex-col items-center gap-3 lg:gap-3 mb-10 lg:mb-12">
+        <div className="flex flex-col items-center gap-3 lg:gap-3 mb-10 lg:mb-12 px-5 lg:px-0">
           <span className="text-xs font-semibold tracking-[0.8px] text-[#1B8A7E] lg:hidden">WHAT YOU RECEIVE</span>
           <span className="hidden lg:block text-xs font-semibold tracking-[0.8px] text-[#1B8A7E]">WHAT YOU RECEIVE</span>
           <h2 className="text-[25px] font-bold leading-[1.2] text-[#1E293B] text-center lg:text-[36px]">
@@ -441,66 +455,73 @@ function DocsSection() {
           </div>
         </div>
 
-        {/* Mobile Cards */}
-        <div className="flex flex-col gap-5 lg:hidden">
-          <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 flex flex-col gap-3">
-            <span className="self-start bg-[#ECFDF5] text-[#065F46] text-[11px] font-semibold rounded-full px-2.5 py-1">WITHIN 2 HOURS</span>
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-                <FileText className="w-5 h-5 text-[#1B8A7E]" />
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <p className="text-[15px] font-bold text-[#1E293B]">Declaração de Matrícula</p>
-                <p className="text-[13px] text-[#64748B]">Matriculation Certificate</p>
-              </div>
+      </div>
+
+      {/* Mobile Cards — horizontal scroll (outside max-w wrapper) */}
+      <div ref={docsScrollRef} className="flex flex-row flex-nowrap gap-3 px-5 mt-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide lg:hidden" style={{ scrollPaddingLeft: 20 }}>
+        <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#E2E8F0] p-5 flex flex-col gap-3 snap-start">
+          <span className="self-start bg-[#ECFDF5] text-[#065F46] text-[11px] font-semibold rounded-full px-2.5 py-1">WITHIN 2 HOURS</span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
+              <FileText className="w-5 h-5 text-[#1B8A7E]" />
             </div>
-            <p className="text-[13px] text-[#475569] leading-[1.5]">
-              Official proof of enrolment in a licensed language school — not a completion certificate. Issued the same day you sign up. Required for your citizenship documents package.
-            </p>
-            <div className="flex items-center gap-1.5 pt-2">
-              <Clock3 className="w-[13px] h-[13px] text-[#1B8A7E]" />
-              <span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-[15px] font-bold text-[#1E293B]">Declaração de Matrícula</p>
+              <p className="text-[13px] text-[#64748B]">Matriculation Certificate</p>
             </div>
           </div>
-          <div className="bg-white rounded-2xl border border-[#FED7AA] p-5 flex flex-col gap-3">
-            <span className="self-start bg-[#FFF7ED] text-[#C2410C] text-[11px] font-semibold rounded-full px-2.5 py-1">ON REQUEST</span>
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-[10px] bg-[#FFF7ED] flex items-center justify-center shrink-0">
-                <FileCheck className="w-5 h-5 text-[#E85D26]" />
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <p className="text-[15px] font-bold text-[#1E293B]">Declaração de Frequência</p>
-                <p className="text-[13px] text-[#64748B]">Attendance Certificate</p>
-              </div>
-            </div>
-            <p className="text-[13px] text-[#475569] leading-[1.5]">
-              Confirms active course attendance. Can be requested at any time during the course.
-            </p>
-            <div className="flex items-center gap-1.5 pt-2">
-              <CircleCheck className="w-[13px] h-[13px] text-[#E85D26]" />
-              <span className="text-xs font-medium text-[#E85D26]">Available on request</span>
-            </div>
-          </div>
-          <div className="bg-[#0F766E] rounded-2xl p-5 flex flex-col gap-3">
-            <span className="self-start bg-white/15 text-[#CCFBF1] text-[11px] font-semibold rounded-full px-2.5 py-1">AFTER 160 HOURS</span>
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
-                <Award className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <p className="text-[15px] font-bold text-white">Certificado de Aprovação</p>
-                <p className="text-[13px] text-[#99F6E4]">Certificate of Completion</p>
-              </div>
-            </div>
-            <p className="text-[13px] text-[#CCFBF1] leading-[1.5]">
-              Official completion certificate. Recognised by Portuguese authorities for citizenship applications.
-            </p>
-            <div className="flex items-center gap-1.5 pt-2">
-              <CircleCheck className="w-[13px] h-[13px] text-white" />
-              <span className="text-xs font-medium text-white">Issued by Centro Qualifica</span>
-            </div>
+          <p className="text-[13px] text-[#475569] leading-[1.5]">
+            Official proof of enrolment in a licensed language school — not a completion certificate. Issued the same day you sign up. Required for your citizenship documents package.
+          </p>
+          <div className="flex items-center gap-1.5 pt-2">
+            <Clock3 className="w-[13px] h-[13px] text-[#1B8A7E]" />
+            <span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span>
           </div>
         </div>
+        <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#FED7AA] p-5 flex flex-col gap-3 snap-start">
+          <span className="self-start bg-[#FFF7ED] text-[#C2410C] text-[11px] font-semibold rounded-full px-2.5 py-1">ON REQUEST</span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-[10px] bg-[#FFF7ED] flex items-center justify-center shrink-0">
+              <FileCheck className="w-5 h-5 text-[#E85D26]" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-[15px] font-bold text-[#1E293B]">Declaração de Frequência</p>
+              <p className="text-[13px] text-[#64748B]">Attendance Certificate</p>
+            </div>
+          </div>
+          <p className="text-[13px] text-[#475569] leading-[1.5]">
+            Confirms active course attendance. Can be requested at any time during the course.
+          </p>
+          <div className="flex items-center gap-1.5 pt-2">
+            <CircleCheck className="w-[13px] h-[13px] text-[#E85D26]" />
+            <span className="text-xs font-medium text-[#E85D26]">Available on request</span>
+          </div>
+        </div>
+        <div className="shrink-0 w-[280px] bg-[#0F766E] rounded-2xl p-5 flex flex-col gap-3 snap-start">
+          <span className="self-start bg-white/15 text-[#CCFBF1] text-[11px] font-semibold rounded-full px-2.5 py-1">AFTER 160 HOURS</span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+              <Award className="w-5 h-5 text-white" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-[15px] font-bold text-white">Certificado de Aprovação</p>
+              <p className="text-[13px] text-[#99F6E4]">Certificate of Completion</p>
+            </div>
+          </div>
+          <p className="text-[13px] text-[#CCFBF1] leading-[1.5]">
+            Official completion certificate. Recognised by Portuguese authorities for citizenship applications.
+          </p>
+          <div className="flex items-center gap-1.5 pt-2">
+            <CircleCheck className="w-[13px] h-[13px] text-white" />
+            <span className="text-xs font-medium text-white">Issued by Centro Qualifica</span>
+          </div>
+        </div>
+      </div>
+      {/* Dots */}
+      <div className="flex items-center justify-center gap-2 mt-5 pb-8 lg:hidden">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className={`rounded-full transition-all ${i === activeDocCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#CBD5E1]"}`} />
+        ))}
       </div>
     </section>
   );
