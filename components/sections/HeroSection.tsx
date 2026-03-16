@@ -55,13 +55,13 @@ export default function HeroSection() {
                        lg:text-base lg:text-left lg:max-w-[480px]"
           >
             <span className="lg:hidden">
-              150-hour A2 Portuguese programme. Declaração de Matrícula within 2
-              hours. Required for your citizenship application.
+              150-hour A2 Portuguese programme.
+              Required for your citizenship application.
             </span>
             <span className="hidden lg:inline">
-              150-hour A2 Portuguese programme. Get your Declaração de Matrícula
-              within 2 hours of enrollment. Required for your citizenship
-              application. Recognised by Portuguese authorities and embassies.
+              150-hour A2 Portuguese programme.
+              Required for your citizenship application.
+              Recognised by Portuguese authorities and embassies.
             </span>
           </p>
 
