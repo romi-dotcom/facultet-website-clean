@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { Handshake, Award, Monitor, Landmark } from "lucide-react";
 
 const items = [
@@ -8,6 +11,25 @@ const items = [
 ];
 
 export default function TrustBar() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section className="bg-[#F8FAFC] border-y border-[#E2E8F0]">
       {/* ── Desktop ── */}
@@ -26,13 +48,22 @@ export default function TrustBar() {
       </div>
 
       {/* ── Mobile ── */}
-      <div className="flex flex-col gap-2 p-4 lg:hidden">
+      <div ref={ref} className="flex flex-col gap-2 p-4 lg:hidden overflow-hidden">
         {/* Row 1 */}
         <div className="flex gap-2">
-          {[items[0], items[3]].map((item) => (
+          {[items[0], items[3]].map((item, i) => (
             <div
               key={item.label}
-              className="flex-1 flex items-center gap-1.5 bg-white rounded-lg px-2 py-2.5"
+              className="flex-1 flex items-center gap-1.5 bg-white rounded-lg px-2 py-2.5 transition-all duration-500"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible
+                  ? "translateX(0)"
+                  : i === 0
+                  ? "translateX(-100%)"
+                  : "translateX(100%)",
+                transitionDelay: `${i * 100}ms`,
+              }}
             >
               <item.icon className="w-4 h-4 text-[#64748B] shrink-0" />
               <span className="text-xs text-[#64748B]">{item.label}</span>
@@ -41,10 +72,19 @@ export default function TrustBar() {
         </div>
         {/* Row 2 */}
         <div className="flex gap-2">
-          {[items[1], items[2]].map((item) => (
+          {[items[1], items[2]].map((item, i) => (
             <div
               key={item.label}
-              className="flex-1 flex items-center gap-1.5 bg-white rounded-lg px-2 py-2.5"
+              className="flex-1 flex items-center gap-1.5 bg-white rounded-lg px-2 py-2.5 transition-all duration-500"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible
+                  ? "translateX(0)"
+                  : i === 0
+                  ? "translateX(-100%)"
+                  : "translateX(100%)",
+                transitionDelay: `${(i + 2) * 100}ms`,
+              }}
             >
               <item.icon className="w-4 h-4 text-[#64748B] shrink-0" />
               <span className="text-xs text-[#64748B]">{item.label}</span>
