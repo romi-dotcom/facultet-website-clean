@@ -313,8 +313,7 @@ export default function HowItWorks() {
 
         {/* ── Inactive Steps — Mobile (horizontal scroll) ── */}
         <div className="lg:hidden mt-3">
-          <div className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1">
-            <div className="min-w-[20px] shrink-0" />
+          <div className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 px-5" style={{ scrollPaddingLeft: 20 }}>
             {inactiveCards.map((step) => (
               <div
                 key={step.title}
