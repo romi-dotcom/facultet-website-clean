@@ -148,7 +148,7 @@ export default function FinalCTA() {
               Message us on WhatsApp
             </a>
             <p className="text-xs text-[#94A3B8] text-center">
-              Free consultation · No obligation · We reply within 1 hour
+              Free consultation · No obligation · We reply within 1 day
             </p>
           </form>
         </div>
@@ -256,7 +256,7 @@ export default function FinalCTA() {
             Message us on WhatsApp
           </a>
           <p className="text-xs text-[#94A3B8] text-center">
-            Free consultation · No obligation · We reply within 1 hour
+            Free consultation · No obligation · We reply within 1 day
           </p>
         </form>
       </div>
