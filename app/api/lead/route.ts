@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
+
+function sha256(value: string): string {
+  return createHash("sha256").update(value).digest("hex");
+}
 
 const KOMMO_SUBDOMAIN = "letofacultetschool";
 const KOMMO_ACCESS_TOKEN = process.env.KOMMO_ACCESS_TOKEN!;
 const PIPELINE_ID = 12976892;
+
+const META_PIXEL_ID = process.env.META_PIXEL_ID!;
+const META_CAPI_TOKEN = process.env.META_CAPI_TOKEN!;
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 
@@ -40,8 +48,10 @@ async function getUtmFieldMap(): Promise<Record<string, number>> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, course, utm } = await req.json();
+    const { name, phone, email, course, utm, fbp, fbc, eventSourceUrl } = await req.json();
     const utmData = (utm || {}) as Record<string, string>;
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "";
+    const userAgent = req.headers.get("user-agent") || "";
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
@@ -120,6 +130,38 @@ export async function POST(req: NextRequest) {
 
     const data = await leadRes.json();
     const leadId = data._embedded?.leads?.[0]?.id;
+
+    // Send Meta Conversion API event
+    if (META_PIXEL_ID && META_CAPI_TOKEN) {
+      const eventData = {
+        data: [
+          {
+            event_name: "Lead",
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: "website",
+            event_source_url: eventSourceUrl || "",
+            user_data: {
+              em: [sha256(email.trim().toLowerCase())],
+              ph: [sha256(phone.replace(/\D/g, ""))],
+              fn: [sha256(name.trim().toLowerCase())],
+              client_ip_address: clientIp,
+              client_user_agent: userAgent,
+              ...(fbp && { fbp }),
+              ...(fbc && { fbc }),
+            },
+          },
+        ],
+      };
+
+      fetch(
+        `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${META_CAPI_TOKEN}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventData),
+        }
+      ).catch((err) => console.error("Meta CAPI error:", err));
+    }
 
     return NextResponse.json({ success: true, id: leadId });
   } catch (e) {

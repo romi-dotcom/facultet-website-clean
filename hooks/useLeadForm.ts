@@ -66,7 +66,16 @@ export function useLeadForm(course: string) {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone: `${countryCode}${phone}`, email, course, utm: getUtm() }),
+        body: JSON.stringify({
+          name,
+          phone: `${countryCode}${phone}`,
+          email,
+          course,
+          utm: getUtm(),
+          fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || "",
+          fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || "",
+          eventSourceUrl: window.location.href,
+        }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
