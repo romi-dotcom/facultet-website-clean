@@ -97,11 +97,10 @@ export default function FinalCTA() {
           </div>
 
           {/* Form Card */}
-          <form onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-[460px] shrink-0 rounded-[20px] border-2 border-[#E85D26] bg-white p-8 shadow-[0_8px_32px_rgba(232,93,38,0.13)]">
+          <form noValidate onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-[460px] shrink-0 rounded-[20px] border-2 border-[#E85D26] bg-white p-8 shadow-[0_8px_32px_rgba(232,93,38,0.13)]">
             <input
               type="text"
               placeholder="Your name"
-              required
               value={form.name}
               onChange={(e) => form.setName(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
@@ -109,7 +108,6 @@ export default function FinalCTA() {
             <input
               type="email"
               placeholder="Your email address"
-              required
               value={form.email}
               onChange={(e) => form.setEmail(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
@@ -128,10 +126,7 @@ export default function FinalCTA() {
               <input
                 type="tel"
                 placeholder="WhatsApp / Phone"
-                required
-                minLength={7}
                 maxLength={15}
-                pattern="\d{7,15}"
                 value={form.phone}
                 onChange={(e) => form.setPhone(e.target.value)}
                 className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
@@ -144,8 +139,8 @@ export default function FinalCTA() {
             >
               {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
             </button>
-            {form.phoneError && (
-              <p className="text-xs text-red-500">{form.phoneError}</p>
+            {form.formError && (
+              <p className="text-xs text-red-500">{form.formError}</p>
             )}
             {form.status === "error" && (
               <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
@@ -214,7 +209,7 @@ export default function FinalCTA() {
         </div>
 
         {/* Form Card */}
-        <form onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-full rounded-[20px] border-2 border-[#E85D26] bg-white p-6 shadow-[0_4px_24px_rgba(15,23,42,0.05)]">
+        <form noValidate onSubmit={form.handleSubmit} className="flex flex-col gap-3 w-full rounded-[20px] border-2 border-[#E85D26] bg-white p-6 shadow-[0_4px_24px_rgba(15,23,42,0.05)]">
           <input
             type="text"
             placeholder="Your name"

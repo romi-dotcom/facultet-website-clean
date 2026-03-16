@@ -37,22 +37,28 @@ export function useLeadForm(course: string) {
   const [countryCode, setCountryCode] = useState("+351");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
-  const [phoneError, setPhoneError] = useState("");
+  const [formError, setFormError] = useState("");
 
   useEffect(() => { captureUtm(); }, []);
 
   /** Allow only digits, strip anything else */
   function setPhoneSafe(val: string) {
     setPhone(val.replace(/\D/g, ""));
-    setPhoneError("");
+    if (formError) setFormError("");
   }
+
+  function clearError() { if (formError) setFormError(""); }
 
   async function handleSubmit(e?: FormEvent) {
     e?.preventDefault();
-    if (!name.trim() || !phone.trim() || !email.trim()) return;
+    if (!name.trim()) { setFormError("Please enter your name"); return; }
+    if (!email.trim()) { setFormError("Please enter your email"); return; }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) { setFormError("Please enter a valid email address"); return; }
+    if (!phone.trim()) { setFormError("Please enter your phone number"); return; }
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 7 || digits.length > 15) {
-      setPhoneError("Enter a valid phone number (7–15 digits)");
+      setFormError("Please enter a valid phone number (7–15 digits)");
       return;
     }
     setStatus("loading");
@@ -70,5 +76,5 @@ export function useLeadForm(course: string) {
     }
   }
 
-  return { name, setName, phone, setPhone: setPhoneSafe, countryCode, setCountryCode, email, setEmail, status, phoneError, handleSubmit };
+  return { name, setName: (v: string) => { setName(v); clearError(); }, phone, setPhone: setPhoneSafe, countryCode, setCountryCode, email, setEmail: (v: string) => { setEmail(v); clearError(); }, status, formError, handleSubmit };
 }
