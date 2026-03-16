@@ -26,7 +26,6 @@ export default function Home() {
       <Certifications />
       <div id="about">
         <HowItWorks />
-        <div className="hidden lg:block h-16 bg-white" />
         <Testimonials />
         <SocialProofGallery />
       </div>

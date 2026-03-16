@@ -89,9 +89,9 @@ export default function Testimonials() {
     setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
 
   return (
-    <section className="bg-[#F8FAFC]">
+    <section className="bg-[#F8FAFC] lg:py-24">
       {/* ── Header ── */}
-      <div className="flex flex-col items-center gap-[10px] px-5 pt-10 pb-6 lg:gap-4 lg:pt-20 lg:pb-6 lg:px-0">
+      <div className="flex flex-col items-center gap-[10px] px-5 pt-10 pb-6 lg:gap-4 lg:pt-0 lg:pb-6 lg:px-0">
         <span className="text-[11px] font-bold tracking-[2px] text-[#1B8A7E] uppercase lg:text-xs">
           TESTIMONIALS
         </span>
