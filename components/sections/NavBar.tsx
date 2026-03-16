@@ -28,12 +28,14 @@ export default function NavBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu on scroll
+  // Close menu on scroll (with delay to avoid tap-triggered micro-scrolls)
   useEffect(() => {
     if (!menuOpen) return;
-    const close = () => setMenuOpen(false);
+    let armed = false;
+    const timer = setTimeout(() => { armed = true; }, 300);
+    const close = () => { if (armed) setMenuOpen(false); };
     window.addEventListener("scroll", close, { passive: true });
-    return () => window.removeEventListener("scroll", close);
+    return () => { clearTimeout(timer); window.removeEventListener("scroll", close); };
   }, [menuOpen]);
 
   return (
