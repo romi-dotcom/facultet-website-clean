@@ -11,6 +11,7 @@ interface Testimonial {
   mobileLocation: string;
   photoBg: string;
   photo?: string;
+  imgStyle?: React.CSSProperties;
 }
 
 const testimonials: Testimonial[] = [
@@ -24,6 +25,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "Brazil \u2192 Lisbon \u00b7 4 months",
     photo: "/images/testimonial-1.png",
     photoBg: "bg-gradient-to-br from-[#F0D9C4] to-[#E8C4A8]",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.4)", transformOrigin: "top center" },
   },
   {
     quote:
@@ -35,6 +37,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "India \u2192 Porto \u00b7 online",
     photo: "/images/testimonial-2.png",
     photoBg: "bg-gradient-to-br from-[#D4C4B0] to-[#C8B8A4]",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.3)", transformOrigin: "top center" },
   },
   {
     quote:
@@ -46,6 +49,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "Brazil \u2192 Porto \u00b7 5 months",
     photo: "/images/testimonial-3.png",
     photoBg: "bg-gradient-to-br from-[#C4D4E0] to-[#B0C4D8]",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.3)", transformOrigin: "top center" },
   },
 ];
 
@@ -123,7 +127,7 @@ export default function Testimonials() {
               >
                 {/* Photo */}
                 {t.photo ? (
-                  <img src={t.photo} alt={t.name} className="w-[130px] shrink-0 object-cover" />
+                  <img src={t.photo} alt={t.name} className="w-[130px] shrink-0 object-cover" style={t.imgStyle} />
                 ) : (
                   <div className={`w-[130px] shrink-0 ${t.photoBg}`} />
                 )}
@@ -196,7 +200,7 @@ export default function Testimonials() {
             >
               {/* Photo — 90px */}
               {t.photo ? (
-                <img src={t.photo} alt={t.name} className="w-[90px] shrink-0 object-cover" />
+                <img src={t.photo} alt={t.name} className="w-[90px] shrink-0 object-cover" style={t.imgStyle} />
               ) : (
                 <div className={`w-[90px] shrink-0 ${t.photoBg}`} />
               )}

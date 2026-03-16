@@ -1114,6 +1114,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled March 2025",
     avatar: "/images/testimonial1.png",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.4)", transformOrigin: "top center" } as React.CSSProperties,
   },
   {
     quote: "Within a week of getting my certificate, I submitted my SEF application. The document was accepted immediately — no questions asked.",
@@ -1121,6 +1122,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled January 2025",
     avatar: "/images/testimonial2.jpg",
+    imgStyle: {} as React.CSSProperties,
   },
   {
     quote: "Ana explains grammar in a way that finally makes sense. I went from zero Portuguese to holding full conversations in 5 months. I only wish I had started sooner.",
@@ -1128,6 +1130,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled October 2024",
     avatar: "/images/testimonial3.png",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.3)", transformOrigin: "top center" } as React.CSSProperties,
   },
 ];
 
@@ -1176,7 +1179,7 @@ function TestimonialsSection() {
               <p className="text-[13px] text-[#1E293B] leading-[1.6]">&ldquo;{t.quote}&rdquo;</p>
               <div className="flex items-center gap-2.5 mt-auto">
                 {t.avatar ? (
-                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover shrink-0" />
+                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover object-top shrink-0" style={t.imgStyle} />
                 ) : (
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#E85D26] to-[#1B8A7E] flex items-center justify-center text-xs font-bold text-white shrink-0">
                     {t.name[0]}
@@ -1247,7 +1250,7 @@ function TestimonialsSection() {
                 <p className="text-[15px] text-[#1E293B] leading-[1.6]">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-3 mt-auto">
                   {t.avatar ? (
-                    <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover shrink-0" />
+                    <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover object-top shrink-0" style={t.imgStyle} />
                   ) : (
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#E85D26] to-[#1B8A7E] flex items-center justify-center text-sm font-bold text-white shrink-0">
                       {t.name[0]}
