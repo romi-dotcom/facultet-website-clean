@@ -34,9 +34,9 @@ export default function HeroSection() {
           <div className="flex items-center justify-center gap-2.5 lg:justify-start lg:gap-3">
             {/* Avatar Stack */}
             <div className="relative w-[72px] h-8 lg:w-[88px] lg:h-9">
-              <div className="absolute left-0 top-0 w-8 h-8 rounded-full border-2 border-white bg-[#CBD5E1] lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
-              <div className="absolute left-[18px] top-0 w-8 h-8 rounded-full border-2 border-white bg-[#94A3B8] lg:left-5 lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
-              <div className="absolute left-9 top-0 w-8 h-8 rounded-full border-2 border-white bg-[#64748B] lg:left-10 lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
+              <img src="/images/testimonial-1.png" alt="" className="absolute left-0 top-0 w-8 h-8 rounded-full border-2 border-white object-cover object-top lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
+              <img src="/images/testimonial-2.png" alt="" className="absolute left-[18px] top-0 w-8 h-8 rounded-full border-2 border-white object-cover object-top lg:left-5 lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
+              <img src="/images/testimonial-3.png" alt="" className="absolute left-9 top-0 w-8 h-8 rounded-full border-2 border-white object-cover object-top lg:left-10 lg:w-9 lg:h-9 lg:border-[#F8FAFC]" />
             </div>
             {/* Desktop: divider */}
             <div className="hidden lg:block w-px h-7 bg-[#E2E8F0]" />
