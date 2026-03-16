@@ -2,7 +2,7 @@ import { Handshake, Award, Monitor, Landmark } from "lucide-react";
 
 const items = [
   { emoji: "🤝", icon: Handshake, label: "Partner of Centro Qualifica" },
-  { emoji: "📋", icon: Award, label: "Certificate in 2 weeks" },
+  { emoji: "📋", icon: Award, label: "Official A2 Certificate" },
   { emoji: "💻", icon: Monitor, label: "Online & In-person" },
   { emoji: "🏛️", icon: Landmark, label: "Licensed training entity" },
 ];
