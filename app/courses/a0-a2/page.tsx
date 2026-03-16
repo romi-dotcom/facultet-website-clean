@@ -1134,18 +1134,9 @@ function TestimonialsSection() {
 
         {/* ── Mobile header ── */}
         <div className="lg:hidden flex flex-col gap-1.5 px-5">
-          <span className="text-[11px] font-bold tracking-[2px] text-[#1B8A7E]">TESTIMONIALS</span>
-          <h2 className="text-[26px] font-extrabold leading-[1.2] text-[#1E293B]">What Our Students Say</h2>
-          {/* Google bar */}
-          <div className="flex items-center justify-center gap-3 border border-[#E2E8F0] bg-white rounded-full px-[18px] py-2.5 mt-2 self-start">
-            <span className="text-[15px] font-bold text-[#4285F4]">G</span>
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 text-[#F59E0B] fill-[#F59E0B]" />
-              ))}
-            </div>
-            <span className="text-xs font-semibold text-[#1E293B]">5.0 · 47 reviews</span>
-          </div>
+          <span className="text-[11px] font-bold tracking-[0.8px] text-[#1B8A7E]">STUDENT STORIES</span>
+          <h2 className="text-[22px] font-bold leading-[1.2] text-[#1E293B]">Real results from real students</h2>
+          <p className="text-[13px] text-[#64748B]">473 graduates. Each one with a story worth sharing.</p>
         </div>
 
         {/* ── Mobile carousel ── */}
@@ -1155,25 +1146,26 @@ function TestimonialsSection() {
           style={{ scrollPaddingLeft: "20px" }}
         >
           {testimonials.map((t) => (
-            <div key={t.name} className="w-[315px] min-w-[315px] h-[220px] snap-start shrink-0 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm flex overflow-hidden">
-              {/* Photo */}
-              {t.avatar && (
-                <div className="w-[90px] shrink-0 overflow-hidden rounded-l-2xl">
-                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" style={t.imgStyle} />
-                </div>
-              )}
-              {/* Body */}
-              <div className="flex-1 flex flex-col justify-between p-4 gap-2.5">
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-[13px] h-[13px] text-[#F59E0B] fill-[#F59E0B]" />
-                    ))}
-                  </div>
-                  <p className="text-[13px] font-medium text-[#1E293B] leading-[1.5] line-clamp-5">&ldquo;{t.quote}&rdquo;</p>
-                </div>
+            <div key={t.name} className="w-[300px] min-w-[300px] snap-start shrink-0 bg-white border border-[#E2E8F0] rounded-2xl p-5 flex flex-col gap-4">
+              {/* Stars */}
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 text-[#F59E0B] fill-[#F59E0B]" />
+                ))}
+              </div>
+              {/* Quote */}
+              <p className="text-[13px] text-[#1E293B] leading-[1.6]">&ldquo;{t.quote}&rdquo;</p>
+              {/* Footer */}
+              <div className="flex items-center gap-2.5">
+                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover shrink-0" style={t.imgStyle} />
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-[13px] font-bold text-[#1E293B]">{t.name}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[13px] font-bold text-[#1E293B]">{t.name}</span>
+                    <span className="inline-flex items-center gap-1 bg-[#F0FDF4] rounded-full px-2 py-[3px]">
+                      <CircleCheck className="w-[10px] h-[10px] text-[#16A34A]" />
+                      <span className="text-[10px] font-semibold text-[#16A34A]">Verified</span>
+                    </span>
+                  </div>
                   <span className="text-[11px] text-[#64748B]">{t.date}</span>
                 </div>
               </div>
@@ -1183,15 +1175,33 @@ function TestimonialsSection() {
         </div>
 
         {/* ── Mobile dots ── */}
-        <div className="lg:hidden flex items-center justify-center gap-2">
+        <div className="lg:hidden flex items-center justify-center gap-1.5">
           {testimonials.map((_, i) => (
             <div
               key={i}
               className={`rounded-full transition-all ${
-                i === activeCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#D1D5DB]"
+                i === activeCard ? "w-2 h-2 bg-[#1B8A7E]" : "w-1.5 h-1.5 bg-[#CBD5E1]"
               }`}
             />
           ))}
+        </div>
+
+        {/* ── Mobile stats bar ── */}
+        <div className="lg:hidden flex items-center justify-between bg-white border border-[#E2E8F0] rounded-xl px-5 py-4 mx-5">
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="text-[15px] font-bold text-[#1E293B]">5.0</span>
+            <span className="text-[11px] text-[#64748B]">Rating</span>
+          </div>
+          <div className="w-px h-8 bg-[#E2E8F0]" />
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="text-[15px] font-bold text-[#1E293B]">473</span>
+            <span className="text-[11px] text-[#64748B]">Graduates</span>
+          </div>
+          <div className="w-px h-8 bg-[#E2E8F0]" />
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="text-[15px] font-bold text-[#1E293B]">100%</span>
+            <span className="text-[11px] text-[#64748B]">Official docs</span>
+          </div>
         </div>
 
         {/* ── Desktop ── */}
