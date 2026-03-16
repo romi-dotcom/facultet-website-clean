@@ -121,11 +121,6 @@ export default function NavBar() {
               {link.label}
             </a>
           ))}
-          <div className="h-px bg-[#F0F0F0] my-0" />
-          <div className="flex items-center gap-4 h-10 mt-2">
-            <span className="text-[13px] text-[#94A3B8]">🇷🇺 Русский</span>
-            <span className="text-[13px] text-[#94A3B8]">🇬🇧 English</span>
-          </div>
         </div>
       )}
     </nav>
