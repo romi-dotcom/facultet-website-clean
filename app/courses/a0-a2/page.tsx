@@ -1340,15 +1340,15 @@ function FAQSection() {
 function CTASection() {
   const form = useLeadForm("A0-A2 Course");
   return (
-    <section id="enrol" className="bg-[#F8FAFC] py-12 px-5 lg:py-20 lg:px-[120px]">
-      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4 lg:gap-6">
+    <section id="enrol" className="bg-white py-8 px-5 lg:bg-[#F8FAFC] lg:py-20 lg:px-[120px]">
+      <div className="max-w-[1200px] mx-auto flex flex-col lg:items-center gap-3 lg:gap-6">
         <span className="text-[11px] lg:text-xs font-bold tracking-[2px] text-[#1B8A7E]">ENROL NOW</span>
         {/* Desktop heading */}
         <h2 className="hidden lg:block text-[44px] font-extrabold text-[#1E293B] text-center leading-[1.2] tracking-[-0.5px] max-w-[820px]">
           Start learning — get your enrolment certificate within 2 hours of signing up
         </h2>
         {/* Mobile heading */}
-        <h2 className="lg:hidden text-[28px] font-extrabold text-[#1E293B] text-center leading-[1.2] tracking-[-0.5px]">
+        <h2 className="lg:hidden text-[28px] font-extrabold text-[#1E293B] leading-[1.2] tracking-[-0.5px]">
           Enrol and get certified in 2–4 months
         </h2>
         {/* Desktop meta */}
@@ -1356,8 +1356,8 @@ function CTASection() {
           Next group starts March 31 — 3 spots left out of 12
         </p>
         {/* Mobile meta */}
-        <p className="lg:hidden text-sm text-[#64748B] text-center leading-[1.4]">
-          Next group starts april 10{"\n"} — 3 spots left out of 20
+        <p className="lg:hidden text-sm text-[#64748B] leading-[1.5]">
+          Next group starts april 10{"\n"}- 3 spots left out of 20
         </p>
         {/* Form card */}
         <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">
@@ -1367,7 +1367,11 @@ function CTASection() {
               <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
               <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
             </div>
-            <div className="flex items-center gap-1.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
+            <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0 lg:hidden">
+              <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
+              <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            </div>
+            <div className="hidden lg:flex items-center gap-1.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 flex-1 min-w-0">
               <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-xs font-bold text-[#4A5568] outline-none cursor-pointer appearance-none shrink-0">
                 {countryCodes.map((c) => (
                   <option key={c.code} value={c.code}>{c.flag}{c.code}</option>

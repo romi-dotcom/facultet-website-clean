@@ -1423,15 +1423,15 @@ function FAQSection() {
 function CTASection() {
   const form = useLeadForm("A1-A2 Course");
   return (
-    <section id="enrol" className="bg-white py-12 px-5 lg:bg-[#F8FAFC] lg:py-20 lg:px-[120px]">
-      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4 lg:gap-6">
+    <section id="enrol" className="bg-white py-8 px-5 lg:bg-[#F8FAFC] lg:py-20 lg:px-[120px]">
+      <div className="max-w-[1200px] mx-auto flex flex-col lg:items-center gap-3 lg:gap-6">
         <span className="text-[11px] lg:text-xs font-bold tracking-[2px] text-[#1B8A7E]">ENROL NOW</span>
         {/* Desktop heading */}
         <h2 className="hidden lg:block text-[44px] font-extrabold text-[#1E293B] text-center leading-[1.2] tracking-[-0.5px] max-w-[820px]">
           Start learning — get your enrolment certificate within 2 hours of signing up
         </h2>
         {/* Mobile heading */}
-        <h2 className="lg:hidden text-[28px] font-extrabold text-[#1E293B] text-center leading-[1.2] tracking-[-0.5px]">
+        <h2 className="lg:hidden text-[28px] font-extrabold text-[#1E293B] leading-[1.2] tracking-[-0.5px]">
           Enrol and get certified in 2 months
         </h2>
         {/* Desktop meta */}
@@ -1439,17 +1439,22 @@ function CTASection() {
           Next group starts May 2 — 20 spots left
         </p>
         {/* Mobile meta */}
-        <p className="lg:hidden text-sm text-[#64748B] text-center leading-[1.4]">
-          Next group starts May 2 · June 2 · August 13{"\n"}— 20 spots left
+        <p className="lg:hidden text-sm text-[#64748B] leading-[1.5]">
+          Next group starts May 2 · June 2 · August 13{"\n"}- 20 spots left
         </p>
         {/* Form card */}
         <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">
-          {/* Name & Phone — stacked on mobile, side by side on desktop */}
+          {/* Name */}
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
             <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
-          <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
+          {/* Phone — mobile: simple, desktop: with country code */}
+          <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 lg:hidden">
+            <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
+            <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+          </div>
+          <div className="hidden lg:flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
             <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-sm text-[#1E293B] outline-none shrink-0 appearance-none pr-1 cursor-pointer">
               {countryCodes.map((c) => (
