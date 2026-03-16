@@ -540,10 +540,10 @@ function DocsSection() {
           </div>
         </div>
         {/* Footer text — changes with active card */}
-        <div className="flex items-center justify-center gap-1.5 mt-4 px-5">
-          {activeDocCard === 0 && (<><Clock3 className="w-[13px] h-[13px] text-[#1B8A7E]" /><span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span></>)}
-          {activeDocCard === 1 && (<><CircleCheck className="w-[13px] h-[13px] text-[#E85D26]" /><span className="text-xs font-medium text-[#E85D26]">Available on request</span></>)}
-          {activeDocCard === 2 && (<><CircleCheck className="w-[13px] h-[13px] text-[#0F766E]" /><span className="text-xs font-medium text-[#0F766E]">Issued by Centro Qualifica</span></>)}
+        <div className="flex items-center gap-1.5 mt-3 px-5">
+          {activeDocCard === 0 && (<><Clock3 className="w-[13px] h-[13px] text-[#1B8A7E] shrink-0" /><span className="text-xs font-medium text-[#1B8A7E]">Issued within 2 hours</span></>)}
+          {activeDocCard === 1 && (<><CircleCheck className="w-[13px] h-[13px] text-[#E85D26] shrink-0" /><span className="text-xs font-medium text-[#E85D26]">Available on request</span></>)}
+          {activeDocCard === 2 && (<><CircleCheck className="w-[13px] h-[13px] text-[#0F766E] shrink-0" /><span className="text-xs font-medium text-[#0F766E]">Issued by Centro Qualifica</span></>)}
         </div>
         {/* Dots */}
         <div className="flex items-center justify-center gap-2 mt-3">
