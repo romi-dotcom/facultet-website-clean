@@ -85,8 +85,6 @@ function NavBar() {
             ))}
           </div>
           <div className="flex items-center gap-2 lg:gap-3">
-            <div className="hidden lg:block w-px h-5 bg-[#E2E8F0]" />
-            <button className="rounded-full border border-[#E2E8F0] px-2.5 py-1 text-xs text-[#4A5568] lg:px-3 lg:text-[13px]">RU</button>
             <a href="#enrol" className="btn-pulse rounded-lg bg-[#E85D26] px-3.5 py-2 text-[13px] font-bold text-white lg:px-6 lg:py-2.5 lg:text-sm">
               <span className="lg:hidden">Enroll Now</span>
               <span className="hidden lg:inline">Enroll Now →</span>
