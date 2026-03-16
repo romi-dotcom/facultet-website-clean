@@ -45,8 +45,8 @@ const testimonials: Testimonial[] = [
     mobileQuote:
       "\u201cFacultet prepared me step by step. When I went to SEF I understood everything and answered without an interpreter.\u201d",
     name: "Ana R.",
-    location: "Brazil \u2192 Porto \u00b7 studying 5 months",
-    mobileLocation: "Brazil \u2192 Porto \u00b7 5 months",
+    location: "Russia \u2192 Porto \u00b7 studying 5 months",
+    mobileLocation: "Russia \u2192 Porto \u00b7 5 months",
     photo: "/images/testimonial-3.png",
     photoBg: "bg-gradient-to-br from-[#C4D4E0] to-[#B0C4D8]",
     imgStyle: { objectPosition: "50% 30%" },
