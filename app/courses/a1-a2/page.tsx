@@ -575,6 +575,48 @@ const mobileModules = [
   { num: "5", title: "Exam Prep & PLA Certificate (A2)", meta: "2 lessons · Weeks 9–10", accent: true },
 ];
 
+function ModuleListAnimated() {
+  const listRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={listRef} className="flex flex-col gap-2">
+      {mobileModules.map((m, i) => (
+        <div
+          key={m.num}
+          className={`rounded-[10px] border transition-all duration-500 ${m.accent ? "bg-[#FFF7ED] border-[#FED7AA]" : "bg-white border-[#E2E8F0]"}`}
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateX(0)" : "translateX(-100%)",
+            transitionDelay: `${i * 100}ms`,
+          }}
+        >
+          <div className="flex items-center gap-3 px-4 py-3.5">
+            <div className={`w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold text-white ${m.accent ? "bg-[#E85D26]" : "bg-[#0F766E]"}`}>
+              {m.num}
+            </div>
+            <div className="flex flex-col gap-0.5 flex-1">
+              <p className="text-[13px] font-bold text-[#1E293B]">{m.title}</p>
+              <p className="text-[11px] text-[#64748B]">{m.meta}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ProgrammeSection() {
   return (
     <section id="programme" className="bg-white py-8 px-5 lg:py-20 lg:px-[120px]">
@@ -641,21 +683,7 @@ function ProgrammeSection() {
         {/* Stats — horizontal row */}
         <StatsFlip />
         {/* Module list */}
-        <div className="flex flex-col gap-2">
-          {mobileModules.map((m) => (
-            <div key={m.num} className={`rounded-[10px] border ${m.accent ? "bg-[#FFF7ED] border-[#FED7AA]" : "bg-white border-[#E2E8F0]"}`}>
-              <div className="flex items-center gap-3 px-4 py-3.5">
-                <div className={`w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold text-white ${m.accent ? "bg-[#E85D26]" : "bg-[#0F766E]"}`}>
-                  {m.num}
-                </div>
-                <div className="flex flex-col gap-0.5 flex-1">
-                  <p className="text-[13px] font-bold text-[#1E293B]">{m.title}</p>
-                  <p className="text-[11px] text-[#64748B]">{m.meta}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ModuleListAnimated />
       </div>
     </section>
   );
