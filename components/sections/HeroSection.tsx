@@ -55,7 +55,7 @@ export default function HeroSection() {
                        lg:text-base lg:text-left lg:max-w-[480px]"
           >
             <span className="lg:hidden">
-              150-hour A2 Portuguese programme.
+              150-hour A2 Portuguese programme.<br />
               Required for your citizenship application.
             </span>
             <span className="hidden lg:inline">
