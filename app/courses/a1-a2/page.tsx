@@ -489,9 +489,9 @@ function DocsSection() {
             From enrolment to citizenship application — every document is official and recognised by Portuguese authorities.
           </p>
         </div>
-        <div ref={docsScrollRef} className="flex flex-row flex-nowrap items-stretch gap-3 px-5 mt-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide" style={{ scrollPaddingLeft: 20 }}>
+        <div ref={docsScrollRef} className="flex flex-row flex-nowrap gap-3 px-5 mt-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide" style={{ scrollPaddingLeft: 20 }}>
           {/* Card 1 */}
-          <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#E2E8F0] p-5 flex flex-col gap-3 snap-start">
+          <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#E2E8F0] p-4 flex flex-col gap-2.5 snap-start">
             <span className="self-start bg-[#ECFDF5] text-[#065F46] text-[11px] font-semibold rounded-full px-2.5 py-1">WITHIN 2 HOURS</span>
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
@@ -503,15 +503,11 @@ function DocsSection() {
               </div>
             </div>
             <p className="text-[13px] text-[#475569] leading-[1.5]">
-              Official proof of enrolment in a licensed language school — not a completion certificate. Issued the same day you sign up. Required for your citizenship documents package.
+              Official proof of enrolment in a licensed language school — not a completion certificate. Issued the same day you sign up.
             </p>
-            <div className="flex items-center gap-1.5 pt-2 mt-auto">
-              <Clock3 className="w-[13px] h-[13px] text-[#1B8A7E]" />
-              <span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span>
-            </div>
           </div>
           {/* Card 2 */}
-          <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#FED7AA] p-5 flex flex-col gap-3 snap-start">
+          <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#FED7AA] p-4 flex flex-col gap-2.5 snap-start">
             <span className="self-start bg-[#FFF7ED] text-[#C2410C] text-[11px] font-semibold rounded-full px-2.5 py-1">ON REQUEST</span>
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 rounded-[10px] bg-[#FFF7ED] flex items-center justify-center shrink-0">
@@ -525,13 +521,9 @@ function DocsSection() {
             <p className="text-[13px] text-[#475569] leading-[1.5]">
               Confirms active course attendance. Can be requested at any time during the course.
             </p>
-            <div className="flex items-center gap-1.5 pt-2 mt-auto">
-              <CircleCheck className="w-[13px] h-[13px] text-[#E85D26]" />
-              <span className="text-xs font-medium text-[#E85D26]">Available on request</span>
-            </div>
           </div>
           {/* Card 3 */}
-          <div className="shrink-0 w-[280px] bg-[#0F766E] rounded-2xl p-5 flex flex-col gap-3 snap-start">
+          <div className="shrink-0 w-[280px] bg-[#0F766E] rounded-2xl p-4 flex flex-col gap-2.5 snap-start">
             <span className="self-start bg-white/15 text-[#CCFBF1] text-[11px] font-semibold rounded-full px-2.5 py-1">AFTER 160 HOURS</span>
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
@@ -545,14 +537,16 @@ function DocsSection() {
             <p className="text-[13px] text-[#CCFBF1] leading-[1.5]">
               Official completion certificate. Recognised by Portuguese authorities for citizenship applications.
             </p>
-            <div className="flex items-center gap-1.5 pt-2 mt-auto">
-              <CircleCheck className="w-[13px] h-[13px] text-white" />
-              <span className="text-xs font-medium text-white">Issued by Centro Qualifica</span>
-            </div>
           </div>
         </div>
+        {/* Footer text — changes with active card */}
+        <div className="flex items-center justify-center gap-1.5 mt-4 px-5">
+          {activeDocCard === 0 && (<><Clock3 className="w-[13px] h-[13px] text-[#1B8A7E]" /><span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span></>)}
+          {activeDocCard === 1 && (<><CircleCheck className="w-[13px] h-[13px] text-[#E85D26]" /><span className="text-xs font-medium text-[#E85D26]">Available on request</span></>)}
+          {activeDocCard === 2 && (<><CircleCheck className="w-[13px] h-[13px] text-[#0F766E]" /><span className="text-xs font-medium text-[#0F766E]">Issued by Centro Qualifica</span></>)}
+        </div>
         {/* Dots */}
-        <div className="flex items-center justify-center gap-2 mt-4">
+        <div className="flex items-center justify-center gap-2 mt-3">
           {[0, 1, 2].map((i) => (
             <div key={i} className={`rounded-full transition-all ${i === activeDocCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#CBD5E1]"}`} />
           ))}
