@@ -1434,7 +1434,7 @@ function CTASection() {
    ────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="bg-[#1E293B] pt-14 pb-10 px-5 lg:px-0">
+    <footer className="bg-[#1E293B] pt-10 pb-8 px-5 lg:pt-14 lg:pb-10 lg:px-0">
       <div className="max-w-[1100px] mx-auto">
         {/* Desktop grid */}
         <div className="hidden lg:flex gap-10 justify-between">
@@ -1493,26 +1493,78 @@ function Footer() {
 
         {/* Mobile footer */}
         <div className="lg:hidden flex flex-col gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-[5px] bg-[#1B8A7E] flex items-center justify-center">
-              <span className="text-[9px] font-bold text-white">OLA</span>
+          {/* Top: Logo + tag + address + social */}
+          <div className="flex flex-col gap-2.5">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-md bg-[#1B8A7E] flex items-center justify-center">
+                <span className="text-[9px] font-bold text-white">OLA</span>
+              </div>
+              <span className="text-[15px] font-bold text-white">Ola Facultet</span>
             </div>
-            <span className="text-[15px] font-bold text-white">Ola Facultet</span>
+            <span className="text-xs text-[#94A3B8] leading-[1.4]">Licensed Language School</span>
+            <span className="text-xs text-[#64748B]">Av. da República 91, 4th floor, Lisbon</span>
+            <div className="flex items-center gap-2">
+              {[Instagram, MessageCircle, Send].map((Icon, i) => (
+                <div key={i} className="w-9 h-9 rounded-lg bg-white/[0.07] border border-white/[0.08] flex items-center justify-center">
+                  <Icon className="w-4 h-4 text-[#94A3B8]" />
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="text-[13px] text-[#64748B] leading-[1.6]">
-            Official PLA language school. A2 Portuguese programme recognised by Portuguese authorities and embassies.
-          </p>
+
+          {/* Divider */}
+          <div className="h-px bg-[#334155]" />
+
+          {/* Links */}
+          <div className="flex flex-col gap-3">
+            <span className="text-[13px] text-[#E2E8F0]">Courses & Pricing</span>
+            <span className="text-[13px] text-[#E2E8F0]">Programme</span>
+            <span className="text-[13px] text-[#E2E8F0]">FAQ</span>
+          </div>
+
+          {/* Contacts */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#1B8A7E]">info@pla-escola.pt</span></div>
+            <div className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#E2E8F0]">+351 921 235 142</span></div>
+            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2"><MessageCircle className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-xs text-[#25D366]">WhatsApp: +351 923 296 007</span></a>
+          </div>
+
+          {/* Trust badges */}
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#E2E8F0]">+351 921 235 142</span></div>
-            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5"><MessageCircle className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#25D366]">WhatsApp: +351 923 296 007</span></a>
+            <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">ACCREDITED BY</span>
+            {[
+              { icon: ShieldCheck, label: "Licensed School" },
+              { icon: Award, label: "Centro Qualifica" },
+              { icon: CircleCheck, label: "DGERT Recognised" },
+            ].map((b) => (
+              <div key={b.label} className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-lg px-3 py-2">
+                <b.icon className="w-3.5 h-3.5 text-[#1B8A7E]" />
+                <span className="text-xs font-semibold text-[#E2E8F0]">{b.label}</span>
+              </div>
+            ))}
           </div>
+
+          {/* Divider */}
+          <div className="h-px bg-[#334155]" />
+
+          {/* Terms */}
+          <div className="flex items-center justify-center gap-4">
+            <span className="text-[11px] text-[#64748B]">Terms of Use</span>
+            <span className="text-[11px] text-[#64748B]">Privacy Policy</span>
+            <span className="text-[11px] text-[#64748B]">Cookies</span>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-xs text-[#64748B] text-center">© 2026 Facultet School · All rights reserved</p>
         </div>
 
-        {/* Bottom */}
-        <div className="h-px bg-[#334155] mt-8" />
-        <div className="flex flex-col lg:flex-row items-center justify-between pt-6 gap-2">
-          <span className="text-xs text-[#64748B]">© 2026 Facultet School · All rights reserved</span>
-          <span className="text-xs text-[#64748B]">Terms of Use · Privacy Policy · Cookies</span>
+        {/* Desktop bottom */}
+        <div className="hidden lg:block">
+          <div className="h-px bg-[#334155] mt-8" />
+          <div className="flex items-center justify-between pt-6">
+            <span className="text-xs text-[#64748B]">© 2026 Facultet School · All rights reserved</span>
+            <span className="text-xs text-[#64748B]">Terms of Use · Privacy Policy · Cookies</span>
+          </div>
         </div>
       </div>
     </footer>
