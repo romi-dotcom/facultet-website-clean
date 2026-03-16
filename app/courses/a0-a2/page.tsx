@@ -346,10 +346,6 @@ function MobilePriceCard() {
           <ShieldCheck className="w-3 h-3 text-[#94A3B8]" />
           <span className="text-[11px] text-[#94A3B8]">Official documents · Licensed school</span>
         </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <CircleCheck className="w-3 h-3 text-[#94A3B8]" />
-          <span className="text-[11px] text-[#94A3B8]">No payment today · Cancel anytime</span>
-        </div>
       </div>
     </div>
   );
