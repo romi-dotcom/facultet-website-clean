@@ -182,7 +182,7 @@ export default function HeroSection() {
 
         {/* ── Bottom text — mobile only ── */}
         <p className="text-xs font-semibold text-[#64748B] text-center lg:hidden">
-          ⏱ Next group: April 7 · 20 spots left
+          ⏱ Next group: March 31 · 6 spots left
         </p>
       </div>
     </section>
