@@ -61,9 +61,10 @@ export async function POST(req: NextRequest) {
             pipeline_id: PIPELINE_ID,
             _embedded: {
               contacts: [{ id: contactId }],
-              ...(Object.keys(utmData).length > 0 && {
-                tags: Object.entries(utmData).map(([k, v]) => ({ name: `${k}:${v}` })),
-              }),
+              tags: [
+                ...(course ? [{ name: `course:${course}` }] : []),
+                ...Object.entries(utmData).map(([k, v]) => ({ name: `${k}:${v}` })),
+              ],
             },
           },
         ]),
@@ -78,25 +79,32 @@ export async function POST(req: NextRequest) {
     const data = await leadRes.json();
     const leadId = data._embedded?.leads?.[0]?.id;
 
-    // Add UTM note to lead
-    if (leadId && Object.keys(utmData).length > 0) {
-      const utmText = Object.entries(utmData).map(([k, v]) => `${k}: ${v}`).join("\n");
-      await fetch(
-        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}/notes`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify([
-            {
-              note_type: "common",
-              params: { text: `UTM метки:\n${utmText}` },
+    // Add note with course + UTM to lead
+    if (leadId) {
+      const lines: string[] = [];
+      if (course) lines.push(`Курс: ${course}`);
+      if (Object.keys(utmData).length > 0) {
+        lines.push("", "UTM метки:");
+        Object.entries(utmData).forEach(([k, v]) => lines.push(`${k}: ${v}`));
+      }
+      if (lines.length > 0) {
+        await fetch(
+          `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}/notes`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}`,
+              "Content-Type": "application/json",
             },
-          ]),
-        }
-      ).catch(() => {});
+            body: JSON.stringify([
+              {
+                note_type: "common",
+                params: { text: lines.join("\n") },
+              },
+            ]),
+          }
+        ).catch(() => {});
+      }
     }
 
     return NextResponse.json({ success: true, id: leadId });
