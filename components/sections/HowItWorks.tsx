@@ -111,7 +111,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="bg-white">
+    <section className="bg-white lg:pb-16">
       <div className="max-w-[1100px] mx-auto">
         {/* ── Header — Desktop ── */}
         <div className="hidden lg:flex flex-col items-center gap-3 pt-12 pb-8">
