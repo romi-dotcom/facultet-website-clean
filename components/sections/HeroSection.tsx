@@ -69,7 +69,7 @@ export default function HeroSection() {
           <div className="flex items-center gap-2 bg-[#FFF7ED] border border-[#FED7AA] rounded-lg px-3.5 py-2.5 w-full lg:px-4 lg:py-3 lg:w-fit">
             <span className="w-2 h-2 rounded-full bg-[#EF4444] shrink-0" />
             <span className="text-xs font-bold text-[#C2410C] lg:text-[13px]">
-              Next group starts April 7 — only 20 spots available
+              Next group starts March 31 — only 6 spots available
             </span>
           </div>
 
