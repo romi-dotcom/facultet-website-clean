@@ -21,8 +21,8 @@ const testimonials: Testimonial[] = [
     mobileQuote:
       "\u201cI started from zero. After 4 months at Facultet I passed the A2 exam and submitted my residency documents.\u201d",
     name: "Maria Fernandes",
-    location: "Brazil \u2192 Lisbon \u00b7 studying 4 months",
-    mobileLocation: "Brazil \u2192 Lisbon \u00b7 4 months",
+    location: "Argentina \u2192 Lisbon \u00b7 studying 4 months",
+    mobileLocation: "Argentina \u2192 Lisbon \u00b7 4 months",
     photo: "/images/testimonial-1.png",
     photoBg: "bg-gradient-to-br from-[#F0D9C4] to-[#E8C4A8]",
     imgStyle: { objectPosition: "50% 50%" },
