@@ -294,11 +294,11 @@ export default function HowItWorks() {
         </div>
 
         {/* ── Inactive Steps — Desktop ── */}
-        <div className="hidden lg:flex gap-4 pt-4">
+        <div className="hidden lg:flex items-stretch gap-4 pt-4">
           {inactiveCards.map((step) => (
             <div
               key={step.title}
-              className="flex-1 flex flex-col gap-4 rounded-2xl border border-[#E2E8F0] bg-[#FAFAFA] p-7 opacity-70 h-full"
+              className="flex-1 flex flex-col gap-4 rounded-2xl border border-[#E2E8F0] bg-[#FAFAFA] p-7 opacity-70"
             >
               <div className="flex items-center gap-3">
                 <div
