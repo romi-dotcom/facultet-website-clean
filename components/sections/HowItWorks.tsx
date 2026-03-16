@@ -294,7 +294,7 @@ export default function HowItWorks() {
         </div>
 
         {/* ── Inactive Steps — Desktop ── */}
-        <div className="hidden lg:flex gap-4 pt-4 mb-8 h-[186px]">
+        <div className="hidden lg:flex gap-4 pt-4">
           {inactiveCards.map((step) => (
             <div
               key={step.title}
