@@ -42,7 +42,7 @@ export function useLeadForm(course: string) {
 
   async function handleSubmit(e?: FormEvent) {
     e?.preventDefault();
-    if (!name && !phone && !email) return;
+    if (!name.trim() || !phone.trim() || !email.trim()) return;
     setStatus("loading");
     try {
       const res = await fetch("/api/lead", {

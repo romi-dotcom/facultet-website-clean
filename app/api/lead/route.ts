@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
     const { name, phone, email, course, utm } = await req.json();
     const utmData = (utm || {}) as Record<string, string>;
 
-    if (!name && !phone && !email) {
-      return NextResponse.json({ error: "No data provided" }, { status: 400 });
+    if (!name || !phone || !email) {
+      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
     // Create contact

@@ -1397,7 +1397,7 @@ function CTASection() {
         <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
-            <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            <input type="text" placeholder="Your name" required value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
@@ -1407,11 +1407,11 @@ function CTASection() {
               ))}
             </select>
             <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
-            <input type="tel" placeholder="WhatsApp or phone" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            <input type="tel" placeholder="WhatsApp or phone" required value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Mail className="w-4 h-4 text-[#94A3B8]" />
-            <input type="email" placeholder="Email address" value={form.email} onChange={(e) => form.setEmail(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1" />
+            <input type="email" placeholder="Email address" required value={form.email} onChange={(e) => form.setEmail(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1" />
           </div>
           <button type="submit" disabled={form.status === "loading"} className="btn-pulse flex items-center justify-center h-14 lg:h-14 bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
             {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enrol Now"}

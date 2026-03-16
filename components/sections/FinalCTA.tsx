@@ -101,6 +101,7 @@ export default function FinalCTA() {
             <input
               type="text"
               placeholder="Your name"
+              required
               value={form.name}
               onChange={(e) => form.setName(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
@@ -108,6 +109,7 @@ export default function FinalCTA() {
             <input
               type="email"
               placeholder="Your email address"
+              required
               value={form.email}
               onChange={(e) => form.setEmail(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
@@ -126,6 +128,7 @@ export default function FinalCTA() {
               <input
                 type="tel"
                 placeholder="WhatsApp / Phone"
+                required
                 value={form.phone}
                 onChange={(e) => form.setPhone(e.target.value)}
                 className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
