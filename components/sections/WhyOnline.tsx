@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import {
   Timer,
   Users,
@@ -155,6 +158,20 @@ function WhyCard({ card }: { card: Card }) {
 }
 
 export default function WhyOnline() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / cards.length));
+      setActiveCard(Math.min(idx, cards.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="bg-[#F8FAFC] py-12 lg:py-20">
       {/* Header */}
@@ -195,7 +212,7 @@ export default function WhyOnline() {
 
       {/* ── Mobile: horizontal scroll ── */}
       <div className="lg:hidden mt-6">
-        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 px-5" style={{ scrollPaddingLeft: 20 }}>
+        <div ref={scrollRef} className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 px-5" style={{ scrollPaddingLeft: 20 }}>
           {cards.map((c) => (
             <div key={c.title} className="snap-start shrink-0">
               <WhyCard card={c} />
@@ -206,10 +223,12 @@ export default function WhyOnline() {
 
         {/* Dots */}
         <div className="flex items-center justify-center gap-1.5 mt-6">
-          <span className="w-2 h-2 rounded-full bg-[#1B8A7E]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
+          {cards.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all ${i === activeCard ? "w-2 h-2 bg-[#1B8A7E]" : "w-1.5 h-1.5 bg-[#CBD5E1]"}`}
+            />
+          ))}
         </div>
       </div>
     </section>

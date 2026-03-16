@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import {
   ClipboardPen,
   Timer,
@@ -93,6 +96,20 @@ const mobileChips = [
 ];
 
 export default function HowItWorks() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / inactiveCards.length));
+      setActiveCard(Math.min(idx, inactiveCards.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="bg-white">
       <div className="max-w-[1100px] mx-auto">
@@ -313,7 +330,7 @@ export default function HowItWorks() {
 
         {/* ── Inactive Steps — Mobile (horizontal scroll) ── */}
         <div className="lg:hidden mt-3">
-          <div className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 px-5" style={{ scrollPaddingLeft: 20 }}>
+          <div ref={scrollRef} className="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1 px-5" style={{ scrollPaddingLeft: 20 }}>
             {inactiveCards.map((step) => (
               <div
                 key={step.title}
@@ -350,9 +367,12 @@ export default function HowItWorks() {
 
           {/* Scroll dots */}
           <div className="flex items-center justify-center gap-1.5 mt-3 pb-8">
-            <span className="w-2 h-2 rounded-full bg-[#E85D26]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
+            {inactiveCards.map((_, i) => (
+              <div
+                key={i}
+                className={`rounded-full transition-all ${i === activeCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#CBD5E1]"}`}
+              />
+            ))}
           </div>
         </div>
       </div>

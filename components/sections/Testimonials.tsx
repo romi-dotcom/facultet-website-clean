@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 
 interface Testimonial {
@@ -69,6 +69,19 @@ function Stars5({ size = 16 }: { size?: number }) {
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const [activeMobileCard, setActiveMobileCard] = useState(0);
+
+  useEffect(() => {
+    const el = mobileScrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / testimonials.length));
+      setActiveMobileCard(Math.min(idx, testimonials.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
 
   const prev = () =>
     setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
@@ -192,7 +205,7 @@ export default function Testimonials() {
       {/* ── Carousel — Mobile ── */}
       <div className="lg:hidden">
         {/* Cards — gap:12, padding:[0,20] */}
-        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-5" style={{ scrollPaddingLeft: 20 }}>
+        <div ref={mobileScrollRef} className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-5" style={{ scrollPaddingLeft: 20 }}>
           {testimonials.map((t) => (
             <div
               key={t.name}
@@ -229,9 +242,12 @@ export default function Testimonials() {
 
         {/* Dots — gap:8, padding-top:14 */}
         <div className="flex items-center justify-center gap-2 pt-[14px]">
-          <span className="w-2 h-2 rounded-full bg-[#E85D26]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[#D1D5DB]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-[#D1D5DB]" />
+          {testimonials.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all ${i === activeMobileCard ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#D1D5DB]"}`}
+            />
+          ))}
         </div>
 
         {/* CTA — gap:20, padding:[24,20,40,20] */}
