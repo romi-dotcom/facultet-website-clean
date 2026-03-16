@@ -1078,6 +1078,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled March 2025",
     avatar: "/images/testimonial1.png",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.4)", transformOrigin: "top center" } as React.CSSProperties,
   },
   {
     quote: "Within a week of getting my certificate, I submitted my SEF application. The document was accepted immediately — no questions asked.",
@@ -1085,6 +1086,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled January 2025",
     avatar: "/images/testimonial2.jpg",
+    imgStyle: {} as React.CSSProperties,
   },
   {
     quote: "Ana explains grammar in a way that finally makes sense. I went from zero Portuguese to holding full conversations in 5 months. I only wish I had started sooner.",
@@ -1092,6 +1094,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled October 2024",
     avatar: "/images/testimonial3.png",
+    imgStyle: { objectPosition: "top center", transform: "scale(1.3)", transformOrigin: "top center" } as React.CSSProperties,
   },
 ];
 
@@ -1141,7 +1144,7 @@ function TestimonialsSection() {
               {/* Photo */}
               {t.avatar && (
                 <div className="w-[90px] shrink-0 overflow-hidden rounded-l-2xl">
-                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                  <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" style={t.imgStyle} />
                 </div>
               )}
               {/* Body */}
