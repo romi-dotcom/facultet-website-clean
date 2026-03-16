@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -120,6 +120,19 @@ function VideoCard({
 
 export default function SocialProofGallery() {
   const [current, setCurrent] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const [activeMobileDot, setActiveMobileDot] = useState(0);
+
+  useEffect(() => {
+    const el = mobileScrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.scrollWidth / mobileItems.length));
+      setActiveMobileDot(Math.min(idx, mobileItems.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
 
   const prev = () =>
     setCurrent((c) => (c === 0 ? desktopItems.length - 1 : c - 1));
@@ -187,7 +200,7 @@ export default function SocialProofGallery() {
 
       {/* ── Gallery — Mobile ── */}
       <div className="lg:hidden mt-6">
-        <div className="flex gap-3 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        <div ref={mobileScrollRef} className="flex gap-3 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
           {mobileItems.map((item, i) => (
             <VideoCard
               key={i}
@@ -207,11 +220,9 @@ export default function SocialProofGallery() {
           {mobileItems.map((_, i) => (
             <span
               key={i}
-              className={
-                i === 0
-                  ? "w-2 h-2 rounded-full bg-[#E85D26]"
-                  : "w-1.5 h-1.5 rounded-full bg-[#D1D5DB]"
-              }
+              className={`rounded-full transition-all ${
+                i === activeMobileDot ? "w-2 h-2 bg-[#E85D26]" : "w-1.5 h-1.5 bg-[#D1D5DB]"
+              }`}
             />
           ))}
         </div>
