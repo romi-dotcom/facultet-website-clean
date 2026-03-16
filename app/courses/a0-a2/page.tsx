@@ -1293,7 +1293,7 @@ function FAQSection() {
               Can&apos;t find your answer? Write to us on WhatsApp — we reply within 1 hour.
             </p>
           </div>
-          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 h-12 bg-white border border-[#E2E8F0] rounded-lg w-fit px-5">
+          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hidden lg:flex items-center justify-center gap-2 h-12 bg-white border border-[#E2E8F0] rounded-lg w-fit px-5">
             <MessageCircle className="w-4 h-4 text-[#25D366]" />
             <span className="text-sm font-semibold text-[#1E293B]">Ask on WhatsApp</span>
           </a>
@@ -1319,6 +1319,12 @@ function FAQSection() {
             </div>
           ))}
         </div>
+
+        {/* WhatsApp button — mobile only, after questions */}
+        <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="lg:hidden flex items-center justify-center gap-2 h-12 bg-white border border-[#E2E8F0] rounded-lg w-full">
+          <MessageCircle className="w-4 h-4 text-[#25D366]" />
+          <span className="text-sm font-semibold text-[#1E293B]">Ask on WhatsApp</span>
+        </a>
       </div>
     </section>
   );
