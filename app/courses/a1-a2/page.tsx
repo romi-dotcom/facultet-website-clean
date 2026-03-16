@@ -1114,7 +1114,7 @@ const testimonials = [
     badge: "A2 Certified",
     date: "Enrolled March 2025",
     avatar: "/images/testimonial1.png",
-    imgStyle: { objectPosition: "50% 30%" } as React.CSSProperties,
+    imgStyle: { objectPosition: "50% 50%" } as React.CSSProperties,
   },
   {
     quote: "Within a week of getting my certificate, I submitted my SEF application. The document was accepted immediately — no questions asked.",

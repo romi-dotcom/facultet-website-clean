@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "Brazil \u2192 Lisbon \u00b7 4 months",
     photo: "/images/testimonial-1.png",
     photoBg: "bg-gradient-to-br from-[#F0D9C4] to-[#E8C4A8]",
-    imgStyle: { objectPosition: "50% 30%" },
+    imgStyle: { objectPosition: "50% 50%" },
   },
   {
     quote:
