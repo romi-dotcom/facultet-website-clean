@@ -459,7 +459,7 @@ function DocsSection() {
 
       {/* Mobile Cards — horizontal scroll (outside max-w wrapper) */}
       <div ref={docsScrollRef} className="flex flex-row flex-nowrap items-stretch gap-3 px-5 mt-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide lg:hidden" style={{ scrollPaddingLeft: 20 }}>
-        <div className="shrink-0 w-[280px] h-[320px] bg-white rounded-2xl border border-[#E2E8F0] p-5 flex flex-col gap-3 snap-start">
+        <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#E2E8F0] p-5 flex flex-col gap-3 snap-start">
           <span className="self-start bg-[#ECFDF5] text-[#065F46] text-[11px] font-semibold rounded-full px-2.5 py-1">WITHIN 2 HOURS</span>
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
@@ -478,7 +478,7 @@ function DocsSection() {
             <span className="text-xs font-medium text-[#1B8A7E]">Enrolment certificate — issued within 2 hours</span>
           </div>
         </div>
-        <div className="shrink-0 w-[280px] h-[320px] bg-white rounded-2xl border border-[#FED7AA] p-5 flex flex-col gap-3 snap-start">
+        <div className="shrink-0 w-[280px] bg-white rounded-2xl border border-[#FED7AA] p-5 flex flex-col gap-3 snap-start">
           <span className="self-start bg-[#FFF7ED] text-[#C2410C] text-[11px] font-semibold rounded-full px-2.5 py-1">ON REQUEST</span>
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-[10px] bg-[#FFF7ED] flex items-center justify-center shrink-0">
@@ -497,7 +497,7 @@ function DocsSection() {
             <span className="text-xs font-medium text-[#E85D26]">Available on request</span>
           </div>
         </div>
-        <div className="shrink-0 w-[280px] h-[320px] bg-[#0F766E] rounded-2xl p-5 flex flex-col gap-3 snap-start">
+        <div className="shrink-0 w-[280px] bg-[#0F766E] rounded-2xl p-5 flex flex-col gap-3 snap-start">
           <span className="self-start bg-white/15 text-[#CCFBF1] text-[11px] font-semibold rounded-full px-2.5 py-1">AFTER 160 HOURS</span>
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
