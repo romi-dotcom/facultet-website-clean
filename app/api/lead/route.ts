@@ -4,6 +4,40 @@ const KOMMO_SUBDOMAIN = "letofacultetschool";
 const KOMMO_ACCESS_TOKEN = process.env.KOMMO_ACCESS_TOKEN!;
 const PIPELINE_ID = 12976892;
 
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+/** Fetch lead custom field IDs by name (cached in memory for the process lifetime) */
+let fieldMapCache: Record<string, number> | null = null;
+
+async function getUtmFieldMap(): Promise<Record<string, number>> {
+  if (fieldMapCache) return fieldMapCache;
+
+  const res = await fetch(
+    `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/custom_fields`,
+    {
+      headers: {
+        Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}`,
+      },
+    }
+  );
+
+  if (!res.ok) return {};
+
+  const data = await res.json();
+  const fields = data._embedded?.custom_fields || [];
+  const map: Record<string, number> = {};
+
+  for (const f of fields) {
+    const name = (f.name || "").toLowerCase().replace(/\s+/g, "_");
+    if (UTM_KEYS.includes(name)) {
+      map[name] = f.id;
+    }
+  }
+
+  fieldMapCache = map;
+  return map;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { name, phone, email, course, utm } = await req.json();
@@ -46,6 +80,17 @@ export async function POST(req: NextRequest) {
     const contactData = await contactRes.json();
     const contactId = contactData._embedded?.contacts?.[0]?.id;
 
+    // Build UTM custom fields for the lead
+    const utmFieldMap = Object.keys(utmData).length > 0 ? await getUtmFieldMap() : {};
+    const customFields: { field_id: number; values: { value: string }[] }[] = [];
+
+    for (const [key, value] of Object.entries(utmData)) {
+      const fieldId = utmFieldMap[key];
+      if (fieldId) {
+        customFields.push({ field_id: fieldId, values: [{ value }] });
+      }
+    }
+
     // Create lead linked to contact
     const leadRes = await fetch(
       `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads`,
@@ -59,12 +104,9 @@ export async function POST(req: NextRequest) {
           {
             name: `${course || "Website"} — ${name || "Unknown"}`,
             pipeline_id: PIPELINE_ID,
+            ...(customFields.length > 0 && { custom_fields_values: customFields }),
             _embedded: {
               contacts: [{ id: contactId }],
-              tags: [
-                ...(course ? [{ name: `course:${course}` }] : []),
-                ...Object.entries(utmData).map(([k, v]) => ({ name: `${k}:${v}` })),
-              ],
             },
           },
         ]),
@@ -78,34 +120,6 @@ export async function POST(req: NextRequest) {
 
     const data = await leadRes.json();
     const leadId = data._embedded?.leads?.[0]?.id;
-
-    // Add note with course + UTM to lead
-    if (leadId) {
-      const lines: string[] = [];
-      if (course) lines.push(`Курс: ${course}`);
-      if (Object.keys(utmData).length > 0) {
-        lines.push("", "UTM метки:");
-        Object.entries(utmData).forEach(([k, v]) => lines.push(`${k}: ${v}`));
-      }
-      if (lines.length > 0) {
-        await fetch(
-          `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}/notes`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify([
-              {
-                note_type: "common",
-                params: { text: lines.join("\n") },
-              },
-            ]),
-          }
-        ).catch(() => {});
-      }
-    }
 
     return NextResponse.json({ success: true, id: leadId });
   } catch (e) {
