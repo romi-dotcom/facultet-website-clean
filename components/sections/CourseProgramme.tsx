@@ -68,7 +68,7 @@ export default function CourseProgramme() {
   const mod = modules[active];
 
   return (
-    <section className="bg-white py-12 lg:py-20">
+    <section id="programmes" className="bg-white py-12 lg:py-20">
       <div className="max-w-[1060px] mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center gap-2 px-5 pb-8 lg:gap-3 lg:px-0 lg:pb-12">
