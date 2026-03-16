@@ -231,7 +231,7 @@ function HeroSection() {
                 <div className="flex items-center gap-3">
                   <Calendar className="w-4 h-4 text-[#94A3B8]" />
                   <span className="text-[13px] text-[#94A3B8]">Start:</span>
-                  <span className="text-[13px] font-semibold text-[#1E293B]">May 2, 2026</span>
+                  <span className="text-[13px] font-semibold text-[#1E293B]">May 2 · June 2 · August 13</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="w-4 h-4 text-[#94A3B8]" />
@@ -349,7 +349,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <Calendar className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Start:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">May 2, 2026</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">May 2 · June 2 · August 13</span>
         </div>
         <div className="flex items-center gap-2.5 bg-[#FEF9C3] border border-[#FDE047] rounded-lg px-2.5 py-1.5">
           <Users className="w-[15px] h-[15px] text-[#CA8A04]" />
@@ -1420,7 +1420,7 @@ function CTASection() {
         </p>
         {/* Mobile meta */}
         <p className="lg:hidden text-sm text-[#64748B] text-center leading-[1.4]">
-          Next group starts May 2, 2026{"\n"}— 20 spots left
+          Next group starts May 2 · June 2 · August 13{"\n"}— 20 spots left
         </p>
         {/* Form card */}
         <form onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">
