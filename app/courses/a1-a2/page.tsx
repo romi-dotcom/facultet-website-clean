@@ -37,7 +37,7 @@ import {
   Info,
 } from "lucide-react";
 import { useLeadForm } from "@/hooks/useLeadForm";
-import { countryCodes } from "@/lib/countryCodes";
+import CountryCodePicker from "@/components/CountryCodePicker";
 
 /* ──────────────────────────────────────────────
    NavBar (reused from homepage with same structure)
@@ -1475,11 +1475,7 @@ function CTASection() {
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
-            <select value={form.countryCode} onChange={(e) => form.setCountryCode(e.target.value)} className="bg-transparent text-sm text-[#1E293B] outline-none shrink-0 appearance-none pr-1 cursor-pointer">
-              {countryCodes.map((c) => (
-                <option key={c.code} value={c.code}>{c.flag}{c.code}</option>
-              ))}
-            </select>
+            <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
             <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
             <input type="tel" placeholder="WhatsApp or phone" maxLength={15} value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
