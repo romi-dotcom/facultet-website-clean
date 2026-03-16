@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "Brazil \u2192 Lisbon \u00b7 4 months",
     photo: "/images/testimonial-1.png",
     photoBg: "bg-gradient-to-br from-[#F0D9C4] to-[#E8C4A8]",
-    imgStyle: { objectPosition: "50% 15%" },
+    imgStyle: { objectPosition: "50% 30%" },
   },
   {
     quote:
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "India \u2192 Porto \u00b7 online",
     photo: "/images/testimonial-2.png",
     photoBg: "bg-gradient-to-br from-[#D4C4B0] to-[#C8B8A4]",
-    imgStyle: { objectPosition: "50% 15%" },
+    imgStyle: { objectPosition: "50% 30%" },
   },
   {
     quote:
@@ -49,7 +49,7 @@ const testimonials: Testimonial[] = [
     mobileLocation: "Brazil \u2192 Porto \u00b7 5 months",
     photo: "/images/testimonial-3.png",
     photoBg: "bg-gradient-to-br from-[#C4D4E0] to-[#B0C4D8]",
-    imgStyle: { objectPosition: "50% 15%" },
+    imgStyle: { objectPosition: "50% 30%" },
   },
 ];
 
