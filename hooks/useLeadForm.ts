@@ -37,12 +37,24 @@ export function useLeadForm(course: string) {
   const [countryCode, setCountryCode] = useState("+351");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [phoneError, setPhoneError] = useState("");
 
   useEffect(() => { captureUtm(); }, []);
+
+  /** Allow only digits, strip anything else */
+  function setPhoneSafe(val: string) {
+    setPhone(val.replace(/\D/g, ""));
+    setPhoneError("");
+  }
 
   async function handleSubmit(e?: FormEvent) {
     e?.preventDefault();
     if (!name.trim() || !phone.trim() || !email.trim()) return;
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 7 || digits.length > 15) {
+      setPhoneError("Enter a valid phone number (7–15 digits)");
+      return;
+    }
     setStatus("loading");
     try {
       const res = await fetch("/api/lead", {
@@ -58,5 +70,5 @@ export function useLeadForm(course: string) {
     }
   }
 
-  return { name, setName, phone, setPhone, countryCode, setCountryCode, email, setEmail, status, handleSubmit };
+  return { name, setName, phone, setPhone: setPhoneSafe, countryCode, setCountryCode, email, setEmail, status, phoneError, handleSubmit };
 }

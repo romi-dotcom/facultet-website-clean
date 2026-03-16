@@ -129,6 +129,9 @@ export default function FinalCTA() {
                 type="tel"
                 placeholder="WhatsApp / Phone"
                 required
+                minLength={7}
+                maxLength={15}
+                pattern="\d{7,15}"
                 value={form.phone}
                 onChange={(e) => form.setPhone(e.target.value)}
                 className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
@@ -141,6 +144,9 @@ export default function FinalCTA() {
             >
               {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enroll Now →"}
             </button>
+            {form.phoneError && (
+              <p className="text-xs text-red-500">{form.phoneError}</p>
+            )}
             {form.status === "error" && (
               <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
             )}

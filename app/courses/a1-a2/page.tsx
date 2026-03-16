@@ -1481,7 +1481,7 @@ function CTASection() {
               ))}
             </select>
             <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
-            <input type="tel" placeholder="WhatsApp or phone" required value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            <input type="tel" placeholder="WhatsApp or phone" required minLength={7} maxLength={15} pattern="\d{7,15}" value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Mail className="w-4 h-4 text-[#94A3B8]" />
@@ -1490,6 +1490,9 @@ function CTASection() {
           <button type="submit" disabled={form.status === "loading"} className="btn-pulse flex items-center justify-center h-[52px] bg-[#E85D26] rounded-full lg:rounded-lg text-[15px] font-bold text-white shadow-[0_2px_8px_rgba(232,93,38,0.19)] disabled:opacity-60">
             {form.status === "loading" ? "Sending..." : form.status === "success" ? "Sent ✓" : "Enrol Now"}
           </button>
+          {form.phoneError && (
+            <p className="text-xs text-red-500">{form.phoneError}</p>
+          )}
           {form.status === "error" && (
             <p className="text-xs text-red-500 text-center">Something went wrong. Please try again.</p>
           )}
