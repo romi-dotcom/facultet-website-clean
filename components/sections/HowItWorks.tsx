@@ -349,7 +349,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Scroll dots */}
-          <div className="flex items-center justify-center gap-1.5 mt-3">
+          <div className="flex items-center justify-center gap-1.5 mt-3 pb-8">
             <span className="w-2 h-2 rounded-full bg-[#E85D26]" />
             <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
             <span className="w-1.5 h-1.5 rounded-full bg-[#CBD5E1]" />
