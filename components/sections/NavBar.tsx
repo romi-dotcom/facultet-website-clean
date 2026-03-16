@@ -79,14 +79,6 @@ export default function NavBar() {
 
           {/* Right side */}
           <div className="flex items-center gap-2 lg:gap-3">
-            {/* Divider — desktop only */}
-            <div className="hidden lg:block w-px h-5 bg-[#E2E8F0]" />
-
-            {/* Lang button */}
-            <button className="rounded-full border border-[#E2E8F0] px-2.5 py-1 text-xs text-[#4A5568] lg:px-3 lg:text-[13px]">
-              RU
-            </button>
-
             {/* Enroll CTA */}
             <a
               href="#enrol"
