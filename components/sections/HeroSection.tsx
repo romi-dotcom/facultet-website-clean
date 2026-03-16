@@ -111,7 +111,7 @@ export default function HeroSection() {
               ⏱ 2 hours
             </span>
             <span className="text-xs text-[#64748B]">
-              Declaração delivered
+              Matrícula delivered
             </span>
           </div>
 
@@ -145,7 +145,7 @@ export default function HeroSection() {
         {/* ── Stats Row — mobile only ── */}
         <div className="flex gap-2 w-full lg:hidden">
           {[
-            { icon: Timer, label: "2 hours", sub: "Declaração", bordered: false },
+            { icon: Timer, label: "2 hours", sub: "Matrícula", bordered: false },
             { icon: Globe, label: "20+ countries", sub: "Students", bordered: false },
             { icon: Landmark, label: "Citizenship", sub: "Eligible", bordered: true },
           ].map((card) => (
