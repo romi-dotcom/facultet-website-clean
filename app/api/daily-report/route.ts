@@ -87,7 +87,7 @@ export async function GET(req: NextRequest) {
       `📩 Лиды: <b>${kommoLeads}</b>`,
       ``,
       `💵 CPL: <b>€${cpl}</b>`,
-      `📈 CR: <b>${cr}%</b>`,
+      `📈 Конверсия сайта: <b>${cr}%</b>`,
     ];
 
     await sendTg(lines.join("\n"));
