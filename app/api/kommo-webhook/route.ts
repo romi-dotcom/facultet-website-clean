@@ -38,23 +38,8 @@ async function getContactInfo(contactId: number): Promise<{ name: string; phone:
   return { name, phone, email };
 }
 
-function parseBody(contentType: string | null, text: string): Record<string, unknown> {
-  if (contentType?.includes("application/json")) {
-    return JSON.parse(text);
-  }
-  // Kommo sends application/x-www-form-urlencoded
-  const params = new URLSearchParams(text);
-  const result: Record<string, unknown> = {};
-  for (const [key, value] of params.entries()) {
-    // Kommo uses keys like leads[add][0][id]
-    result[key] = value;
-  }
-  return result;
-}
-
 export async function POST(req: NextRequest) {
   try {
-    const contentType = req.headers.get("content-type");
     const rawText = await req.text();
 
     // Parse form-urlencoded data from Kommo
