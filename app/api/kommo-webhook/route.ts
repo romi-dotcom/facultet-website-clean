@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN!;
 const TG_CHAT_ID = process.env.TG_CHAT_ID!;
+const KOMMO_SUBDOMAIN = "letofacultetschool";
+const KOMMO_ACCESS_TOKEN = process.env.KOMMO_ACCESS_TOKEN!;
 
 async function sendTg(message: string) {
   if (!TG_BOT_TOKEN || !TG_CHAT_ID) return;
@@ -32,10 +34,22 @@ export async function POST(req: NextRequest) {
     const contactName = params.get("contacts[add][0][name]") || "";
     const contactPhone = params.get("contacts[add][0][custom_fields][0][values][0][value]") || "";
 
-    // Source: if webhook has source_id or created_by bot → WhatsApp
-    const createdBy = params.get("leads[add][0][created_by]") || "";
-    const sourceId = params.get("leads[add][0][source_id]") || "";
-    const source = sourceId ? "WhatsApp" : "Сайт";
+    // Check source via Kommo API (one fast call)
+    let source = "Сайт";
+    try {
+      const leadRes = await fetch(
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=source_id`,
+        { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+      );
+      if (leadRes.ok) {
+        const leadData = await leadRes.json();
+        if (leadData.source_id) {
+          source = "WhatsApp";
+        }
+      }
+    } catch {
+      // fallback to "Сайт"
+    }
 
     const name = contactName || leadName;
 
