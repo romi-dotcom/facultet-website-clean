@@ -24,6 +24,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
+    // Only process leads from PLA pipeline (12976892)
+    const pipelineId = params.get("leads[add][0][pipeline_id]");
+    if (pipelineId && pipelineId !== "12976892") {
+      return NextResponse.json({ ok: true });
+    }
+
     // Check if this is a WhatsApp lead (has source_id)
     // Website leads are notified from /api/lead directly
     let isWhatsApp = false;
