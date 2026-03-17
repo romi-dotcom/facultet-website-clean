@@ -32,7 +32,7 @@ const steps = [
     num: "03",
     title: "10–16 Weeks of Training",
     shortTitle: "Training",
-    time: "Weeks 1–16",
+    time: "Weeks 10–16",
     color: "#3B82F6",
   },
   {
@@ -65,7 +65,7 @@ const inactiveCards = [
     icon: MonitorPlay,
     iconBg: "bg-[#EFF6FF]",
     iconColor: "#3B82F6",
-    stepLabel: "Step 03 · Weeks 1–16",
+    stepLabel: "Step 03 · Weeks 10–16",
     title: "10–16 Weeks of Training",
     body: "Live online lessons 3×/week. Homework, teacher feedback, group chat support.",
     mobileBody:
