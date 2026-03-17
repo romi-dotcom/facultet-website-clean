@@ -21,7 +21,7 @@ async function sendTgAlert(message: string) {
     await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: "HTML" }),
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: "HTML", disable_web_page_preview: true }),
     });
   } catch (err) {
     console.error("Telegram alert error:", err);
@@ -214,7 +214,7 @@ export async function POST(req: NextRequest) {
       `📧 ${email}`,
       `📚 Курс: <b>${course || "—"}</b>`,
       ``,
-      referrer ? `🔗 Реферер: ${referrer}` : "",
+      referrer ? `🔗 Реферер: ${(() => { try { return new URL(referrer).hostname.replace("www.", "").replace(".com", "").replace(".org", ""); } catch { return referrer; } })()}` : "",
       utmData.utm_source ? `📊 UTM Source: <b>${utmData.utm_source}</b>` : "",
       device ? `📱 Устройство: ${device}` : "",
       language ? `🌐 Язык: ${language}` : "",
