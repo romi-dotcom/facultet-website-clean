@@ -91,8 +91,8 @@ export default function NavBar() {
               Enroll Now
             </a>
             <a
-              href="#enrol"
-              onClick={(e) => scrollToId(e, "enrol")}
+              href="#courses"
+              onClick={(e) => scrollToId(e, "courses")}
               className="btn-pulse rounded-lg bg-accent px-6 py-2.5 text-sm font-bold text-white
                          hidden lg:inline-flex"
             >
