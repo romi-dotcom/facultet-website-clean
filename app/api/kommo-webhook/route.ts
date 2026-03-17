@@ -30,35 +30,41 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Check if this is a WhatsApp lead (has source_id)
-    // Website leads are notified from /api/lead directly
-    let isWhatsApp = false;
+    // Check if this is a website lead (has "Курс" field 777040)
+    // Website leads are already notified from /api/lead — skip them here
+    let isWebsite = false;
     let contactName = "";
     let contactPhone = "";
 
     try {
       const leadRes = await fetch(
-        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts,source_id`,
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
         { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
       );
       if (leadRes.ok) {
         const leadData = await leadRes.json();
-        if (leadData.source_id) {
-          isWhatsApp = true;
+
+        // If lead has "Курс" field (777040) → it's from website, skip
+        for (const field of leadData.custom_fields_values || []) {
+          if (field.field_id === 777040) {
+            isWebsite = true;
+            break;
+          }
         }
 
-        // Get contact details for WhatsApp leads
-        const contactId = leadData._embedded?.contacts?.[0]?.id;
-        if (contactId) {
-          const contactRes = await fetch(
-            `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}`,
-            { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
-          );
-          if (contactRes.ok) {
-            const contact = await contactRes.json();
-            contactName = contact.name || "";
-            for (const field of contact.custom_fields_values || []) {
-              if (field.field_code === "PHONE") contactPhone = field.values?.[0]?.value || "";
+        if (!isWebsite) {
+          const contactId = leadData._embedded?.contacts?.[0]?.id;
+          if (contactId) {
+            const contactRes = await fetch(
+              `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}`,
+              { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+            );
+            if (contactRes.ok) {
+              const contact = await contactRes.json();
+              contactName = contact.name || "";
+              for (const field of contact.custom_fields_values || []) {
+                if (field.field_code === "PHONE") contactPhone = field.values?.[0]?.value || "";
+              }
             }
           }
         }
@@ -67,8 +73,8 @@ export async function POST(req: NextRequest) {
       // fallback
     }
 
-    // Only send TG for WhatsApp leads (website leads notified from /api/lead)
-    if (!isWhatsApp) {
+    // Skip website leads (already notified from /api/lead)
+    if (isWebsite) {
       return NextResponse.json({ ok: true });
     }
 
