@@ -54,9 +54,12 @@ export async function POST(req: NextRequest) {
 
     const leadName = params.get("leads[add][0][name]") || "New lead";
 
+    // Wait 5 seconds for Kommo bot to fill Channel field
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
     // Get contact info and source from Kommo API
     let contactInfo = { name: "", phone: "", email: "" };
-    let source = "";
+    let source = "Сайт";
     try {
       const leadRes = await fetch(
         `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
@@ -65,25 +68,23 @@ export async function POST(req: NextRequest) {
       if (leadRes.ok) {
         const leadData = await leadRes.json();
         const contactId = leadData._embedded?.contacts?.[0]?.id;
+
+        // Check custom fields for Channel
+        for (const field of leadData.custom_fields_values || []) {
+          const fieldName = String(field.field_name || "").toLowerCase();
+          const fieldValue = String(field.values?.[0]?.value || "").toLowerCase();
+          if (fieldName.includes("channel") || fieldName.includes("канал") || fieldName.includes("источник")) {
+            if (fieldValue.includes("whatsapp") || fieldValue.includes("waba")) {
+              source = "WhatsApp";
+            } else if (fieldValue) {
+              source = field.values?.[0]?.value || "Сайт";
+            }
+            break;
+          }
+        }
+
         if (contactId) {
           contactInfo = await getContactInfo(contactId);
-
-          // Check contact's chat channel to determine source
-          const chatsRes = await fetch(
-            `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}/chats`,
-            { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
-          );
-          if (chatsRes.ok) {
-            const chatsData = await chatsRes.json();
-            const chats = chatsData._embedded?.chats || [];
-            const hasWhatsApp = chats.some((c: Record<string, unknown>) => {
-              const src = String(c.source || "").toLowerCase();
-              return src.includes("whatsapp") || src.includes("waba");
-            });
-            source = hasWhatsApp ? "WhatsApp" : "Сайт";
-          } else {
-            source = "Сайт";
-          }
         }
       }
     } catch {
