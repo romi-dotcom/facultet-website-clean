@@ -375,7 +375,7 @@ export default function FinalCTA() {
               © 2026 Facultet School · All rights reserved
             </span>
             <span className="text-xs text-[#64748B]">
-              Terms of Use · Privacy Policy · Cookies
+              Terms of Use · Privacy Policy · Cookies · <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
             </span>
           </div>
         </div>
@@ -501,7 +501,7 @@ export default function FinalCTA() {
               © 2026 Facultet School · All rights reserved
             </span>
             <span className="text-xs text-[#64748B] text-center">
-              Terms of Use · Privacy Policy · Cookies
+              Terms of Use · Privacy Policy · Cookies · <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
             </span>
           </div>
         </div>

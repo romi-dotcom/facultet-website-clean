@@ -1473,6 +1473,7 @@ function Footer() {
             <span className="text-sm text-[#E2E8F0]">Programme</span>
             <span className="text-sm text-[#E2E8F0]">FAQ</span>
             <span className="text-sm text-[#64748B]">Privacy Policy</span>
+            <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="text-sm text-[#64748B] hover:text-[#94A3B8] transition-colors">Public Offer</a>
           </div>
           {/* Trust */}
           <div className="flex flex-col gap-3">
@@ -1551,6 +1552,7 @@ function Footer() {
             <span className="text-[11px] text-[#64748B]">Terms of Use</span>
             <span className="text-[11px] text-[#64748B]">Privacy Policy</span>
             <span className="text-[11px] text-[#64748B]">Cookies</span>
+            <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#64748B] hover:text-[#94A3B8] transition-colors">Public Offer</a>
           </div>
 
           {/* Copyright */}
@@ -1562,7 +1564,7 @@ function Footer() {
           <div className="h-px bg-[#334155] mt-8" />
           <div className="flex items-center justify-between pt-6">
             <span className="text-xs text-[#64748B]">© 2026 Facultet School · All rights reserved</span>
-            <span className="text-xs text-[#64748B]">Terms of Use · Privacy Policy · Cookies</span>
+            <span className="text-xs text-[#64748B]">Terms of Use · Privacy Policy · Cookies · <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a></span>
           </div>
         </div>
       </div>
