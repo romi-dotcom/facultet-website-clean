@@ -251,7 +251,7 @@ function HeroSection() {
         <div className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl p-4 flex flex-col gap-3">
           <div className="flex items-center gap-1.5 pb-1">
             <span className="text-sm text-[#16A34A]">🏆</span>
-            <span className="text-xs font-bold text-[#16A34A]">What you&apos;ll achieve in 2–4 months</span>
+            <span className="text-xs font-bold text-[#16A34A]">What you&apos;ll achieve in 16 weeks</span>
           </div>
           <p className="text-[13px] text-[#1E293B] leading-[1.5]">
             Hold real conversations in Portuguese. Pass the A2 exam. Get your official certificate — recognised by Portuguese authorities.
@@ -328,7 +328,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <BookOpen className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Duration:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">2–4 months · 150 hours</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">16 weeks · 150 hours</span>
         </div>
         <div className="flex items-center gap-2.5">
           <MapPin className="w-[15px] h-[15px] text-[#94A3B8]" />
@@ -525,19 +525,19 @@ function DocsSection() {
    Course Programme Section
    ────────────────────────────────────────────── */
 const modules = [
-  { num: "1", title: "Module 1 — Absolute Beginners (A0)", meta: "4 lessons · 6 hours · Weeks 1–2", pills: [{ label: "Pronunciation", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Greetings", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
-  { num: "2", title: "Module 2 — Basic Communication (A1 Entry)", meta: "4 lessons · 6 hours · Weeks 3–4", pills: [{ label: "Numbers & Time", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Shopping", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
-  { num: "3", title: "Module 3 — Everyday Portuguese (A1)", meta: "5 lessons · 7.5 hours · Weeks 5–7", pills: [{ label: "Past tense", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Directions", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
-  { num: "4", title: "Module 4 — Social & Bureaucratic Contexts (A1+)", meta: "4 lessons · 6 hours · Weeks 8–9", pills: [{ label: "Official docs", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "SEF & AIMA", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
-  { num: "5", title: "Module 5 — Exam Preparation & Certificate (A2)", meta: "3 lessons · 4.5 hours · Weeks 10", pills: [{ label: "Mock exam", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Final prep", color: "text-[#E85D26]", bg: "bg-[#FFF7ED]" }], accent: true },
+  { num: "1", title: "Module 1 — Absolute Beginners (A0)", meta: "9 lessons · 28 hours · Weeks 1–3", pills: [{ label: "Pronunciation", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Greetings", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
+  { num: "2", title: "Module 2 — Basic Communication (A1 Entry)", meta: "9 lessons · 28 hours · Weeks 4–6", pills: [{ label: "Numbers & Time", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Shopping", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
+  { num: "3", title: "Module 3 — Everyday Portuguese (A1)", meta: "12 lessons · 38 hours · Weeks 7–10", pills: [{ label: "Past tense", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Directions", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
+  { num: "4", title: "Module 4 — Social & Bureaucratic Contexts (A1+)", meta: "9 lessons · 28 hours · Weeks 11–13", pills: [{ label: "Official docs", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "SEF & AIMA", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
+  { num: "5", title: "Module 5 — Exam Preparation & Certificate (A2)", meta: "9 lessons · 28 hours · Weeks 14–16", pills: [{ label: "Mock exam", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Final prep", color: "text-[#E85D26]", bg: "bg-[#FFF7ED]" }], accent: true },
 ];
 
 const mobileModules = [
-  { num: "1", title: "Absolute Beginners (A0)", meta: "4 lessons · Weeks 1–2", accent: false },
-  { num: "2", title: "Basic Communication (A1 Entry)", meta: "4 lessons · Weeks 3–4", accent: false },
-  { num: "3", title: "Everyday Portuguese (A1)", meta: "5 lessons · Weeks 5–7", accent: false },
-  { num: "4", title: "Social & Bureaucratic Contexts (A1+)", meta: "4 lessons · Weeks 8–9", accent: false },
-  { num: "5", title: "Exam Prep & Certificate (A2)", meta: "3 lessons · Week 10", accent: true },
+  { num: "1", title: "Absolute Beginners (A0)", meta: "9 lessons · Weeks 1–3", accent: false },
+  { num: "2", title: "Basic Communication (A1 Entry)", meta: "9 lessons · Weeks 4–6", accent: false },
+  { num: "3", title: "Everyday Portuguese (A1)", meta: "12 lessons · Weeks 7–10", accent: false },
+  { num: "4", title: "Social & Bureaucratic Contexts (A1+)", meta: "9 lessons · Weeks 11–13", accent: false },
+  { num: "5", title: "Exam Prep & Certificate (A2)", meta: "9 lessons · Weeks 14–16", accent: true },
 ];
 
 function ModuleListAnimated() {
@@ -594,14 +594,14 @@ function ProgrammeSection() {
               <span className="text-xs font-bold tracking-[0.8px] text-[#1B8A7E]">WHAT YOU&apos;LL LEARN</span>
               <h2 className="text-[36px] font-bold leading-[1.2] text-[#1E293B]">Course Programme</h2>
               <p className="text-[15px] text-[#64748B] leading-[1.6]">
-                20 lessons across 5 modules. Each lesson is 90 minutes — live, online, with homework and feedback.
+                48 lessons across 5 modules. Each lesson is ~3 hours — live, online, with homework and feedback.
               </p>
             </div>
             {/* Stats */}
             <div className="flex flex-col gap-3">
               {[
                 { icon: Timer, text: "150 academic hours total" },
-                { icon: Calendar, text: "2–4 months · Tue, Thu, Sat · 9–12" },
+                { icon: Calendar, text: "16 weeks · Tue, Thu, Sat · 9–12" },
                 { icon: Users, text: "Max 20 students per group" },
               ].map((s) => (
                 <div key={s.text} className="flex items-center gap-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4 py-3.5">
@@ -649,7 +649,7 @@ function ProgrammeSection() {
         <div className="flex gap-2">
           {[
             { icon: Timer, label: "150h" },
-            { icon: Calendar, label: "2–4 months" },
+            { icon: Calendar, label: "16 weeks" },
             { icon: Users, label: "Max 20" },
           ].map((s) => (
             <div key={s.label} className="flex-1 flex flex-col items-center gap-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] py-3 px-2">
@@ -1383,7 +1383,7 @@ function CTASection() {
         </h2>
         {/* Mobile heading */}
         <h2 className="lg:hidden text-[28px] font-extrabold text-[#1E293B] leading-[1.2] tracking-[-0.5px]">
-          Enrol and get certified in 2–4 months
+          Enrol and get certified in 16 weeks
         </h2>
         {/* Desktop meta */}
         <p className="hidden lg:block text-base text-[#64748B] text-center">
