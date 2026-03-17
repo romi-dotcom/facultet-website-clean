@@ -113,7 +113,7 @@ export async function POST(req: NextRequest) {
         },
         body: JSON.stringify([
           {
-            name: `${course || "Website"} — ${name || "Unknown"}`,
+            name: name || "Unknown",
             pipeline_id: PIPELINE_ID,
             ...(customFields.length > 0 && { custom_fields_values: customFields }),
             _embedded: {
@@ -155,14 +155,22 @@ export async function POST(req: NextRequest) {
         ],
       };
 
-      fetch(
-        `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${META_CAPI_TOKEN}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(eventData),
+      try {
+        const capiRes = await fetch(
+          `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${META_CAPI_TOKEN}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(eventData),
+          }
+        );
+        const capiBody = await capiRes.json();
+        if (!capiRes.ok) {
+          console.error(`Meta CAPI error (HTTP ${capiRes.status}):`, JSON.stringify(capiBody));
         }
-      ).catch((err) => console.error("Meta CAPI error:", err));
+      } catch (err) {
+        console.error("Meta CAPI network error:", err);
+      }
     }
 
     return NextResponse.json({ success: true, id: leadId });
