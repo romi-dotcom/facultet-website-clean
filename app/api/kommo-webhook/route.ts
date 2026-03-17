@@ -19,46 +19,63 @@ export async function POST(req: NextRequest) {
     const rawText = await req.text();
     const params = new URLSearchParams(rawText);
 
-    // Check if this is a lead add event
     const leadId = params.get("leads[add][0][id]");
     if (!leadId) {
       return NextResponse.json({ ok: true });
     }
 
-    // Extract data directly from webhook params
-    const leadName = params.get("leads[add][0][name]") || "New lead";
-    const responsibleUser = params.get("leads[add][0][responsible_user_id]") || "";
-    const pipelineId = params.get("leads[add][0][pipeline_id]") || "";
+    // Check if this is a WhatsApp lead (has source_id)
+    // Website leads are notified from /api/lead directly
+    let isWhatsApp = false;
+    let contactName = "";
+    let contactPhone = "";
 
-    // Try to get contact name from webhook
-    const contactName = params.get("contacts[add][0][name]") || "";
-    const contactPhone = params.get("contacts[add][0][custom_fields][0][values][0][value]") || "";
-
-    // Check source via Kommo API (one fast call)
-    let source = "Сайт";
     try {
       const leadRes = await fetch(
-        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=source_id`,
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts,source_id`,
         { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
       );
       if (leadRes.ok) {
         const leadData = await leadRes.json();
         if (leadData.source_id) {
-          source = "WhatsApp";
+          isWhatsApp = true;
+        }
+
+        // Get contact details for WhatsApp leads
+        const contactId = leadData._embedded?.contacts?.[0]?.id;
+        if (contactId) {
+          const contactRes = await fetch(
+            `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}`,
+            { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+          );
+          if (contactRes.ok) {
+            const contact = await contactRes.json();
+            contactName = contact.name || "";
+            for (const field of contact.custom_fields_values || []) {
+              if (field.field_code === "PHONE") contactPhone = field.values?.[0]?.value || "";
+            }
+          }
         }
       }
     } catch {
-      // fallback to "Сайт"
+      // fallback
     }
 
+    // Only send TG for WhatsApp leads (website leads notified from /api/lead)
+    if (!isWhatsApp) {
+      return NextResponse.json({ ok: true });
+    }
+
+    const leadName = params.get("leads[add][0][name]") || "New lead";
     const name = contactName || leadName;
 
     const lines = [
-      `📩 <b>Новая заявка!</b>`,
+      `📩 <b>Новая заявка с WhatsApp!</b>`,
       ``,
       `👤 <b>${name}</b>`,
       contactPhone ? `📱 ${contactPhone}` : "",
-      `📊 Источник: <b>${source}</b>`,
+      `📊 Источник: <b>WhatsApp</b>`,
+      ``,
       `🔗 <a href="https://letofacultetschool.kommo.com/leads/detail/${leadId}">Открыть в Kommo</a>`,
     ].filter(Boolean);
 
@@ -67,10 +84,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("Kommo webhook error:", e);
-    // Try to send error alert
-    try {
-      await sendTg(`🚨 Webhook error: ${String(e).slice(0, 200)}`);
-    } catch {}
     return NextResponse.json({ ok: true });
   }
 }

@@ -64,10 +64,13 @@ async function getUtmFieldMap(): Promise<Record<string, number>> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, course, utm, fbp, fbc, eventSourceUrl } = await req.json();
+    const { name, phone, email, course, utm, fbp, fbc, eventSourceUrl, referrer, language, timeOnSite, device } = await req.json();
     const utmData = (utm || {}) as Record<string, string>;
     const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "";
     const userAgent = req.headers.get("user-agent") || "";
+    // Vercel provides geo headers
+    const country = req.headers.get("x-vercel-ip-country") || "";
+    const city = req.headers.get("x-vercel-ip-city") || "";
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
@@ -196,6 +199,32 @@ export async function POST(req: NextRequest) {
         console.error("Meta CAPI network error:", err);
       }
     }
+
+    // Send Telegram notification with full lead details
+    const timeMin = Math.floor((timeOnSite || 0) / 60);
+    const timeSec = (timeOnSite || 0) % 60;
+    const timeStr = timeMin > 0 ? `${timeMin}м ${timeSec}с` : `${timeSec}с`;
+    const geo = [city, country].filter(Boolean).join(", ");
+
+    const tgLines = [
+      `📩 <b>Новая заявка с сайта!</b>`,
+      ``,
+      `👤 <b>${name}</b>`,
+      `📱 ${phone}`,
+      `📧 ${email}`,
+      `📚 Курс: <b>${course || "—"}</b>`,
+      ``,
+      referrer ? `🔗 Реферер: ${referrer}` : "",
+      utmData.utm_source ? `📊 UTM Source: <b>${utmData.utm_source}</b>` : "",
+      device ? `📱 Устройство: ${device}` : "",
+      language ? `🌐 Язык: ${language}` : "",
+      geo ? `📍 Гео: ${geo}` : "",
+      `⏱ На сайте: ${timeStr}`,
+      ``,
+      `🔗 <a href="https://letofacultetschool.kommo.com/leads/detail/${leadId}">Открыть в Kommo</a>`,
+    ].filter(Boolean);
+
+    await sendTgAlert(tgLines.join("\n"));
 
     return NextResponse.json({ success: true, id: leadId });
   } catch (e) {

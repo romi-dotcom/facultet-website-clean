@@ -30,6 +30,8 @@ function getUtm(): Record<string, string> {
   }
 }
 
+const pageLoadTime = typeof window !== "undefined" ? Date.now() : 0;
+
 export function useLeadForm(course: string) {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -75,6 +77,10 @@ export function useLeadForm(course: string) {
           fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || "",
           fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || "",
           eventSourceUrl: window.location.href,
+          referrer: document.referrer || "",
+          language: navigator.language || "",
+          timeOnSite: Math.round((Date.now() - pageLoadTime) / 1000),
+          device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
         }),
       });
       if (!res.ok) throw new Error("Failed");
