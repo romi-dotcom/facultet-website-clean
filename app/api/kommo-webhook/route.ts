@@ -41,14 +41,18 @@ async function getContactInfo(contactId: number): Promise<{ name: string; phone:
 export async function POST(req: NextRequest) {
   try {
     const rawText = await req.text();
+    console.log("Kommo webhook raw data:", rawText.slice(0, 500));
 
     // Parse form-urlencoded data from Kommo
-    // Kommo webhook sends: leads[add][0][id], leads[add][0][name], etc.
     const params = new URLSearchParams(rawText);
 
     // Check if this is a lead add event
     const leadId = params.get("leads[add][0][id]");
     if (!leadId) {
+      // Log all keys to debug
+      const keys: string[] = [];
+      params.forEach((_, key) => keys.push(key));
+      console.log("Kommo webhook keys (no lead id):", keys.join(", "));
       return NextResponse.json({ ok: true });
     }
 
