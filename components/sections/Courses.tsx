@@ -158,7 +158,7 @@ function CourseCard({ course }: { course: Course }) {
 
         {/* CTA Enroll */}
         <a
-          href={course.href}
+          href="#enrol"
           className={`btn-pulse flex items-center justify-center h-[52px] rounded-xl text-base font-bold text-white ${course.ctaBg}`}
         >
           {course.ctaLabel}
