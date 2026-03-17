@@ -18,52 +18,25 @@ async function sendTg(message: string) {
   }
 }
 
-async function getContactInfo(contactId: number): Promise<{ name: string; phone: string; email: string }> {
-  const res = await fetch(
-    `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}`,
-    { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
-  );
-  if (!res.ok) return { name: "Unknown", phone: "", email: "" };
-
-  const data = await res.json();
-  const name = data.name || "Unknown";
-  let phone = "";
-  let email = "";
-
-  for (const field of data.custom_fields_values || []) {
-    if (field.field_code === "PHONE") phone = field.values?.[0]?.value || "";
-    if (field.field_code === "EMAIL") email = field.values?.[0]?.value || "";
-  }
-
-  return { name, phone, email };
-}
-
 export async function POST(req: NextRequest) {
   try {
     const rawText = await req.text();
-    console.log("Kommo webhook raw data:", rawText.slice(0, 500));
-
-    // Parse form-urlencoded data from Kommo
     const params = new URLSearchParams(rawText);
 
     // Check if this is a lead add event
     const leadId = params.get("leads[add][0][id]");
     if (!leadId) {
-      // Log all keys to debug
-      const keys: string[] = [];
-      params.forEach((_, key) => keys.push(key));
-      console.log("Kommo webhook keys (no lead id):", keys.join(", "));
       return NextResponse.json({ ok: true });
     }
 
     const leadName = params.get("leads[add][0][name]") || "New lead";
 
-    // Wait 5 seconds for Kommo bot to fill Channel field
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // Quick notification first — no delay, just send what we have from webhook
+    // Then try to enrich with contact details from API
+    let contactName = leadName;
+    let phone = "";
+    let email = "";
 
-    // Get contact info and source from Kommo API
-    let contactInfo = { name: "", phone: "", email: "" };
-    let source = "Сайт";
     try {
       const leadRes = await fetch(
         `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
@@ -72,36 +45,36 @@ export async function POST(req: NextRequest) {
       if (leadRes.ok) {
         const leadData = await leadRes.json();
         const contactId = leadData._embedded?.contacts?.[0]?.id;
-
-        // Check custom fields for Channel
-        for (const field of leadData.custom_fields_values || []) {
-          const fieldName = String(field.field_name || "").toLowerCase();
-          const fieldValue = String(field.values?.[0]?.value || "").toLowerCase();
-          if (fieldName.includes("channel") || fieldName.includes("канал") || fieldName.includes("источник")) {
-            if (fieldValue.includes("whatsapp") || fieldValue.includes("waba")) {
-              source = "WhatsApp";
-            } else if (fieldValue) {
-              source = field.values?.[0]?.value || "Сайт";
-            }
-            break;
-          }
-        }
-
         if (contactId) {
-          contactInfo = await getContactInfo(contactId);
+          const contactRes = await fetch(
+            `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}`,
+            { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+          );
+          if (contactRes.ok) {
+            const contact = await contactRes.json();
+            contactName = contact.name || leadName;
+            for (const field of contact.custom_fields_values || []) {
+              if (field.field_code === "PHONE") phone = field.values?.[0]?.value || "";
+              if (field.field_code === "EMAIL") email = field.values?.[0]?.value || "";
+            }
+          }
         }
       }
     } catch {
-      // fallback
+      // use webhook data as fallback
     }
+
+    // Determine source from webhook data
+    // Website leads have email, WhatsApp leads typically don't
+    const source = email ? "Сайт" : "WhatsApp";
 
     const lines = [
       `📩 <b>Новая заявка!</b>`,
       ``,
-      `👤 <b>${contactInfo.name || leadName}</b>`,
-      contactInfo.phone ? `📱 ${contactInfo.phone}` : "",
-      contactInfo.email ? `📧 ${contactInfo.email}` : "",
-      source ? `📊 Источник: <b>${source}</b>` : "",
+      `👤 <b>${contactName}</b>`,
+      phone ? `📱 ${phone}` : "",
+      email ? `📧 ${email}` : "",
+      `📊 Источник: <b>${source}</b>`,
     ].filter(Boolean);
 
     await sendTg(lines.join("\n"));
