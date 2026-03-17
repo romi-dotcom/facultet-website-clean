@@ -1161,7 +1161,7 @@ const testimonials = [
     imgStyle: { objectPosition: "50% 20%" } as React.CSSProperties,
   },
   {
-    quote: "Within a week of getting my certificate, I submitted my SEF application. The document was accepted immediately — no questions asked.",
+    quote: "Within a week of getting my certificate, I submitted my application. The document was accepted immediately — no questions asked.",
     name: "Dmitri Volkov",
     badge: "A2 Certified",
     date: "Enrolled January 2025",
@@ -1349,7 +1349,7 @@ function TestimonialsSection() {
    ────────────────────────────────────────────── */
 const faqs = [
   { q: "Do I need any prior knowledge of Portuguese?", a: "No. This course starts from absolute zero (A0). The only requirement is a desire to learn and a stable internet connection." },
-  { q: "Is the A2 certificate recognised for residency and citizenship?", a: "Yes. The certificate is issued in partnership with Centro Qualifica and is accepted by SEF, AIMA, and Portuguese embassies worldwide." },
+  { q: "Is the A2 certificate recognised for residency and citizenship?", a: "Yes. The certificate is issued in partnership with Centro Qualifica and is accepted by Portuguese authorities and embassies worldwide." },
   { q: "What happens if I miss a class?", a: "Up to 3 absences are allowed. If you notify your teacher via WhatsApp in advance, the absence is covered. All lessons are recorded." },
   { q: "What is included in the €470 price?", a: "150 hours of live lessons, course materials, homework review, the official A2 exam, and all three certificates. No hidden fees." },
   { q: "Can I pay in instalments?", a: "Yes. We offer payment via Klarna — split into 3 interest-free monthly payments. You can also pay by bank transfer or Multibanco." },

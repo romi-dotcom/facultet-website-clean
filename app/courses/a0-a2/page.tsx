@@ -528,7 +528,7 @@ const modules = [
   { num: "1", title: "Module 1 — Absolute Beginners (A0)", meta: "9 lessons · 28 hours · Weeks 1–3", pills: [{ label: "Pronunciation", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Greetings", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
   { num: "2", title: "Module 2 — Basic Communication (A1 Entry)", meta: "9 lessons · 28 hours · Weeks 4–6", pills: [{ label: "Numbers & Time", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Shopping", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
   { num: "3", title: "Module 3 — Everyday Portuguese (A1)", meta: "12 lessons · 38 hours · Weeks 7–10", pills: [{ label: "Past tense", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Directions", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
-  { num: "4", title: "Module 4 — Social & Bureaucratic Contexts (A1+)", meta: "9 lessons · 28 hours · Weeks 11–13", pills: [{ label: "Official docs", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "SEF & AIMA", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
+  { num: "4", title: "Module 4 — Social & Bureaucratic Contexts (A1+)", meta: "9 lessons · 28 hours · Weeks 11–13", pills: [{ label: "Official docs", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Documents", color: "text-[#2563EB]", bg: "bg-[#EFF6FF]" }], accent: false },
   { num: "5", title: "Module 5 — Exam Preparation & Certificate (A2)", meta: "9 lessons · 28 hours · Weeks 14–16", pills: [{ label: "Mock exam", color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" }, { label: "Final prep", color: "text-[#E85D26]", bg: "bg-[#FFF7ED]" }], accent: true },
 ];
 
@@ -1124,7 +1124,7 @@ const testimonials = [
     imgStyle: { objectPosition: "50% 20%" } as React.CSSProperties,
   },
   {
-    quote: "Within a week of getting my certificate, I submitted my SEF application. The document was accepted immediately — no questions asked.",
+    quote: "Within a week of getting my certificate, I submitted my application. The document was accepted immediately — no questions asked.",
     name: "Dmitri Volkov",
     badge: "A2 Certified",
     date: "Enrolled January 2025",
@@ -1308,7 +1308,7 @@ function TestimonialsSection() {
    ────────────────────────────────────────────── */
 const faqs = [
   { q: "Do I need any prior knowledge of Portuguese?", a: "No. This course starts from absolute zero (A0). The only requirement is a desire to learn and a stable internet connection." },
-  { q: "Is the A2 certificate recognised for residency and citizenship?", a: "Yes. The certificate is issued in partnership with Centro Qualifica and is accepted by SEF, AIMA, and Portuguese embassies worldwide." },
+  { q: "Is the A2 certificate recognised for residency and citizenship?", a: "Yes. The certificate is issued in partnership with Centro Qualifica and is accepted by Portuguese authorities and embassies worldwide." },
   { q: "What happens if I miss a class?", a: "Up to 3 absences are allowed. If you notify your teacher via WhatsApp in advance, the absence is covered. All lessons are recorded." },
   { q: "How quickly will I receive my certificate after passing the exam?", a: "The enrolment certificate (Declaração de Matrícula) is issued within 2 hours of enrolment. The A2 completion certificate is issued within 2 weeks after the final exam." },
   { q: "What is included in the €470 price?", a: "150 hours of live lessons, course materials, homework review, the official A2 exam, and all three certificates (enrolment, attendance, completion). No hidden fees." },

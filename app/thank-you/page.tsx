@@ -277,7 +277,7 @@ function Footer() {
             {[
               { icon: ShieldCheck, text: "DGERT Licensed" },
               { icon: Award, text: "Centro Qualifica" },
-              { icon: CircleCheck, text: "AIMA Recognised" },
+              { icon: CircleCheck, text: "Gov. Recognised" },
             ].map(({ icon: Icon, text }) => (
               <div
                 key={text}

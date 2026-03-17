@@ -198,7 +198,7 @@ export default function Courses() {
               From Zero to Citizenship Documents
             </span>
             <span className="hidden lg:inline">
-              From Zero to AIMA Documents — Pick Your Starting Point
+              From Zero to Citizenship Documents — Pick Your Starting Point
             </span>
           </h2>
           <p className="text-[15px] text-[#64748B] text-center lg:text-base lg:text-left">
@@ -206,7 +206,7 @@ export default function Courses() {
               Two paths, one goal: your citizenship documents.
             </span>
             <span className="hidden lg:inline">
-              Online and in-person · Two paths, one goal: your AIMA documents.
+              Online and in-person · Two paths, one goal: your citizenship documents.
             </span>
           </p>
         </div>

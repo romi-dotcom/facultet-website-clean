@@ -155,8 +155,8 @@ export default function Certifications() {
             </span>
             <span className="hidden lg:inline">
               Our documents (matriculation certificates, attendance references,
-              completion certificates) have official status. Recognised by AIMA,
-              embassies and government agencies.
+              completion certificates) have official status. Recognised by
+              Portuguese authorities and embassies.
             </span>
           </p>
         </div>

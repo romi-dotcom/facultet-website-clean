@@ -351,7 +351,7 @@ export default function FinalCTA() {
               {[
                 { icon: ShieldCheck, text: "DGERT Licensed" },
                 { icon: Award, text: "Centro Qualifica" },
-                { icon: CircleCheck, text: "AIMA Recognised" },
+                { icon: CircleCheck, text: "Gov. Recognised" },
               ].map(({ icon: Icon, text }) => (
                 <div
                   key={text}
@@ -402,7 +402,7 @@ export default function FinalCTA() {
             </span>
             <p className="text-xs leading-[1.6] text-[#64748B]">
               Official PLA language school. A2 Portuguese programme recognised by
-              AIMA and Portuguese immigration authorities.
+              Portuguese authorities and embassies.
             </p>
             <div className="flex gap-2">
               {[

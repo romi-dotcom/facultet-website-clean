@@ -41,9 +41,9 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "\u201cFacultet prepared me step by step \u2014 grammar, vocabulary, listening. When I went to SEF for my appointment I understood everything and answered without an interpreter. It was a huge moment for me.\u201d",
+      "\u201cFacultet prepared me step by step \u2014 grammar, vocabulary, listening. When I went to my appointment I understood everything and answered without an interpreter. It was a huge moment for me.\u201d",
     mobileQuote:
-      "\u201cFacultet prepared me step by step. When I went to SEF I understood everything and answered without an interpreter.\u201d",
+      "\u201cFacultet prepared me step by step. At my appointment I understood everything and answered without an interpreter.\u201d",
     name: "Ana R.",
     location: "Russia \u2192 Porto \u00b7 studying 5 months",
     mobileLocation: "Russia \u2192 Porto \u00b7 5 months",
