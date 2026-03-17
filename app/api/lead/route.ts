@@ -12,6 +12,22 @@ const PIPELINE_ID = 12976892;
 const META_PIXEL_ID = process.env.META_PIXEL_ID!;
 const META_CAPI_TOKEN = process.env.META_CAPI_TOKEN!;
 
+const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN!;
+const TG_CHAT_ID = process.env.TG_CHAT_ID!;
+
+async function sendTgAlert(message: string) {
+  if (!TG_BOT_TOKEN || !TG_CHAT_ID) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: message, parse_mode: "HTML" }),
+    });
+  } catch (err) {
+    console.error("Telegram alert error:", err);
+  }
+}
+
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 
 /** Fetch lead custom field IDs by name (cached in memory for the process lifetime) */
@@ -85,6 +101,7 @@ export async function POST(req: NextRequest) {
     if (!contactRes.ok) {
       const errText = await contactRes.text();
       console.error(`Kommo contact error (HTTP ${contactRes.status}):`, errText);
+      await sendTgAlert(`🚨 <b>Kommo contact error</b>\nHTTP ${contactRes.status}\nLead: ${name} / ${phone}\n\n${errText.slice(0, 200)}`);
       return NextResponse.json({ error: "Failed to create contact" }, { status: 500 });
     }
 
@@ -127,6 +144,7 @@ export async function POST(req: NextRequest) {
     if (!leadRes.ok) {
       const errText = await leadRes.text();
       console.error(`Kommo lead error (HTTP ${leadRes.status}):`, errText);
+      await sendTgAlert(`🚨 <b>Kommo lead error</b>\nHTTP ${leadRes.status}\nLead: ${name} / ${phone}\n\n${errText.slice(0, 200)}`);
       return NextResponse.json({ error: "Failed to create lead" }, { status: 500 });
     }
 
@@ -167,6 +185,7 @@ export async function POST(req: NextRequest) {
         const capiBody = await capiRes.json();
         if (!capiRes.ok) {
           console.error(`Meta CAPI error (HTTP ${capiRes.status}):`, JSON.stringify(capiBody));
+          await sendTgAlert(`⚠️ <b>Meta CAPI error</b>\nHTTP ${capiRes.status}\n\n${JSON.stringify(capiBody).slice(0, 200)}`);
         }
       } catch (err) {
         console.error("Meta CAPI network error:", err);
@@ -176,6 +195,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, id: leadId });
   } catch (e) {
     console.error("Lead creation error:", e);
+    await sendTgAlert(`🔥 <b>Server error</b>\n${String(e).slice(0, 300)}`);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
