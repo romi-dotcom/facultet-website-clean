@@ -30,16 +30,16 @@ const steps = [
   },
   {
     num: "03",
-    title: "8 Weeks of Training",
+    title: "10–16 Weeks of Training",
     shortTitle: "Training",
-    time: "Weeks 1–8",
+    time: "Weeks 1–16",
     color: "#3B82F6",
   },
   {
     num: "04",
     title: "Get Your Certificate",
     shortTitle: "Certificate",
-    time: "After Week 8",
+    time: "After Week 10–16",
     color: "#15803D",
   },
 ];
@@ -65,17 +65,17 @@ const inactiveCards = [
     icon: MonitorPlay,
     iconBg: "bg-[#EFF6FF]",
     iconColor: "#3B82F6",
-    stepLabel: "Step 03 · Weeks 1–8",
-    title: "8 Weeks of Training",
-    body: "Live online lessons 5×/week. Homework, teacher feedback, group chat support.",
+    stepLabel: "Step 03 · Weeks 1–16",
+    title: "10–16 Weeks of Training",
+    body: "Live online lessons 3×/week. Homework, teacher feedback, group chat support.",
     mobileBody:
-      "Live online lessons 5×/week. Homework, teacher feedback, group chat support.",
+      "Live online lessons 3×/week. Homework, teacher feedback, group chat support.",
   },
   {
     icon: Award,
     iconBg: "bg-[#F0FDF4]",
     iconColor: "#15803D",
-    stepLabel: "Step 04 · After Week 8",
+    stepLabel: "Step 04 · After Week 10–16",
     title: "Get Your Certificate",
     body: "Receive your official Certificate of Completion from Centro Qualifica — valid for your citizenship application.",
     mobileBody:
