@@ -83,7 +83,8 @@ export async function POST(req: NextRequest) {
     );
 
     if (!contactRes.ok) {
-      console.error("Kommo contact error:", await contactRes.text());
+      const errText = await contactRes.text();
+      console.error(`Kommo contact error (HTTP ${contactRes.status}):`, errText);
       return NextResponse.json({ error: "Failed to create contact" }, { status: 500 });
     }
 
@@ -124,7 +125,8 @@ export async function POST(req: NextRequest) {
     );
 
     if (!leadRes.ok) {
-      console.error("Kommo lead error:", await leadRes.text());
+      const errText = await leadRes.text();
+      console.error(`Kommo lead error (HTTP ${leadRes.status}):`, errText);
       return NextResponse.json({ error: "Failed to create lead" }, { status: 500 });
     }
 
