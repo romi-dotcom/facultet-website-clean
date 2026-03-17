@@ -37,13 +37,20 @@ export async function POST(req: NextRequest) {
     let phone = "";
     let email = "";
 
+    let source = "Сайт";
     try {
       const leadRes = await fetch(
-        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts,source_id`,
         { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
       );
       if (leadRes.ok) {
         const leadData = await leadRes.json();
+
+        // Check "Источник сделки" — if source_id exists, it's WhatsApp (007 Facultét)
+        if (leadData.source_id) {
+          source = "WhatsApp";
+        }
+
         const contactId = leadData._embedded?.contacts?.[0]?.id;
         if (contactId) {
           const contactRes = await fetch(
@@ -63,10 +70,6 @@ export async function POST(req: NextRequest) {
     } catch {
       // use webhook data as fallback
     }
-
-    // Determine source from webhook data
-    // Website leads have email, WhatsApp leads typically don't
-    const source = email ? "Сайт" : "WhatsApp";
 
     const lines = [
       `📩 <b>Новая заявка!</b>`,
