@@ -54,8 +54,9 @@ export async function POST(req: NextRequest) {
 
     const leadName = params.get("leads[add][0][name]") || "New lead";
 
-    // Get contact info from Kommo API using the lead
+    // Get contact info and source from Kommo API
     let contactInfo = { name: "", phone: "", email: "" };
+    let source = "";
     try {
       const leadRes = await fetch(
         `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
@@ -66,10 +67,27 @@ export async function POST(req: NextRequest) {
         const contactId = leadData._embedded?.contacts?.[0]?.id;
         if (contactId) {
           contactInfo = await getContactInfo(contactId);
+
+          // Check contact's chat channel to determine source
+          const chatsRes = await fetch(
+            `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/contacts/${contactId}/chats`,
+            { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+          );
+          if (chatsRes.ok) {
+            const chatsData = await chatsRes.json();
+            const chats = chatsData._embedded?.chats || [];
+            const hasWhatsApp = chats.some((c: Record<string, unknown>) => {
+              const src = String(c.source || "").toLowerCase();
+              return src.includes("whatsapp") || src.includes("waba");
+            });
+            source = hasWhatsApp ? "WhatsApp" : "Сайт";
+          } else {
+            source = "Сайт";
+          }
         }
       }
     } catch {
-      // fallback — use lead name
+      // fallback
     }
 
     const lines = [
@@ -78,6 +96,7 @@ export async function POST(req: NextRequest) {
       `👤 <b>${contactInfo.name || leadName}</b>`,
       contactInfo.phone ? `📱 ${contactInfo.phone}` : "",
       contactInfo.email ? `📧 ${contactInfo.email}` : "",
+      source ? `📊 Источник: <b>${source}</b>` : "",
     ].filter(Boolean);
 
     await sendTg(lines.join("\n"));
