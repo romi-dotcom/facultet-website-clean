@@ -19,7 +19,7 @@ async function sendTg(message: string) {
 
 async function getMetaAdsData(): Promise<{ spend: number; clicks: number; impressions: number; leads: number }> {
   const res = await fetch(
-    `https://graph.facebook.com/v21.0/act_${META_AD_ACCOUNT_ID}/insights?date_preset=yesterday&fields=spend,impressions,actions&action_breakdowns=action_type&access_token=${META_ADS_TOKEN}`
+    `https://graph.facebook.com/v21.0/120244722476930580/insights?date_preset=yesterday&fields=spend,impressions,actions&action_breakdowns=action_type&access_token=${META_ADS_TOKEN}`
   );
   if (!res.ok) return { spend: 0, clicks: 0, impressions: 0, leads: 0 };
 
