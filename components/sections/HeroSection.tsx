@@ -82,7 +82,7 @@ export default function HeroSection() {
               Enroll Now →
             </a>
             <a
-              href="#programmes"
+              href="#courses"
               className="inline-flex items-center justify-center h-[52px] px-7 bg-white border-[1.5px] border-[#1E293B] rounded-lg text-base font-medium text-[#1E293B] lg:hover:bg-[#1E293B] lg:hover:text-white transition-colors"
             >
               See Programmes
@@ -173,7 +173,7 @@ export default function HeroSection() {
             Enroll Now →
           </a>
           <a
-            href="#programmes"
+            href="#courses"
             className="flex items-center justify-center h-12 bg-white border-[1.5px] border-[#1E293B] rounded-lg text-[15px] text-[#1E293B]"
           >
             See Programmes

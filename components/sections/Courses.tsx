@@ -186,7 +186,7 @@ function CourseCard({ course }: { course: Course }) {
 
 export default function Courses() {
   return (
-    <section className="bg-white pt-12 lg:bg-[#f8fafc] lg:py-20">
+    <section id="courses" className="bg-white pt-12 lg:bg-[#f8fafc] lg:py-20">
       <div className="max-w-[1060px] mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center gap-[10px] px-5 lg:items-start lg:gap-3 lg:px-0">
