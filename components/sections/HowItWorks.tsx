@@ -39,7 +39,7 @@ const steps = [
     num: "04",
     title: "Get Your Certificate",
     shortTitle: "Certificate",
-    time: "After Week 10–16",
+    time: "After Week 16",
     color: "#15803D",
   },
 ];
@@ -75,7 +75,7 @@ const inactiveCards = [
     icon: Award,
     iconBg: "bg-[#F0FDF4]",
     iconColor: "#15803D",
-    stepLabel: "Step 04 · After Week 10–16",
+    stepLabel: "Step 04 · After Week 16",
     title: "Get Your Certificate",
     body: "Receive your official Certificate of Completion from Centro Qualifica — valid for your citizenship application.",
     mobileBody:
