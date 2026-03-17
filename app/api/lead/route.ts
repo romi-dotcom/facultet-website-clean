@@ -119,6 +119,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Add course to custom field "Курс" (ID: 777040)
+    if (course) {
+      customFields.push({ field_id: 777040, values: [{ value: course }] });
+    }
+
     // Create lead linked to contact
     const leadRes = await fetch(
       `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads`,
