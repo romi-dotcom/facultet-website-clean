@@ -38,39 +38,64 @@ async function getContactInfo(contactId: number): Promise<{ name: string; phone:
   return { name, phone, email };
 }
 
+function parseBody(contentType: string | null, text: string): Record<string, unknown> {
+  if (contentType?.includes("application/json")) {
+    return JSON.parse(text);
+  }
+  // Kommo sends application/x-www-form-urlencoded
+  const params = new URLSearchParams(text);
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of params.entries()) {
+    // Kommo uses keys like leads[add][0][id]
+    result[key] = value;
+  }
+  return result;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const contentType = req.headers.get("content-type");
+    const rawText = await req.text();
 
-    // Kommo sends leads[add] for new leads
-    const newLeads = body?.leads?.add;
-    if (!newLeads || !Array.isArray(newLeads)) {
+    // Parse form-urlencoded data from Kommo
+    // Kommo webhook sends: leads[add][0][id], leads[add][0][name], etc.
+    const params = new URLSearchParams(rawText);
+
+    // Check if this is a lead add event
+    const leadId = params.get("leads[add][0][id]");
+    if (!leadId) {
       return NextResponse.json({ ok: true });
     }
 
-    for (const lead of newLeads) {
-      const leadName = lead.name || "New lead";
-      const pipelineName = lead.pipeline_id || "";
-      const contactId = lead.contact_id;
+    const leadName = params.get("leads[add][0][name]") || "New lead";
 
-      let contactInfo = { name: "", phone: "", email: "" };
-      if (contactId) {
-        contactInfo = await getContactInfo(Number(contactId));
+    // Get contact info from Kommo API using the lead
+    let contactInfo = { name: "", phone: "", email: "" };
+    try {
+      const leadRes = await fetch(
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
+        { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+      );
+      if (leadRes.ok) {
+        const leadData = await leadRes.json();
+        const contactId = leadData._embedded?.contacts?.[0]?.id;
+        if (contactId) {
+          contactInfo = await getContactInfo(contactId);
+        }
       }
-
-      const source = lead.utm_source || lead.source || "";
-
-      const lines = [
-        `📩 <b>Новая заявка!</b>`,
-        ``,
-        `👤 <b>${contactInfo.name || leadName}</b>`,
-        contactInfo.phone ? `📱 ${contactInfo.phone}` : "",
-        contactInfo.email ? `📧 ${contactInfo.email}` : "",
-        source ? `📊 Источник: ${source}` : "",
-      ].filter(Boolean);
-
-      await sendTg(lines.join("\n"));
+    } catch {
+      // fallback — use lead name
     }
+
+    const lines = [
+      `📩 <b>Новая заявка!</b>`,
+      ``,
+      `👤 <b>${contactInfo.name || leadName}</b>`,
+      contactInfo.phone ? `📱 ${contactInfo.phone}` : "",
+      contactInfo.email ? `📧 ${contactInfo.email}` : "",
+    ].filter(Boolean);
+
+    await sendTg(lines.join("\n"));
 
     return NextResponse.json({ ok: true });
   } catch (e) {
