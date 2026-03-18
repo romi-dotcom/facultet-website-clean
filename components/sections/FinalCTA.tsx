@@ -146,6 +146,9 @@ export default function FinalCTA() {
             <p className="text-xs text-[#94A3B8] text-center">
               Free consultation · No obligation · We reply within 1 day
             </p>
+            <p className="text-[10px] text-[#94A3B8] text-center leading-[1.4]">
+              By clicking &quot;Enroll Now&quot;, you agree to our <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#64748B]">Public Offer</a> and <a href="#" className="underline hover:text-[#64748B]">Privacy Policy</a>.
+            </p>
           </form>
         </div>
       </div>
@@ -245,6 +248,9 @@ export default function FinalCTA() {
           </a>
           <p className="text-xs text-[#94A3B8] text-center">
             Free consultation · No obligation · We reply within 1 day
+          </p>
+          <p className="text-[10px] text-[#94A3B8] text-center leading-[1.4]">
+            By clicking &quot;Enroll Now&quot;, you agree to our <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#64748B]">Public Offer</a> and <a href="#" className="underline hover:text-[#64748B]">Privacy Policy</a>.
           </p>
         </form>
       </div>
