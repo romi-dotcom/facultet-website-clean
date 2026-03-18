@@ -76,13 +76,13 @@ export default function HeroSection() {
           {/* CTA Row — desktop only */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href="#courses"
+              href="#enrol"
               className="btn-pulse inline-flex items-center justify-center h-[52px] px-8 bg-accent rounded-lg text-base font-bold text-white lg:hover:opacity-90 transition-opacity"
             >
               Enroll Now →
             </a>
             <a
-              href="#courses"
+              href="#enrol"
               className="inline-flex items-center justify-center h-[52px] px-7 bg-white border-[1.5px] border-[#1E293B] rounded-lg text-base font-medium text-[#1E293B] lg:hover:bg-[#1E293B] lg:hover:text-white transition-colors"
             >
               See Programmes
@@ -167,13 +167,13 @@ export default function HeroSection() {
         {/* ── CTA Block — mobile only ── */}
         <div className="flex flex-col gap-2.5 w-full lg:hidden">
           <a
-            href="#courses"
+            href="#enrol"
             className="btn-pulse flex items-center justify-center h-[52px] bg-accent rounded-lg text-base font-bold text-white"
           >
             Enroll Now →
           </a>
           <a
-            href="#courses"
+            href="#enrol"
             className="flex items-center justify-center h-12 bg-white border-[1.5px] border-[#1E293B] rounded-lg text-[15px] text-[#1E293B]"
           >
             See Programmes

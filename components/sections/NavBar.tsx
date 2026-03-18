@@ -83,20 +83,13 @@ export default function NavBar() {
           <div className="flex items-center gap-2 lg:gap-3">
             {/* Enroll CTA */}
             <a
-              href="#courses"
-              onClick={(e) => scrollToId(e, "courses")}
+              href="#enrol"
+              onClick={(e) => scrollToId(e, "enrol")}
               className="btn-pulse rounded-lg bg-accent px-3.5 py-2 text-[13px] font-bold text-white
-                         lg:px-6 lg:py-2.5 lg:text-sm lg:hidden"
+                         lg:px-6 lg:py-2.5 lg:text-sm"
             >
-              Enroll Now
-            </a>
-            <a
-              href="#courses"
-              onClick={(e) => scrollToId(e, "courses")}
-              className="btn-pulse rounded-lg bg-accent px-6 py-2.5 text-sm font-bold text-white
-                         hidden lg:inline-flex"
-            >
-              Enroll Now →
+              <span className="lg:hidden">Enroll Now</span>
+              <span className="hidden lg:inline">Enroll Now →</span>
             </a>
 
             {/* Hamburger — mobile only */}

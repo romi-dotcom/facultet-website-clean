@@ -193,7 +193,7 @@ export default function Testimonials() {
             </span>
           </div>
           <a
-            href="#courses"
+            href="#enrol"
             className="btn-pulse flex items-center gap-2 rounded-full bg-[#E85D26] px-8 py-4 text-base font-bold text-white hover:bg-[#D4521E] transition-colors"
           >
             Enrol Now
@@ -259,7 +259,7 @@ export default function Testimonials() {
             Join 423 students already learning with Facultet.
           </span>
           <a
-            href="#courses"
+            href="#enrol"
             className="btn-pulse flex items-center justify-center gap-2 rounded-full bg-[#E85D26] px-8 py-3.5 text-[15px] font-bold text-white"
           >
             Enrol Now
