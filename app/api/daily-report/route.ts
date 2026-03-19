@@ -19,7 +19,7 @@ async function sendTg(message: string) {
 
 async function getMetaAdsData(): Promise<{ spend: number; landingPageViews: number; impressions: number }> {
   const res = await fetch(
-    `https://graph.facebook.com/v21.0/120244722476930580/insights?date_preset=today&fields=spend,impressions,actions&access_token=${META_ADS_TOKEN}`
+    `https://graph.facebook.com/v21.0/120244722476930580/insights?date_preset=yesterday&fields=spend,impressions,actions&access_token=${META_ADS_TOKEN}`
   );
   if (!res.ok) return { spend: 0, landingPageViews: 0, impressions: 0 };
 
@@ -39,14 +39,16 @@ async function getMetaAdsData(): Promise<{ spend: number; landingPageViews: numb
 }
 
 async function getKommoLeads(): Promise<number> {
-  // Get today's date range (Lisbon = UTC+0 winter / UTC+1 summer)
-  // Cron runs at 23:05 UTC = 00:05 Lisbon, so "today" in UTC = the day we report on
+  // Get yesterday's date range (Lisbon timezone)
+  // Cron runs at 23:30 UTC = 00:30 Lisbon, reporting on the previous day
   const now = new Date();
-  const todayStart = new Date(now);
-  todayStart.setUTCHours(0, 0, 0, 0);
+  const yesterdayEnd = new Date(now);
+  yesterdayEnd.setUTCHours(0, 0, 0, 0); // midnight UTC today = ~end of yesterday Lisbon
+  const yesterdayStart = new Date(yesterdayEnd);
+  yesterdayStart.setUTCDate(yesterdayStart.getUTCDate() - 1);
 
-  const from = Math.floor(todayStart.getTime() / 1000);
-  const to = Math.floor(now.getTime() / 1000);
+  const from = Math.floor(yesterdayStart.getTime() / 1000);
+  const to = Math.floor(yesterdayEnd.getTime() / 1000);
 
   const res = await fetch(
     `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&filter[created_at][from]=${from}&filter[created_at][to]=${to}&limit=250`,
@@ -75,8 +77,9 @@ export async function GET(req: NextRequest) {
     const cpl = kommoLeads > 0 ? (meta.spend / kommoLeads).toFixed(2) : "—";
     const cr = meta.landingPageViews > 0 ? ((kommoLeads / meta.landingPageViews) * 100).toFixed(1) : "—";
 
-    const today = new Date();
-    const dateStr = today.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const dateStr = yesterday.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
 
     const lines = [
       `📊 <b>Ежедневный отчёт · ${dateStr}</b>`,
