@@ -39,26 +39,35 @@ async function getMetaAdsData(): Promise<{ spend: number; landingPageViews: numb
 }
 
 async function getKommoLeads(): Promise<number> {
-  // Get yesterday's date range (Lisbon timezone)
-  // Cron runs at 23:30 UTC = 00:30 Lisbon, reporting on the previous day
+  // Lisbon = UTC+1 (summer) / UTC+0 (winter)
+  // Fetch recent leads and filter by created_at timestamp manually
+  // because Kommo's date filter uses account timezone which mismatches UTC
   const now = new Date();
-  const yesterdayEnd = new Date(now);
-  yesterdayEnd.setUTCHours(0, 0, 0, 0); // midnight UTC today = ~end of yesterday Lisbon
-  const yesterdayStart = new Date(yesterdayEnd);
-  yesterdayStart.setUTCDate(yesterdayStart.getUTCDate() - 1);
-
-  const from = Math.floor(yesterdayStart.getTime() / 1000);
-  const to = Math.floor(yesterdayEnd.getTime() / 1000);
+  const yesterdayStartLisbon = new Date(now);
+  yesterdayStartLisbon.setDate(yesterdayStartLisbon.getDate() - 1);
+  yesterdayStartLisbon.setHours(0, 0, 0, 0);
+  // Lisbon summer (UTC+1): subtract 1 hour to get UTC
+  const fromUTC = Math.floor(yesterdayStartLisbon.getTime() / 1000) - 3600;
+  const todayStartLisbon = new Date(now);
+  todayStartLisbon.setHours(0, 0, 0, 0);
+  const toUTC = Math.floor(todayStartLisbon.getTime() / 1000) - 3600;
 
   const res = await fetch(
-    `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&filter[created_at][from]=${from}&filter[created_at][to]=${to}&limit=250`,
+    `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&order[created_at]=desc`,
     { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
   );
 
   if (!res.ok) return 0;
   const data = await res.json();
   const leads = data._embedded?.leads || [];
-  return leads.length;
+
+  // Count leads created between yesterday 00:00 and today 00:00 Lisbon time
+  let count = 0;
+  for (const lead of leads) {
+    const ts = lead.created_at || 0;
+    if (ts >= fromUTC && ts < toUTC) count++;
+  }
+  return count;
 }
 
 export async function GET(req: NextRequest) {
