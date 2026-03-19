@@ -39,18 +39,14 @@ async function getMetaAdsData(): Promise<{ spend: number; landingPageViews: numb
 }
 
 async function getKommoLeads(): Promise<number> {
-  // Lisbon = UTC+1 (summer) / UTC+0 (winter)
-  // Fetch recent leads and filter by created_at timestamp manually
-  // because Kommo's date filter uses account timezone which mismatches UTC
+  // Cron runs at 23:30 UTC = 00:30 Lisbon
+  // Lisbon day ends at 23:00 UTC (summer, UTC+1)
+  // We want the Lisbon day that just ended: from 23:00 UTC yesterday to 23:00 UTC today
   const now = new Date();
-  const yesterdayStartLisbon = new Date(now);
-  yesterdayStartLisbon.setDate(yesterdayStartLisbon.getDate() - 1);
-  yesterdayStartLisbon.setHours(0, 0, 0, 0);
-  // Lisbon summer (UTC+1): subtract 1 hour to get UTC
-  const fromUTC = Math.floor(yesterdayStartLisbon.getTime() / 1000) - 3600;
-  const todayStartLisbon = new Date(now);
-  todayStartLisbon.setHours(0, 0, 0, 0);
-  const toUTC = Math.floor(todayStartLisbon.getTime() / 1000) - 3600;
+  const endOfDay = new Date(now);
+  endOfDay.setUTCHours(23, 0, 0, 0); // 23:00 UTC today = 00:00 Lisbon tomorrow
+  const toUTC = Math.floor(endOfDay.getTime() / 1000);
+  const fromUTC = toUTC - 86400; // 24 hours before
 
   const res = await fetch(
     `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&order[created_at]=desc`,
