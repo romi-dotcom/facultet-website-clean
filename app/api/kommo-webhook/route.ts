@@ -30,26 +30,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Check if this is a website lead (has "Курс" field 777040)
-    // Website leads are already notified from /api/lead — skip them here
+    // Check lead source and get contact info
     let isWebsite = false;
+    let hasSourceId = false;
     let contactName = "";
     let contactPhone = "";
 
     try {
       const leadRes = await fetch(
-        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts`,
+        `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/${leadId}?with=contacts,source_id`,
         { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
       );
       if (leadRes.ok) {
         const leadData = await leadRes.json();
 
-        // If lead has "Курс" field (777040) → it's from website, skip
+        // If lead has "Курс" field (777040) → website lead, skip
         for (const field of leadData.custom_fields_values || []) {
           if (field.field_id === 777040) {
             isWebsite = true;
             break;
           }
+        }
+
+        if (leadData.source_id) {
+          hasSourceId = true;
         }
 
         if (!isWebsite) {
@@ -80,13 +84,15 @@ export async function POST(req: NextRequest) {
 
     const leadName = params.get("leads[add][0][name]") || "New lead";
     const name = contactName || leadName;
+    const source = hasSourceId ? "WhatsApp" : "Неизвестен";
+    const title = hasSourceId ? "Новая заявка с WhatsApp!" : "Новая заявка!";
 
     const lines = [
-      `📩 <b>Новая заявка с WhatsApp!</b>`,
+      `📩 <b>${title}</b>`,
       ``,
       `👤 <b>${name}</b>`,
       contactPhone ? `📱 ${contactPhone}` : "",
-      `📊 Источник: <b>WhatsApp</b>`,
+      `📊 Источник: <b>${source}</b>`,
       ``,
       `🔗 <a href="https://letofacultetschool.kommo.com/leads/detail/${leadId}">Открыть в Kommo</a>`,
     ].filter(Boolean);
