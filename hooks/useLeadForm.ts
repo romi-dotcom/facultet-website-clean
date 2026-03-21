@@ -85,6 +85,10 @@ export function useLeadForm(course: string) {
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
+      if (typeof window !== "undefined" && (window as any).ttq) {
+        (window as any).ttq.track("SubmitForm");
+      }
+      await new Promise((r) => setTimeout(r, 300));
       router.push("/thank-you");
     } catch {
       setStatus("error");
