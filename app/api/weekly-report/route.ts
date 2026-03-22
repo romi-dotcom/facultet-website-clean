@@ -37,44 +37,33 @@ async function getMetaWeeklyData(dateStart: string, dateEnd: string): Promise<{ 
   return { spend, landingPageViews, impressions };
 }
 
-async function getKommoWeeklyLeads(fromUTC: number, toUTC: number): Promise<number> {
-  const res = await fetch(
-    `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&order[created_at]=desc`,
-    { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
-  );
-
-  if (!res.ok) return 0;
-  const data = await res.json();
-  const leads = data._embedded?.leads || [];
-
-  let count = 0;
-  for (const lead of leads) {
-    const ts = lead.created_at || 0;
-    if (ts >= fromUTC && ts < toUTC) count++;
-  }
-  return count;
-}
-
 const SUCCESS_STATUSES = new Set([102282924, 142]); // Admission pla, Paid
 
-async function getKommoSuccessDeals(fromUTC: number, toUTC: number): Promise<number> {
-  let count = 0;
+async function getKommoWeeklyData(fromUTC: number, toUTC: number): Promise<{ leads: number; successDeals: number }> {
+  let leads = 0;
+  let successDeals = 0;
+
   for (let page = 1; page <= 3; page++) {
     const res = await fetch(
-      `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&page=${page}&order[updated_at]=desc`,
+      `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&page=${page}&order[created_at]=desc`,
       { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
     );
     if (!res.ok) break;
     const data = await res.json();
-    const leads = data._embedded?.leads || [];
-    for (const lead of leads) {
-      const upd = lead.updated_at || 0;
-      if (upd < fromUTC) return count; // sorted desc, no point continuing
-      if (upd < toUTC && SUCCESS_STATUSES.has(lead.status_id)) count++;
+    const items = data._embedded?.leads || [];
+    let pastWindow = false;
+    for (const lead of items) {
+      const created = lead.created_at || 0;
+      if (created < fromUTC) { pastWindow = true; break; }
+      if (created < toUTC) {
+        leads++;
+        if (SUCCESS_STATUSES.has(lead.status_id)) successDeals++;
+      }
     }
-    if (!data._links?.next) break;
+    if (pastWindow || !data._links?.next) break;
   }
-  return count;
+
+  return { leads, successDeals };
 }
 
 export async function GET(req: NextRequest) {
@@ -100,11 +89,11 @@ export async function GET(req: NextRequest) {
     const dateStart = fmt(monDate);
     const dateEnd = fmt(sunDate);
 
-    const [meta, kommoLeads, successDeals] = await Promise.all([
+    const [meta, kommoData] = await Promise.all([
       getMetaWeeklyData(dateStart, dateEnd),
-      getKommoWeeklyLeads(fromUTC, toUTC),
-      getKommoSuccessDeals(fromUTC, toUTC),
+      getKommoWeeklyData(fromUTC, toUTC),
     ]);
+    const { leads: kommoLeads, successDeals } = kommoData;
 
     const cpl = kommoLeads > 0 ? (meta.spend / kommoLeads).toFixed(2) : "—";
     const cr = meta.landingPageViews > 0 ? ((kommoLeads / meta.landingPageViews) * 100).toFixed(1) : "—";
