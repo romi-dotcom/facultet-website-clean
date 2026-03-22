@@ -38,28 +38,6 @@ async function getMetaAdsData(): Promise<{ spend: number; landingPageViews: numb
   return { spend, landingPageViews, impressions };
 }
 
-const SUCCESS_STATUSES = new Set([102282924, 142]); // Admission pla, Paid
-
-async function getKommoSuccessDeals(fromUTC: number, toUTC: number): Promise<number> {
-  let count = 0;
-  for (let page = 1; page <= 3; page++) {
-    const res = await fetch(
-      `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&page=${page}&order[updated_at]=desc`,
-      { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
-    );
-    if (!res.ok) break;
-    const data = await res.json();
-    const leads = data._embedded?.leads || [];
-    for (const lead of leads) {
-      const upd = lead.updated_at || 0;
-      if (upd < fromUTC) return count;
-      if (upd < toUTC && SUCCESS_STATUSES.has(lead.status_id)) count++;
-    }
-    if (!data._links?.next) break;
-  }
-  return count;
-}
-
 async function getKommoLeads(): Promise<number> {
   // Cron runs at 23:30 UTC = 00:30 Lisbon
   // Lisbon day ends at 23:00 UTC (summer, UTC+1)
@@ -96,22 +74,13 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const now = new Date();
-    const endOfDay = new Date(now);
-    endOfDay.setUTCHours(23, 0, 0, 0);
-    const toUTC = Math.floor(endOfDay.getTime() / 1000);
-    const fromUTC = toUTC - 86400;
-
-    const [meta, kommoLeads, successDeals] = await Promise.all([
+    const [meta, kommoLeads] = await Promise.all([
       getMetaAdsData(),
       getKommoLeads(),
-      getKommoSuccessDeals(fromUTC, toUTC),
     ]);
 
     const cpl = kommoLeads > 0 ? (meta.spend / kommoLeads).toFixed(2) : "—";
     const cr = meta.landingPageViews > 0 ? ((kommoLeads / meta.landingPageViews) * 100).toFixed(1) : "—";
-    const cpa = successDeals > 0 ? (meta.spend / successDeals).toFixed(2) : "—";
-    const convRate = kommoLeads > 0 ? ((successDeals / kommoLeads) * 100).toFixed(1) : "—";
 
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
@@ -124,12 +93,9 @@ export async function GET(req: NextRequest) {
       `👁 Показы: <b>${meta.impressions.toLocaleString()}</b>`,
       `🖱 Просмотры страницы: <b>${meta.landingPageViews}</b>`,
       `📩 Лиды: <b>${kommoLeads}</b>`,
-      `✅ Успешных сделок: <b>${successDeals}</b> (Admission pla + Paid)`,
       ``,
       `💵 CPL: <b>€${cpl}</b>`,
-      `🏆 CPA: <b>€${cpa}</b>`,
       `📈 Конверсия сайта: <b>${cr}%</b>`,
-      `🔄 Лид → сделка: <b>${convRate}%</b>`,
     ];
 
     await sendTg(lines.join("\n"));
