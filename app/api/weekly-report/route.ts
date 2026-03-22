@@ -110,7 +110,7 @@ export async function GET(req: NextRequest) {
       `✅ Успешных сделок: <b>${successDeals}</b> (Admission pla + Paid)`,
       ``,
       `💵 CPL: <b>€${cpl}</b>`,
-      `🏆 CPA: <b>€${cpa}</b>`,
+      `🏆 CAC: <b>€${cpa}</b>`,
       `📈 Конверсия сайта: <b>${cr}%</b>`,
       `🔄 Лид → сделка: <b>${convRate}%</b>`,
     ];
