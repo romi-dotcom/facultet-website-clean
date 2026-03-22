@@ -55,6 +55,28 @@ async function getKommoWeeklyLeads(fromUTC: number, toUTC: number): Promise<numb
   return count;
 }
 
+const SUCCESS_STATUSES = new Set([102282924, 142]); // Admission pla, Paid
+
+async function getKommoSuccessDeals(fromUTC: number, toUTC: number): Promise<number> {
+  let count = 0;
+  for (let page = 1; page <= 3; page++) {
+    const res = await fetch(
+      `https://${KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads?filter[pipeline_id][0]=${PIPELINE_ID}&limit=250&page=${page}&order[updated_at]=desc`,
+      { headers: { Authorization: `Bearer ${KOMMO_ACCESS_TOKEN}` } }
+    );
+    if (!res.ok) break;
+    const data = await res.json();
+    const leads = data._embedded?.leads || [];
+    for (const lead of leads) {
+      const upd = lead.updated_at || 0;
+      if (upd < fromUTC) return count; // sorted desc, no point continuing
+      if (upd < toUTC && SUCCESS_STATUSES.has(lead.status_id)) count++;
+    }
+    if (!data._links?.next) break;
+  }
+  return count;
+}
+
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -78,13 +100,16 @@ export async function GET(req: NextRequest) {
     const dateStart = fmt(monDate);
     const dateEnd = fmt(sunDate);
 
-    const [meta, kommoLeads] = await Promise.all([
+    const [meta, kommoLeads, successDeals] = await Promise.all([
       getMetaWeeklyData(dateStart, dateEnd),
       getKommoWeeklyLeads(fromUTC, toUTC),
+      getKommoSuccessDeals(fromUTC, toUTC),
     ]);
 
     const cpl = kommoLeads > 0 ? (meta.spend / kommoLeads).toFixed(2) : "—";
     const cr = meta.landingPageViews > 0 ? ((kommoLeads / meta.landingPageViews) * 100).toFixed(1) : "—";
+    const cpa = successDeals > 0 ? (meta.spend / successDeals).toFixed(2) : "—";
+    const convRate = kommoLeads > 0 ? ((successDeals / kommoLeads) * 100).toFixed(1) : "—";
 
     const lines = [
       `📊 <b>Еженедельный отчёт · ${dateStart} – ${dateEnd}</b>`,
@@ -93,9 +118,12 @@ export async function GET(req: NextRequest) {
       `👁 Показы: <b>${meta.impressions.toLocaleString()}</b>`,
       `🖱 Просмотры страницы: <b>${meta.landingPageViews}</b>`,
       `📩 Лиды: <b>${kommoLeads}</b>`,
+      `✅ Успешных сделок: <b>${successDeals}</b> (Admission pla + Paid)`,
       ``,
       `💵 CPL: <b>€${cpl}</b>`,
+      `🏆 CPA: <b>€${cpa}</b>`,
       `📈 Конверсия сайта: <b>${cr}%</b>`,
+      `🔄 Лид → сделка: <b>${convRate}%</b>`,
     ];
 
     await sendTg(lines.join("\n"));
