@@ -140,6 +140,7 @@ export async function POST(req: NextRequest) {
           {
             name: name || "Unknown",
             pipeline_id: PIPELINE_ID,
+            status_id: 100062868, // Pickup
             ...(customFields.length > 0 && { custom_fields_values: customFields }),
             _embedded: {
               contacts: [{ id: contactId }],
