@@ -12,6 +12,7 @@ import {
   CircleCheck,
   User,
 } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { useLeadForm } from "@/hooks/useLeadForm";
 import CountryCodePicker from "@/components/CountryCodePicker";
 
@@ -46,7 +47,7 @@ export default function FinalCTA() {
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
                 <span className="text-[13px] font-bold text-[#C2410C]">
-                  Next group: March 31 · Only 6 spots left
+                  Next group: April 7 · Only 6 spots left
                 </span>
               </div>
 
@@ -140,7 +141,7 @@ export default function FinalCTA() {
             <div className="flex items-center justify-center py-1">
               <span className="text-[13px] text-[#9CA3AF]">— or —</span>
             </div>
-            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
+            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click", { page: "Homepage" })} className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
               Message us on WhatsApp
             </a>
             <p className="text-xs text-[#94A3B8] text-center">
@@ -175,7 +176,7 @@ export default function FinalCTA() {
         <div className="flex items-center justify-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
           <span className="text-[13px] font-bold text-[#C2410C]">
-            Next group: March 31 · Only 6 spots left
+            Next group: April 7 · Only 6 spots left
           </span>
         </div>
 
@@ -243,7 +244,7 @@ export default function FinalCTA() {
           <div className="flex items-center justify-center">
             <span className="text-[13px] text-[#9CA3AF]">— or —</span>
           </div>
-          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
+          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click", { page: "Homepage" })} className="flex items-center justify-center h-[52px] rounded-full border-[1.5px] border-[#25D366] bg-white text-[15px] font-semibold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors">
             Message us on WhatsApp
           </a>
           <p className="text-xs text-[#94A3B8] text-center">
@@ -313,7 +314,7 @@ export default function FinalCTA() {
               <div className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-sm text-[#1B8A7E]">
-                  ola@facultet.school
+                  lingua@facultet.school
                 </span>
               </div>
               <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
@@ -440,7 +441,7 @@ export default function FinalCTA() {
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-[#64748B]" />
               <span className="text-sm text-[#1B8A7E]">
-                ola@facultet.school
+                lingua@facultet.school
               </span>
             </div>
             <div className="flex items-center gap-2">

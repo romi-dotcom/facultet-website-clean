@@ -36,6 +36,7 @@ import {
   Trophy,
   Info,
 } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { useLeadForm } from "@/hooks/useLeadForm";
 import CountryCodePicker from "@/components/CountryCodePicker";
 
@@ -1393,7 +1394,7 @@ function FAQSection() {
         </div>
 
         {/* WhatsApp button */}
-        <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white border border-[#E2E8F0] rounded-lg py-3 px-5 w-full">
+        <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click", { page: "A1-A2 Course" })} className="flex items-center justify-center gap-2 bg-white border border-[#E2E8F0] rounded-lg py-3 px-5 w-full">
           <MessageCircle className="w-4 h-4 text-[#25D366]" />
           <span className="text-sm font-semibold text-[#1E293B]">Ask on WhatsApp</span>
         </a>
@@ -1410,7 +1411,7 @@ function FAQSection() {
               Can&apos;t find your answer? Write to us on WhatsApp — we reply within 1 hour.
             </p>
           </div>
-          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 h-12 bg-white border border-[#E2E8F0] rounded-lg w-fit px-5">
+          <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click", { page: "A1-A2 Course" })} className="flex items-center justify-center gap-2 h-12 bg-white border border-[#E2E8F0] rounded-lg w-fit px-5">
             <MessageCircle className="w-4 h-4 text-[#25D366]" />
             <span className="text-sm font-semibold text-[#1E293B]">Ask on WhatsApp</span>
           </a>
@@ -1538,10 +1539,10 @@ function Footer() {
           {/* Contacts */}
           <div className="flex flex-col gap-2.5">
             <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">CONTACTS</span>
-            <div className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#E2E8F0]">+351 921 235 142</span></div>
-            <div className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#1B8A7E]">+351 921 235 142</span></div>
+            <div className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#E2E8F0]">+351 923 296 007</span></div>
+            <div className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#1B8A7E]">lingua@facultet.school</span></div>
             <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5"><MessageCircle className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-sm text-[#25D366]">WhatsApp: +351 923 296 007</span></a>
-            <div className="flex items-center gap-1.5"><Timer className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#64748B]">info@pla-escola.pt</span></div>
+            <div className="flex items-center gap-1.5"><Timer className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#64748B]">Mon–Fri 9:00–18:00 · Sat 10:00–14:00</span></div>
           </div>
           {/* Links */}
           <div className="flex flex-col gap-2.5">
@@ -1601,8 +1602,8 @@ function Footer() {
 
           {/* Contacts */}
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#1B8A7E]">info@pla-escola.pt</span></div>
-            <div className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#E2E8F0]">+351 921 235 142</span></div>
+            <div className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#1B8A7E]">lingua@facultet.school</span></div>
+            <div className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-[13px] text-[#E2E8F0]">+351 923 296 007</span></div>
             <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2"><MessageCircle className="w-3.5 h-3.5 text-[#64748B]" /><span className="text-xs text-[#25D366]">WhatsApp: +351 923 296 007</span></a>
           </div>
 

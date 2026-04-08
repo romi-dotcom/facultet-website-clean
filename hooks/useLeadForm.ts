@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -85,6 +86,7 @@ export function useLeadForm(course: string) {
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
+      track("lead_submitted", { course });
       if (typeof window !== "undefined" && (window as any).ttq) {
         (window as any).ttq.track("SubmitForm");
       }
