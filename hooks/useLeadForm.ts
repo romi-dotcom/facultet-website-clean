@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { track } from "@vercel/analytics";
+import { countryCodes } from "@/lib/countryCodes";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -41,12 +42,31 @@ export function useLeadForm(course: string) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [formError, setFormError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   useEffect(() => { captureUtm(); }, []);
 
-  /** Allow only digits, strip anything else */
+  // Reset phone error when country code changes
+  useEffect(() => { setPhoneError(""); }, [countryCode]);
+
+  const selectedCountry = countryCodes.find((c) => c.code === countryCode) ?? countryCodes[0];
+  const maxDigits = selectedCountry.maxDigits;
+
+  /** Accept only digits, enforce maxLength, detect duplicated country code */
   function setPhoneSafe(val: string) {
-    setPhone(val.replace(/\D/g, ""));
+    const digits = val.replace(/\D/g, "");
+    const codeDigits = countryCode.replace(/\D/g, ""); // "+351" → "351"
+
+    // Detect: user typed/pasted the country code prefix again
+    if (digits.startsWith(codeDigits) && digits.length > codeDigits.length) {
+      setPhoneError(`Don't include the country code — ${countryCode} is already selected`);
+      // Still update field so user sees what they typed (capped at maxDigits)
+      setPhone(digits.slice(0, maxDigits));
+    } else {
+      setPhoneError("");
+      setPhone(digits.slice(0, maxDigits));
+    }
+
     if (formError) setFormError("");
   }
 
@@ -59,9 +79,10 @@ export function useLeadForm(course: string) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) { setFormError("Please enter a valid email address"); return; }
     if (!phone.trim()) { setFormError("Please enter your phone number"); return; }
+    if (phoneError) { setFormError("Please fix the phone number before submitting"); return; }
     const digits = phone.replace(/\D/g, "");
-    if (digits.length < 7 || digits.length > 15) {
-      setFormError("Please enter a valid phone number (7–15 digits)");
+    if (digits.length < 7) {
+      setFormError("Please enter a valid phone number");
       return;
     }
     setStatus("loading");
@@ -97,5 +118,13 @@ export function useLeadForm(course: string) {
     }
   }
 
-  return { name, setName: (v: string) => { setName(v); clearError(); }, phone, setPhone: setPhoneSafe, countryCode, setCountryCode, email, setEmail: (v: string) => { setEmail(v); clearError(); }, status, formError, handleSubmit };
+  return {
+    name, setName: (v: string) => { setName(v); clearError(); },
+    phone, setPhone: setPhoneSafe,
+    phoneError,
+    maxDigits,
+    countryCode, setCountryCode,
+    email, setEmail: (v: string) => { setEmail(v); clearError(); },
+    status, formError, handleSubmit,
+  };
 }

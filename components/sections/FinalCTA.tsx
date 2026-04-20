@@ -113,17 +113,23 @@ export default function FinalCTA() {
               onChange={(e) => form.setEmail(e.target.value)}
               className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
             />
-            <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
-              <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
-              <div className="w-px h-5 bg-[#E2E8F0]" />
-              <input
-                type="tel"
-                placeholder="WhatsApp / Phone"
-                maxLength={15}
-                value={form.phone}
-                onChange={(e) => form.setPhone(e.target.value)}
-                className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
-              />
+            <div className="flex flex-col gap-1">
+              <div className={`flex items-center gap-2 h-[52px] rounded-[10px] border bg-[#F8FAFC] px-4 transition-colors ${form.phoneError ? "border-red-400 bg-red-50" : "border-[#E2E8F0] focus-within:border-[#E85D26]"}`}>
+                <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
+                <div className="w-px h-5 bg-[#E2E8F0]" />
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="WhatsApp / Phone"
+                  maxLength={form.maxDigits}
+                  value={form.phone}
+                  onChange={(e) => form.setPhone(e.target.value)}
+                  className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
+                />
+              </div>
+              {form.phoneError && (
+                <p className="text-xs text-red-500 px-1">{form.phoneError}</p>
+              )}
             </div>
             <button
               type="submit"
@@ -220,16 +226,23 @@ export default function FinalCTA() {
             onChange={(e) => form.setEmail(e.target.value)}
             className="h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none focus:border-[#E85D26] transition-colors"
           />
-          <div className="flex items-center gap-2 h-[52px] rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 focus-within:border-[#E85D26] transition-colors">
-            <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
-            <div className="w-px h-5 bg-[#E2E8F0]" />
-            <input
-              type="tel"
-              placeholder="WhatsApp / Phone"
-              value={form.phone}
-              onChange={(e) => form.setPhone(e.target.value)}
-              className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
-            />
+          <div className="flex flex-col gap-1">
+            <div className={`flex items-center gap-2 h-[52px] rounded-[10px] border bg-[#F8FAFC] px-4 transition-colors ${form.phoneError ? "border-red-400 bg-red-50" : "border-[#E2E8F0] focus-within:border-[#E85D26]"}`}>
+              <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
+              <div className="w-px h-5 bg-[#E2E8F0]" />
+              <input
+                type="tel"
+                inputMode="numeric"
+                placeholder="WhatsApp / Phone"
+                maxLength={form.maxDigits}
+                value={form.phone}
+                onChange={(e) => form.setPhone(e.target.value)}
+                className="flex-1 bg-transparent text-[15px] text-[#1E293B] placeholder:text-[#9CA3AF] outline-none"
+              />
+            </div>
+            {form.phoneError && (
+              <p className="text-xs text-red-500 px-1">{form.phoneError}</p>
+            )}
           </div>
           <button
             type="submit"

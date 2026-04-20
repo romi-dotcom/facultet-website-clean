@@ -1400,11 +1400,16 @@ function CTASection() {
             <User className="w-4 h-4 text-[#94A3B8] shrink-0" />
             <input type="text" placeholder="Your name" value={form.name} onChange={(e) => form.setName(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
           </div>
-          <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
-            <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
-            <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
-            <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
-            <input type="tel" placeholder="WhatsApp or phone" maxLength={15} value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+          <div className="flex flex-col gap-1">
+            <div className={`flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border rounded-[10px] px-4 transition-colors ${form.phoneError ? "border-red-400 bg-red-50" : "border-[#E2E8F0]"}`}>
+              <Phone className="w-4 h-4 text-[#94A3B8] shrink-0" />
+              <CountryCodePicker value={form.countryCode} onChange={form.setCountryCode} />
+              <div className="w-px h-4 bg-[#E2E8F0] shrink-0" />
+              <input type="tel" inputMode="numeric" placeholder="WhatsApp or phone" maxLength={form.maxDigits} value={form.phone} onChange={(e) => form.setPhone(e.target.value)} className="bg-transparent text-sm text-[#1E293B] placeholder:text-[#9CA3AF] outline-none flex-1 min-w-0" />
+            </div>
+            {form.phoneError && (
+              <p className="text-xs text-red-500 px-1">{form.phoneError}</p>
+            )}
           </div>
           <div className="flex items-center gap-2.5 h-[52px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] px-4">
             <Mail className="w-4 h-4 text-[#94A3B8]" />
