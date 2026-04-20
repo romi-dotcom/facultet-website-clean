@@ -179,7 +179,7 @@ function HeroSection() {
               <div className="flex items-center gap-2.5">
                 <span className="text-[42px] font-extrabold text-[#1E293B] leading-[1]">€470</span>
                 <span className="text-lg text-[#94A3B8] line-through">€590</span>
-                <span className="bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold rounded-md px-2 py-0.5 whitespace-nowrap">−20% · Until March 31</span>
+                <span className="bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold rounded-md px-2 py-0.5 whitespace-nowrap">−20% · Until April 28</span>
               </div>
               {/* Klarna */}
               <div className="flex items-center gap-2 bg-[#FFF0F8] rounded-lg px-3.5 py-2.5">
@@ -188,11 +188,11 @@ function HeroSection() {
                 <span className="bg-[#FFB3D9] text-[#17120E] text-xs font-bold italic rounded-md px-2.5 py-1">klarna</span>
               </div>
               {/* Breakdown */}
-              <div className="flex items-center justify-center gap-1.5 text-xs text-[#94A3B8]">
-                <span className="font-semibold">€157</span><span>·</span>
-                <span className="font-semibold">€157</span><span>·</span>
-                <span className="font-semibold">€157</span>
-                <span className="text-[#CBD5E1]">= €471 total · 0% interest</span>
+              <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs font-light text-[#475569]">
+                <span>€157</span><span>·</span>
+                <span>€157</span><span>·</span>
+                <span>€157</span>
+                <span>= €471 total · 0% interest</span>
               </div>
               {/* Divider */}
               <div className="h-px bg-[#E2E8F0]" />
@@ -201,7 +201,7 @@ function HeroSection() {
                 <div className="flex items-center gap-3">
                   <Calendar className="w-4 h-4 text-[#94A3B8]" />
                   <span className="text-[13px] text-[#94A3B8]">Start:</span>
-                  <span className="text-[13px] font-semibold text-[#1E293B]">March 31 · April 28 · July 22</span>
+                  <span className="text-[13px] font-semibold text-[#1E293B]">April 28 · July 22</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="w-4 h-4 text-[#94A3B8]" />
@@ -300,7 +300,7 @@ function MobilePriceCard() {
       <div className="flex items-center gap-2.5">
         <span className="text-[38px] font-extrabold text-[#1E293B] leading-[1]">€470</span>
         <span className="text-base text-[#94A3B8] line-through">€590</span>
-        <span className="bg-[#FEF3C7] text-[#B45309] text-[11px] font-bold rounded-md px-2.5 py-1">−20% · Until March 31</span>
+        <span className="bg-[#FEF3C7] text-[#B45309] text-[11px] font-bold rounded-md px-2.5 py-1">−20% · Until April 28</span>
       </div>
       {/* Klarna */}
       <div className="flex items-center gap-2 bg-[#FFF0F8] rounded-lg px-3.5 py-2.5">
@@ -309,7 +309,7 @@ function MobilePriceCard() {
         <span className="bg-[#FFB3D9] text-[#17120E] text-[11px] font-bold italic rounded-md px-2 py-0.5">klarna</span>
       </div>
       {/* Breakdown */}
-      <div className="flex items-center justify-center text-[11px] text-[#94A3B8]">
+      <div className="flex items-center justify-center text-center text-[11px] font-light leading-snug text-[#475569]">
         €157 · €157 · €157 = €471 total · 0% interest
       </div>
       {/* Divider */}
@@ -319,7 +319,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <Calendar className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Start:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">March 31 · April 28 · July 22</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">April 28 · July 22</span>
         </div>
         <div className="flex items-center gap-2.5 bg-[#FEF9C3] border border-[#FDE047] rounded-lg px-2.5 py-1.5">
           <Users className="w-[15px] h-[15px] text-[#CA8A04]" />
@@ -1388,7 +1388,7 @@ function CTASection() {
         </h2>
         {/* Desktop meta */}
         <p className="hidden lg:block text-base text-[#64748B] text-center">
-          Next group starts March 31 — 3 spots left out of 12
+          Next group starts April 28 — 3 spots left out of 12
         </p>
         {/* Mobile meta */}
         <p className="lg:hidden text-sm text-[#64748B] leading-[1.5]">

@@ -217,11 +217,11 @@ function HeroSection() {
                 <span className="bg-[#FFB3D9] text-[#17120E] text-xs font-bold italic rounded-md px-2.5 py-1">klarna</span>
               </div>
               {/* Breakdown */}
-              <div className="flex items-center justify-center gap-1.5 text-xs text-[#94A3B8]">
-                <span className="font-semibold">€104</span><span>·</span>
-                <span className="font-semibold">€104</span><span>·</span>
-                <span className="font-semibold">€104</span>
-                <span className="text-[#CBD5E1]">= €312 total · 0% interest</span>
+              <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs font-light text-[#475569]">
+                <span>€104</span><span>·</span>
+                <span>€104</span><span>·</span>
+                <span>€104</span>
+                <span>= €312 total · 0% interest</span>
               </div>
               {/* Divider */}
               <div className="h-px bg-[#E2E8F0]" />
@@ -338,7 +338,7 @@ function MobilePriceCard() {
         <span className="bg-[#FFB3D9] text-[#17120E] text-[11px] font-bold italic rounded-md px-2 py-[3px]">klarna</span>
       </div>
       {/* Breakdown */}
-      <div className="flex items-center justify-center text-[11px] text-[#94A3B8]">
+      <div className="flex items-center justify-center text-center text-[11px] font-light leading-snug text-[#475569]">
         €104 · €104 · €104 = €312 total · 0% interest
       </div>
       {/* Divider */}

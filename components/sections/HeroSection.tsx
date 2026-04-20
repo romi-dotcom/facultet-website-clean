@@ -69,7 +69,7 @@ export default function HeroSection() {
           <div className="hidden lg:flex items-center gap-2 bg-[#FFF7ED] border border-[#FED7AA] rounded-lg px-4 py-3 w-fit">
             <span className="w-2 h-2 rounded-full bg-[#EF4444] shrink-0" />
             <span className="text-[13px] font-bold text-[#C2410C]">
-              Next group starts April 7 — only 6 spots available
+              Next group starts April 28 — only 6 spots available
             </span>
           </div>
 
@@ -182,7 +182,7 @@ export default function HeroSection() {
 
         {/* ── Bottom text — mobile only ── */}
         <p className="text-xs font-semibold text-[#64748B] text-center lg:hidden">
-          ⏱ Next group: April 7 · 6 spots left
+          ⏱ Next group: April 28 · 6 spots left
         </p>
       </div>
     </section>
