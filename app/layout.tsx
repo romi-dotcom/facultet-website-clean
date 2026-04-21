@@ -1,11 +1,136 @@
+import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-export const metadata = {
-  title: "Facultet School — PLA Course for Portuguese Citizenship",
+const BASE_URL = "https://pt.facultet.school";
+const OG_IMAGE = `${BASE_URL}/images/hero.jpg`;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "PLA Course for Portuguese Citizenship | Ola Facultet",
+    template: "%s | Ola Facultet",
+  },
   description:
-    "150-hour A2 Portuguese programme. Required for your citizenship application.",
+    "Official 150-hour A2 Portuguese (PLA) course for citizenship in Portugal. DGERT-licensed school, Centro Qualifica partner. Declaração de Matrícula issued within 2 hours. 423+ graduates.",
+  keywords: [
+    "PLA course Portugal",
+    "Portuguese language course citizenship",
+    "curso português cidadania",
+    "A2 Portuguese certificate",
+    "Centro Qualifica course",
+    "DGERT licensed language school",
+    "Portuguese citizenship documents",
+    "learn Portuguese online Portugal",
+  ],
+  alternates: {
+    canonical: BASE_URL,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: BASE_URL,
+    siteName: "Ola Facultet",
+    title: "PLA Course for Portuguese Citizenship | Ola Facultet",
+    description:
+      "Official 150-hour A2 Portuguese course. Required for citizenship applications. DGERT-licensed, Centro Qualifica partner. Declaração de Matrícula in 2 hours. 423+ graduates from 20+ countries.",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Ola Facultet — PLA Portuguese Course for Citizenship",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PLA Course for Portuguese Citizenship | Ola Facultet",
+    description:
+      "Official 150-hour A2 Portuguese course. Required for citizenship. DGERT-licensed. 423+ graduates.",
+    images: [OG_IMAGE],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+// Organization + LocalBusiness JSON-LD (applies to all pages)
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LanguageSchool", "LocalBusiness"],
+      "@id": `${BASE_URL}/#organization`,
+      name: "Ola Facultet",
+      alternateName: "Facultet School Language Centre",
+      description:
+        "Official PLA language school offering 150-hour A2 Portuguese programme for citizenship applications in Portugal. DGERT-licensed and Centro Qualifica partner.",
+      url: BASE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/images/hero.jpg`,
+      },
+      image: OG_IMAGE,
+      telephone: "+351923296007",
+      email: "lingua@facultet.school",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Av. da República 51",
+        addressLocality: "Algés",
+        postalCode: "1495-110",
+        addressCountry: "PT",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 38.7169,
+        longitude: -9.2322,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Saturday"],
+          opens: "10:00",
+          closes: "14:00",
+        },
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "47",
+        bestRating: "5",
+        worstRating: "1",
+      },
+      hasCredential: [
+        { "@type": "EducationalOccupationalCredential", name: "DGERT Licensed Training Entity" },
+        { "@type": "EducationalOccupationalCredential", name: "Centro Qualifica Official Partner" },
+      ],
+      sameAs: [
+        "https://ola.facultet.school",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      url: BASE_URL,
+      name: "Ola Facultet",
+      publisher: { "@id": `${BASE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -19,6 +144,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
       </head>
       <body className="font-inter antialiased">
         <Script id="gtm" strategy="afterInteractive">{`
