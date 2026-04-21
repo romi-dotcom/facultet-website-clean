@@ -23,7 +23,6 @@ export default function ThankYouPage() {
       <NavBar />
       <HeroSection />
       <StepsSection />
-      <UrgencySection />
       <Footer />
     </main>
   );
