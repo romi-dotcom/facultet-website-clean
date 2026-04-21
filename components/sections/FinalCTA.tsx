@@ -318,18 +318,18 @@ export default function FinalCTA() {
               <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">
                 CONTACTS
               </span>
-              <div className="flex items-center gap-1.5">
+              <a href="tel:+351923296007" className="flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-sm text-[#E2E8F0]">
                   +351 923 296 007
                 </span>
-              </div>
-              <div className="flex items-center gap-1.5">
+              </a>
+              <a href="mailto:lingua@facultet.school" className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-sm text-[#1B8A7E]">
                   lingua@facultet.school
                 </span>
-              </div>
+              </a>
               <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                 <MessageCircle className="w-3.5 h-3.5 text-[#64748B]" />
                 <span className="text-sm text-[#25D366]">
@@ -394,8 +394,14 @@ export default function FinalCTA() {
             <span className="text-xs text-[#64748B]">
               © 2026 Facultet School · All rights reserved
             </span>
-            <span className="text-xs text-[#64748B]">
-              Terms of Use · Privacy Policy · Cookies · <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
+            <span className="text-xs text-[#64748B] flex items-center gap-2">
+              <a href="https://ola.facultet.school/terms" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Terms of Use</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Privacy Policy</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/cookies" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Cookies</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
             </span>
           </div>
         </div>
@@ -426,16 +432,19 @@ export default function FinalCTA() {
             </p>
             <div className="flex gap-2">
               {[
-                { icon: Instagram, color: "text-white" },
-                { icon: MessageCircle, color: "text-[#25D366]" },
-                { icon: Send, color: "text-white" },
-              ].map(({ icon: Icon, color }, i) => (
-                <div
+                { icon: Instagram, color: "text-white", href: "https://www.instagram.com/ola.facultet/" },
+                { icon: MessageCircle, color: "text-[#25D366]", href: "https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" },
+                { icon: Send, color: "text-white", href: "https://t.me/olafacultet" },
+              ].map(({ icon: Icon, color, href }, i) => (
+                <a
                   key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/[0.07] border border-white/[0.08] flex items-center justify-center"
                 >
                   <Icon className={`w-4 h-4 ${color}`} />
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -447,22 +456,22 @@ export default function FinalCTA() {
             <span className="text-[10px] font-bold tracking-[1.5px] text-[#64748B]">
               CONTACTS
             </span>
-            <div className="flex items-center gap-2">
+            <a href="tel:+351923296007" className="flex items-center gap-2">
               <Phone className="w-3.5 h-3.5 text-[#64748B]" />
               <span className="text-sm text-[#E2E8F0]">+351 923 296 007</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </a>
+            <a href="mailto:lingua@facultet.school" className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-[#64748B]" />
               <span className="text-sm text-[#1B8A7E]">
                 lingua@facultet.school
               </span>
-            </div>
-            <div className="flex items-center gap-2">
+            </a>
+            <a href="https://api.whatsapp.com/send/?phone=351923296007&text=Hello%21+I%27d+like+to+learn+more+about+your+Portuguese+language+courses.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <MessageCircle className="w-3.5 h-3.5 text-[#64748B]" />
               <span className="text-sm text-[#25D366]">
                 WhatsApp: +351 923 296 007
               </span>
-            </div>
+            </a>
             <div className="flex items-center gap-2">
               <Timer className="w-3.5 h-3.5 text-[#64748B]" />
               <span className="text-[13px] text-[#64748B]">
@@ -520,8 +529,14 @@ export default function FinalCTA() {
             <span className="text-xs text-[#64748B] text-center">
               © 2026 Facultet School · All rights reserved
             </span>
-            <span className="text-xs text-[#64748B] text-center">
-              Terms of Use · Privacy Policy · Cookies · <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
+            <span className="text-xs text-[#64748B] text-center flex items-center gap-2 flex-wrap justify-center">
+              <a href="https://ola.facultet.school/terms" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Terms of Use</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Privacy Policy</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/cookies" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Cookies</a>
+              <span>·</span>
+              <a href="https://ola.facultet.school/public-offer" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors">Public Offer</a>
             </span>
           </div>
         </div>

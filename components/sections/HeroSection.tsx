@@ -49,7 +49,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Subheadline */}
+          {/* Subheadline — also serves as featured-snippet paragraph for Google/AI */}
           <p
             className="text-[15px] leading-[1.6] text-[#64748B] text-center
                        lg:text-base lg:text-left lg:max-w-[480px]"
@@ -59,9 +59,11 @@ export default function HeroSection() {
               Required for your citizenship application.
             </span>
             <span className="hidden lg:inline">
-              150-hour A2 Portuguese programme.
-              Required for your citizenship application.
-              Recognised by Portuguese authorities and embassies.
+              The PLA (Português Língua de Acolhimento) course is a 150-hour
+              online Portuguese programme at A2 level — officially required for
+              Portuguese citizenship applications. Classes run via Zoom three
+              times a week. Declaração de Matrícula issued within 2 hours of
+              enrollment. DGERT-licensed school, Centro Qualifica partner.
             </span>
           </p>
 

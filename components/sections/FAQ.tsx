@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronUp, ChevronDown, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 interface FAQItem {
   question: string;
@@ -47,7 +47,7 @@ const faqs: FAQItem[] = [
     category: "learning",
     question: "How long does the course take?",
     answer:
-      "The full A0\u2009\u2192\u2009A2 course takes 8 weeks with 5 live lessons per week. Each lesson is 90 minutes. If you already have some basics (A1 level), the A1\u2009\u2192\u2009A2 course takes 4 weeks.",
+      "The full A0\u2009\u2192\u2009A2 course takes 16 weeks with 3 live sessions per week (Tuesday, Thursday, Saturday), each 3 hours. Total: 150 academic hours. If you already have some basics (A1 level), the A1\u2009\u2192\u2009A2 course takes 4 weeks.",
   },
   // Enrollment
   {
@@ -78,17 +78,8 @@ const categories = [
 
 export default function FAQ() {
   const [activeCategory, setActiveCategory] = useState("documents");
-  const [openIndex, setOpenIndex] = useState(0);
 
   const filteredFaqs = faqs.filter((f) => f.category === activeCategory);
-
-  const toggle = (i: number) =>
-    setOpenIndex((prev) => (prev === i ? -1 : i));
-
-  const switchCategory = (key: string) => {
-    setActiveCategory(key);
-    setOpenIndex(0);
-  };
 
   return (
     <section className="bg-white py-12 px-5 lg:py-20 lg:px-0">
@@ -116,7 +107,7 @@ export default function FAQ() {
               {categories.map((cat) => (
                 <button
                   key={cat.key}
-                  onClick={() => switchCategory(cat.key)}
+                  onClick={() => setActiveCategory(cat.key)}
                   className={`flex items-center gap-2 rounded-lg px-3.5 py-2.5 text-left transition-colors ${
                     activeCategory === cat.key
                       ? "bg-[#1B8A7E] text-white"
@@ -157,36 +148,35 @@ export default function FAQ() {
             </div>
           </div>
 
-          {/* Accordion */}
+          {/* Accordion — uses <details>/<summary> so all answers are in the DOM for crawlers */}
           <div className="flex-1 rounded-xl border border-[#E2E8F0] bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             {filteredFaqs.map((faq, i) => (
-              <div
+              <details
                 key={faq.question}
-                className={i > 0 ? "border-t border-[#E2E8F0]" : ""}
+                open={i === 0}
+                className={`group ${i > 0 ? "border-t border-[#E2E8F0]" : ""}`}
               >
-                <button
-                  onClick={() => toggle(i)}
-                  className={`flex items-center justify-between w-full px-6 py-5 text-left ${
-                    openIndex === i ? "bg-[#FAFFFE]" : ""
-                  }`}
-                >
+                <summary className="flex items-center justify-between w-full px-6 py-5 cursor-pointer list-none group-open:bg-[#FAFFFE]">
                   <span className="text-[15px] font-semibold text-[#1E293B] pr-4">
                     {faq.question}
                   </span>
-                  {openIndex === i ? (
-                    <ChevronUp className="w-[18px] h-[18px] text-[#1B8A7E] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-[18px] h-[18px] text-[#94A3B8] shrink-0" />
-                  )}
-                </button>
-                {openIndex === i && (
-                  <div className="px-6 pb-5 bg-[#FAFFFE]">
-                    <p className="text-sm leading-[1.7] text-[#64748B]">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
+                  {/* Chevron rotates via CSS */}
+                  <svg
+                    className="w-[18px] h-[18px] shrink-0 transition-transform group-open:rotate-180 text-[#1B8A7E]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-5 bg-[#FAFFFE]">
+                  <p className="text-sm leading-[1.7] text-[#64748B]">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
             ))}
           </div>
         </div>
@@ -207,36 +197,34 @@ export default function FAQ() {
             </p>
           </div>
 
-          {/* Accordion — all questions */}
+          {/* Accordion — <details> ensures answers are always in HTML for crawlers */}
           <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             {faqs.slice(0, 5).map((faq, i) => (
-              <div
+              <details
                 key={faq.question}
-                className={i > 0 ? "border-t border-[#E2E8F0]" : ""}
+                open={i === 0}
+                className={`group ${i > 0 ? "border-t border-[#E2E8F0]" : ""}`}
               >
-                <button
-                  onClick={() => toggle(i)}
-                  className={`flex items-center justify-between w-full px-6 py-5 text-left ${
-                    openIndex === i ? "bg-[#FAFFFE]" : ""
-                  }`}
-                >
+                <summary className="flex items-center justify-between w-full px-6 py-5 cursor-pointer list-none group-open:bg-[#FAFFFE]">
                   <span className="text-[15px] font-semibold text-[#1E293B] pr-4">
                     {faq.question}
                   </span>
-                  {openIndex === i ? (
-                    <ChevronUp className="w-[18px] h-[18px] text-[#1B8A7E] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-[18px] h-[18px] text-[#94A3B8] shrink-0" />
-                  )}
-                </button>
-                {openIndex === i && (
-                  <div className="px-6 pb-5 bg-[#FAFFFE]">
-                    <p className="text-sm leading-[1.7] text-[#64748B]">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
+                  <svg
+                    className="w-[18px] h-[18px] shrink-0 transition-transform group-open:rotate-180 text-[#1B8A7E]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-5 bg-[#FAFFFE]">
+                  <p className="text-sm leading-[1.7] text-[#64748B]">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
             ))}
           </div>
 
