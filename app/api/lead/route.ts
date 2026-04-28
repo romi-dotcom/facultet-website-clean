@@ -160,6 +160,39 @@ export async function POST(req: NextRequest) {
     const data = await leadRes.json();
     const leadId = data._embedded?.leads?.[0]?.id;
 
+    // Передаём enrichment в нашу аналитику для Telegram-уведомления.
+    // Fire-and-forget: если сервис недоступен, лид всё равно создан в
+    // Kommo (это критичная часть). Аналитика — secondary path.
+    if (leadId && process.env.ANALYTICS_WEBHOOK_SECRET) {
+      fetch('https://facultet-analytics.vercel.app/api/v2/integrations/landing-enrichment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Webhook-Secret': process.env.ANALYTICS_WEBHOOK_SECRET,
+        },
+        body: JSON.stringify({
+          leadExternalId: String(leadId),
+          enrichment: {
+            name,
+            phone,
+            email,
+            course,
+            utm: utmData,
+            referrer,
+            language,
+            timeOnSite,
+            device,
+            geo: {
+              country: req.headers.get('x-vercel-ip-country') || undefined,
+              city: req.headers.get('x-vercel-ip-city') || undefined,
+            },
+          },
+        }),
+      }).catch((err) => {
+        console.error('[lead] analytics webhook failed:', err);
+      });
+    }
+
     // Send Meta Conversion API event
     if (META_PIXEL_ID && META_CAPI_TOKEN) {
       const eventData = {
@@ -200,32 +233,6 @@ export async function POST(req: NextRequest) {
         console.error("Meta CAPI network error:", err);
       }
     }
-
-    // Send Telegram notification with full lead details
-    const timeMin = Math.floor((timeOnSite || 0) / 60);
-    const timeSec = (timeOnSite || 0) % 60;
-    const timeStr = timeMin > 0 ? `${timeMin}м ${timeSec}с` : `${timeSec}с`;
-    const geo = [city, country].filter(Boolean).join(", ");
-
-    const tgLines = [
-      `📩 <b>Новая заявка с сайта!</b>`,
-      ``,
-      `👤 <b>${name}</b>`,
-      `📱 ${phone}`,
-      `📧 ${email}`,
-      `📚 Курс: <b>${course || "—"}</b>`,
-      ``,
-      referrer ? `🔗 Реферер: ${(() => { try { return new URL(referrer).hostname.replace("www.", "").replace(".com", "").replace(".org", ""); } catch { return referrer; } })()}` : "",
-      utmData.utm_source ? `📊 UTM Source: <b>${utmData.utm_source}</b>` : "",
-      device ? `📱 Устройство: ${device}` : "",
-      language ? `🌐 Язык: ${language}` : "",
-      geo ? `📍 Гео: ${geo}` : "",
-      `⏱ На сайте: ${timeStr}`,
-      ``,
-      `🔗 <a href="https://letofacultetschool.kommo.com/leads/detail/${leadId}">Открыть в Kommo</a>`,
-    ].filter(Boolean);
-
-    await sendTgAlert(tgLines.join("\n"));
 
     return NextResponse.json({ success: true, id: leadId });
   } catch (e) {
