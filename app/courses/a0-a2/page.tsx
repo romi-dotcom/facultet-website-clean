@@ -179,7 +179,7 @@ function HeroSection() {
               <div className="flex items-center gap-2.5">
                 <span className="text-[42px] font-extrabold text-[#1E293B] leading-[1]">€470</span>
                 <span className="text-lg text-[#94A3B8] line-through">€590</span>
-                <span className="bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold rounded-md px-2 py-0.5 whitespace-nowrap">−20% · Until April 28</span>
+                <span className="bg-[#FEF3C7] text-[#B45309] text-[10px] font-bold rounded-md px-2 py-0.5 whitespace-nowrap">−20% · Until May 20</span>
               </div>
               {/* Klarna */}
               <div className="flex items-center gap-2 bg-[#FFF0F8] rounded-lg px-3.5 py-2.5">
@@ -201,7 +201,7 @@ function HeroSection() {
                 <div className="flex items-center gap-3">
                   <Calendar className="w-4 h-4 text-[#94A3B8]" />
                   <span className="text-[13px] text-[#94A3B8]">Start:</span>
-                  <span className="text-[13px] font-semibold text-[#1E293B]">April 28 · July 22</span>
+                  <span className="text-[13px] font-semibold text-[#1E293B]">May 20 · July 22</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="w-4 h-4 text-[#94A3B8]" />
@@ -300,7 +300,7 @@ function MobilePriceCard() {
       <div className="flex items-center gap-2.5">
         <span className="text-[38px] font-extrabold text-[#1E293B] leading-[1]">€470</span>
         <span className="text-base text-[#94A3B8] line-through">€590</span>
-        <span className="bg-[#FEF3C7] text-[#B45309] text-[11px] font-bold rounded-md px-2.5 py-1">−20% · Until April 28</span>
+        <span className="bg-[#FEF3C7] text-[#B45309] text-[11px] font-bold rounded-md px-2.5 py-1">−20% · Until May 20</span>
       </div>
       {/* Klarna */}
       <div className="flex items-center gap-2 bg-[#FFF0F8] rounded-lg px-3.5 py-2.5">
@@ -319,7 +319,7 @@ function MobilePriceCard() {
         <div className="flex items-center gap-2.5">
           <Calendar className="w-[15px] h-[15px] text-[#94A3B8]" />
           <span className="text-[13px] text-[#94A3B8]">Start:</span>
-          <span className="text-[13px] font-semibold text-[#1E293B]">April 28 · July 22</span>
+          <span className="text-[13px] font-semibold text-[#1E293B]">May 20 · July 22</span>
         </div>
         <div className="flex items-center gap-2.5 bg-[#FEF9C3] border border-[#FDE047] rounded-lg px-2.5 py-1.5">
           <Users className="w-[15px] h-[15px] text-[#CA8A04]" />
@@ -1388,11 +1388,11 @@ function CTASection() {
         </h2>
         {/* Desktop meta */}
         <p className="hidden lg:block text-base text-[#64748B] text-center">
-          Next group starts April 28 — 3 spots left out of 12
+          Next group starts May 20 — 3 spots left out of 12
         </p>
         {/* Mobile meta */}
         <p className="lg:hidden text-sm text-[#64748B] leading-[1.5]">
-          Next group starts april 10{"\n"}- 3 spots left out of 20
+          Next group starts May 20{"\n"}- 3 spots left out of 20
         </p>
         {/* Form card */}
         <form noValidate onSubmit={form.handleSubmit} className="w-full max-w-[480px] bg-white rounded-[20px] border border-[#E2E8F0] shadow-[0_4px_24px_rgba(15,23,42,0.05)] p-6 lg:p-8 flex flex-col gap-3">

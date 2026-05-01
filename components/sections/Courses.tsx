@@ -44,7 +44,7 @@ const courses: Course[] = [
     oldPrice: "€590",
     save: "Save €120",
     installment: "or 3×€157 with",
-    urgency: "4 spots left — group starts April 28",
+    urgency: "4 spots left — group starts May 20",
     ctaBg: "bg-accent",
     ctaLabel: "Enroll Now →",
     href: "/courses/a0-a2",

@@ -7,14 +7,14 @@ const OG_IMAGE = `${BASE_URL}/images/hero.jpg`;
 export const metadata: Metadata = {
   title: "Portuguese A0 to A2 — PLA Citizenship Course | Ola Facultet",
   description:
-    "150-hour online Portuguese course from absolute beginner (A0) to A2. Official PLA certificate for citizenship in Portugal. DGERT-licensed, Centro Qualifica partner. Starts April 28. €470.",
+    "150-hour online Portuguese course from absolute beginner (A0) to A2. Official PLA certificate for citizenship in Portugal. DGERT-licensed, Centro Qualifica partner. Starts May 20. €470.",
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
     title: "Portuguese A0 to A2 — PLA Citizenship Course | Ola Facultet",
     description:
-      "150-hour online Portuguese course from A0 to A2. Official certificate for Portuguese citizenship. DGERT-licensed school. Starts April 28. €470 or 3×€157 via Klarna.",
+      "150-hour online Portuguese course from A0 to A2. Official certificate for Portuguese citizenship. DGERT-licensed school. Starts May 20. €470 or 3×€157 via Klarna.",
     url: PAGE_URL,
     images: [
       {
@@ -71,8 +71,8 @@ const courseSchema = {
   hasCourseInstance: [
     {
       "@type": "CourseInstance",
-      name: "April 2026 cohort",
-      startDate: "2026-04-28",
+      name: "May 2026 cohort",
+      startDate: "2026-05-20",
       endDate: "2026-07-22",
       courseMode: "online",
       location: {
@@ -92,7 +92,7 @@ const courseSchema = {
     "@type": "Offer",
     price: "470",
     priceCurrency: "EUR",
-    priceValidUntil: "2026-04-28",
+    priceValidUntil: "2026-05-20",
     availability: "https://schema.org/LimitedAvailability",
     url: PAGE_URL,
   },

@@ -47,7 +47,7 @@ export default function FinalCTA() {
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
                 <span className="text-[13px] font-bold text-[#C2410C]">
-                  Next group: April 28 · Only 6 spots left
+                  Next group: May 20 · Only 6 spots left
                 </span>
               </div>
 
@@ -182,7 +182,7 @@ export default function FinalCTA() {
         <div className="flex items-center justify-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
           <span className="text-[13px] font-bold text-[#C2410C]">
-            Next group: April 28 · Only 6 spots left
+            Next group: May 20 · Only 6 spots left
           </span>
         </div>
 
