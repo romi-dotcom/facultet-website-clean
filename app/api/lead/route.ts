@@ -145,13 +145,22 @@ export async function POST(req: NextRequest) {
     // Передаём enrichment в нашу аналитику для Telegram-уведомления.
     // Fire-and-forget: если сервис недоступен, лид всё равно создан в
     // Kommo (это критичная часть). Аналитика — secondary path.
+    //
+    // X-Workspace-Id — указывает явно куда писать enrichment. Без него
+    // analytics уйдёт в single-tenant fallback (`findFirst`), что норм
+    // пока workspace один, но при появлении второго (тестовый/демо)
+    // данные могут улететь в случайный.
     if (leadId && process.env.ANALYTICS_WEBHOOK_SECRET) {
+      const analyticsHeaders: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'X-Webhook-Secret': process.env.ANALYTICS_WEBHOOK_SECRET,
+      };
+      if (process.env.ANALYTICS_WORKSPACE_ID) {
+        analyticsHeaders['X-Workspace-Id'] = process.env.ANALYTICS_WORKSPACE_ID;
+      }
       fetch('https://facultet-analytics.vercel.app/api/v2/integrations/landing-enrichment', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Webhook-Secret': process.env.ANALYTICS_WEBHOOK_SECRET,
-        },
+        headers: analyticsHeaders,
         body: JSON.stringify({
           leadExternalId: String(leadId),
           enrichment: {
