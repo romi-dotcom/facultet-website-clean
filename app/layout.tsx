@@ -61,6 +61,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    other: {
+      "msvalidate.01": "2849A0A843612DA9FA292BCEF0E0DB44",
+    },
+  },
 };
 
 // Organization + LocalBusiness JSON-LD (applies to all pages)
