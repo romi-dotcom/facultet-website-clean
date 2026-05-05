@@ -119,6 +119,10 @@ const breadcrumbSchema = {
 const courseFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["#faq summary", "#faq details > div"],
+  },
   mainEntity: [
     {
       "@type": "Question",

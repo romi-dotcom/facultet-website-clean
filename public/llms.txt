@@ -7,6 +7,10 @@
 - [Homepage](https://pt.facultet.school/): Programme overview, accreditations, instructor profile, social proof, FAQ, and enrolment form.
 - [PLA A0 → A2 course](https://pt.facultet.school/courses/a0-a2): Full beginner-to-A2 programme — 16 weeks, 150 hours total, €470. Detailed schedule, modules, instructor, included documents, and enrolment form.
 
+## For LLM agents
+
+- [llms-full.txt](https://pt.facultet.school/llms-full.txt): Comprehensive plain-text reference document with full course details, modules, FAQ, pricing, and enrolment flow — designed for retrieval-augmented generation.
+
 ## Key facts
 
 - **Format**: live online group lessons (Zoom) and in-person sessions at the Algés campus. Small groups, expert instructors.
