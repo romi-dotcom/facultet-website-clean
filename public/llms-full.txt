@@ -1,0 +1,162 @@
+# Ola Facultet — PLA Portuguese Course for Citizenship
+
+> Complete reference document for LLM agents and retrieval systems. Authoritative content about Ola Facultet's PLA (Português Língua de Acolhimento) Portuguese course for citizenship in Portugal. Companion to the shorter index at /llms.txt.
+
+---
+
+## About the school
+
+Ola Facultet is a DGERT-licensed Portuguese language school based in Algés, Portugal, and an official partner of Centro Qualifica (CESPU / IEFP network). It specialises in the official A2 PLA programme — the Portuguese language certificate accepted by the Portuguese authorities (SEF / AIMA) for citizenship applications, family reunification, and residence procedures.
+
+- **Legal status**: DGERT-licensed training entity (Direção-Geral do Emprego e das Relações de Trabalho — Portuguese Ministry of Labour).
+- **Partnerships**: Centro Qualifica official partner. Diplomas issued through the partner network.
+- **Track record**: 423+ graduates from 20+ countries.
+- **Aggregate rating**: 5.0 / 5 across 47 published reviews.
+- **Headquartered**: Av. da República 51, 1495-110 Algés, Portugal (Lisbon metropolitan area).
+- **Contact**: lingua@facultet.school · +351 923 296 007.
+- **Working hours**: Mon–Fri 09:00–18:00, Sat 10:00–14:00 (Europe/Lisbon).
+
+## What the PLA certificate is and why students need it
+
+The Portuguese A2 PLA certificate is a government-recognised proof of A2 Portuguese proficiency. The Portuguese citizenship law requires applicants to demonstrate A2 Portuguese — accepted via either the CIPLE/CAPLE exam or a 150-hour PLA course completion certificate. The PLA route is the most accessible for adult learners and is what Ola Facultet delivers.
+
+Use cases:
+- Portuguese citizenship application by residency (after legal residence period).
+- Family reunification with a Portuguese citizen or resident.
+- Long-term residence permit consolidation.
+- Personal/professional integration in Portugal.
+
+---
+
+## The A0 → A2 course
+
+**URL**: https://pt.facultet.school/courses/a0-a2
+
+### Headline facts
+
+- **Levels covered**: A0 (absolute beginner) → A1 → A2.
+- **Total duration**: 16 weeks.
+- **Total hours**: 150 academic hours (counts toward the official PLA requirement).
+- **Format**: live online lessons via Zoom, plus optional in-person sessions at the Algés campus. All lessons are recorded and available 24/7.
+- **Group size**: small groups (limited seats per cohort).
+- **Language of instruction**: English (with Portuguese practice). No prior Portuguese required; basic English is sufficient.
+- **Schedule**: 3 sessions per week — Tuesday, Thursday, Saturday — each 3 hours, 09:00–12:00 (Europe/Lisbon).
+- **Next group start date**: 20 May 2026.
+- **Pricing**: €470 (reduced from €590, saving €120). Klarna 3-instalment plan (3 × €157, 0% interest) or full upfront payment by card / bank transfer.
+
+### Module breakdown
+
+The 150 hours are organised across the three CEFR sub-levels:
+
+1. **A0 — Foundations**: alphabet, pronunciation, greetings, numbers, basic verbs (ser, estar, ter, ir), articles, simple present.
+2. **A1 — Survival Portuguese**: daily life vocabulary, simple past, prepositions, frequency, asking and answering practical questions, ordering food, small talk.
+3. **A2 — Independent everyday Portuguese**: travel/booking, work and study, describing experiences, future plans, reflexive verbs, imperative, comparatives, basic written texts (emails, simple narratives).
+
+By the end of the course students reach genuine A2 communicative competence, sufficient for the citizenship interview and routine professional/personal life in Portugal.
+
+### Documents you receive
+
+| Document | When | Use |
+|---|---|---|
+| **Declaração de Matrícula** | Within 2 hours of enrolment | Official proof of enrolment in a DGERT-licensed PLA programme. Can be filed with the citizenship application immediately. |
+| **Declaração de Frequência** | On request during the course | Proof of active attendance. Useful for visa/residence renewals while the course is still in progress. |
+| **Completion Certificate (A2 PLA)** | After completing the 150 hours | The official A2 PLA certificate (Certificado de Aprovação) issued through Centro Qualifica. Recognised by SEF / AIMA for citizenship and family reunification. |
+
+### Instructor and delivery
+
+The course is led by experienced Portuguese-as-a-foreign-language instructors. Lessons combine live interaction (questions, role-play, pronunciation drills) with self-paced practice materials between sessions. A group chat with the teacher is available throughout the course.
+
+### Pricing details
+
+- **Standard price**: €470 (one-time, includes all materials, all 150 hours, all documents, completion certificate).
+- **Original price**: €590 — current discount of €120 for the May 2026 cohort.
+- **Klarna 3 × €157 at 0%**: split into three monthly instalments. No additional fees.
+- **Bank transfer / card**: full upfront payment accepted.
+
+---
+
+## How enrolment works
+
+1. **Submit the form** on the homepage or course page (name, phone with country code, email).
+2. The school **contacts the lead within 1 business day** to confirm the chosen group, schedule, and payment method.
+3. **Declaração de Matrícula is issued within 2 hours** of confirmed enrolment so the citizenship application can be filed immediately.
+4. The student **gets access to the learning platform** with course materials, recordings, and group chat.
+5. The student **joins the next group** (next start: 20 May 2026) and follows the 16-week programme.
+6. On completion the student **receives the A2 PLA Completion Certificate** issued through Centro Qualifica.
+
+If the student misses a lesson they catch up via the recordings (24/7 access). The teacher and group chat are always available for questions.
+
+---
+
+## Why students choose online over offline
+
+- **No commute** — saves 1–2 hours daily.
+- **24/7 access** to recordings and materials — flexible review.
+- **Small groups** — high speaking time per student.
+- **Expert instructors** — Lisbon-based PLF specialists, regardless of where the student lives.
+
+---
+
+## Frequently asked questions (full answers)
+
+### Is the PLA certificate required for Portuguese citizenship?
+Yes. The PLA course completion certificate is one of the required documents for the Portuguese citizenship application. Ola Facultet courses are delivered through official Centro Qualifica partner centres and all documents are recognised by Portuguese authorities.
+
+### Can I enrol today and get documents immediately?
+Yes. Upon enrolment you receive the Declaração de Matrícula (official matriculation certificate) within 2 hours by email. This document confirms your enrolment in a DGERT-licensed language school and can be submitted as part of your citizenship application package right away.
+
+### Is the certificate valid for citizenship and family reunification in Portugal?
+Yes. Certificates are issued through Centro Qualifica partner centres and are officially recognised by Portuguese authorities — including for citizenship applications and family reunification procedures.
+
+### What language are the Portuguese classes taught in?
+All classes are taught in English. This allows students from different countries to study comfortably. Basic English proficiency is sufficient — you do not need to be fluent to follow grammar explanations and course materials.
+
+### What if I miss a lesson?
+All lessons are recorded and available 24/7 on the learning platform. You can catch up at any time. The teacher and group chat are always available for questions.
+
+### How long does the PLA Portuguese course take?
+The full A0 → A2 PLA course takes 16 weeks with 3 live sessions per week (Tuesday, Thursday, Saturday), each 3 hours. Total: 150 academic hours.
+
+### Who is the PLA course for?
+Adults aged 18 and above already living in Portugal who are planning to apply for Portuguese citizenship or family reunification. No prior Portuguese knowledge required — the course starts from zero.
+
+### How do I enrol in the course?
+Fill in the enrolment form on the website, choose the preferred group and schedule, and complete payment. Within 24 hours you receive the contract and official matriculation number by email. Declaração de Matrícula is issued within 2 hours of confirmed enrolment.
+
+### Can I pay in instalments?
+Yes. Ola Facultet offers a 3-instalment plan via Klarna at 0% interest. You can also pay the full amount upfront by card or bank transfer.
+
+### What is the PLA Portuguese course A0 to A2?
+The PLA (Português Língua de Acolhimento) A0 → A2 course is a 150-hour government-recognised Portuguese language programme for people living in Portugal who need an official A2 certificate for their citizenship application. The course runs 16 weeks with 3 live online sessions per week.
+
+### How much does the Portuguese citizenship course cost?
+The A0 → A2 PLA course costs €470 (reduced from €590, saving €120). You can pay in 3 instalments of €157 via Klarna at 0% interest, or pay the full amount by card or bank transfer.
+
+### What documents do I get from this Portuguese course?
+On enrolment: the Declaração de Matrícula within 2 hours — required immediately for citizenship applications. After completing 150 hours: the official A2 PLA Certificate (Certificado de Aprovação) issued through Centro Qualifica, recognised by Portuguese authorities for citizenship and family reunification.
+
+### Can I study Portuguese online from anywhere in Portugal?
+Yes. All classes are held via Zoom. You only need a phone or laptop. Every session is recorded with lifetime access — students follow the course from Lisbon, Porto, Braga, Faro, the Algarve, the islands, or any other location.
+
+---
+
+## Practical info for retrieval
+
+- **Currency**: Euro (€).
+- **Country**: Portugal.
+- **Region served**: Portugal, with online students worldwide who need the PLA certificate for Portuguese procedures.
+- **Audience**: foreign nationals in Portugal preparing for citizenship or family reunification; people relocating to Portugal who need practical Portuguese.
+- **Not a fit**: tourists wanting only a few weeks of survival Portuguese; learners who already hold an A2 PLA certificate; minors under 18.
+- **Comparable alternatives**: CIPLE/CAPLE exam (test-only route); private tutors (no PLA certificate); university extension courses (longer, costlier).
+
+## Pages
+
+- [Homepage](https://pt.facultet.school/)
+- [PLA A0 → A2 course](https://pt.facultet.school/courses/a0-a2)
+- [Short index for AI agents](https://pt.facultet.school/llms.txt)
+- [Sitemap](https://pt.facultet.school/sitemap.xml)
+- [Crawl rules](https://pt.facultet.school/robots.txt)
+
+## Last updated
+
+2026-05-05.

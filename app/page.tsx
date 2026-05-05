@@ -34,6 +34,10 @@ export const metadata: Metadata = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["#faq summary", "#faq details > div"],
+  },
   mainEntity: [
     {
       "@type": "Question",
